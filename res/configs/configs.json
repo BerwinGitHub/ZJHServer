@@ -1,0 +1,7 @@
+{
+	window_scale:0.8,
+	windows_width:600,
+	windows_height:400,
+	file_userdefault:"./res/configs/userdefault.json",
+	file_language:"./res/configs/language.json",
+}
