@@ -18,7 +18,6 @@ public class Server {
 
 	private SocketIOServer server;
 
-	@SuppressWarnings("unchecked")
 	public Server(String host, int port) {
 		this.host = host;
 		this.port = port;
@@ -33,25 +32,28 @@ public class Server {
 		this.server.addDisconnectListener(lifeCircle);
 
 		// Message
-		this.server.addEventListener("message", Object.class,
+		this.server.addEventListener("message", String.class,
 				new MessageController(this.server));
 
 		// Login
-		this.server.addEventListener("login", Object.class,
+		this.server.addEventListener("login", String.class,
 				new LoginController(this.server));
 
 		// createRoom
 		RoomController room = new RoomController(server);
-		this.server.addEventListener("createRoom", Object.class, room);
-		this.server.addEventListener("joinRoom", Object.class, room);
+		this.server.addEventListener("createRoom", String.class, room);
+		this.server.addEventListener("joinRoom", String.class, room);
 
 		// game
-		this.server.addEventListener("game", Object.class, new GameController(
+		this.server.addEventListener("game", String.class, new GameController(
 				server));
 	}
 
 	public void start() {
 		server.start();
+		System.out.println("Server start at - "
+				+ this.server.getConfiguration().getHostname() + ":"
+				+ this.server.getConfiguration().getPort());
 		this.isRunning = true;
 	}
 

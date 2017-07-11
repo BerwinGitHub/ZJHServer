@@ -1,7 +1,9 @@
 {
-	window_scale:0.8,
+	window_scale:0.65,
 	windows_width:600,
 	windows_height:400,
 	file_userdefault:"./res/configs/userdefault.json",
 	file_language:"./res/configs/language.json",
+	server_ip:"127.0.0.1",
+	server_port:8867,
 }

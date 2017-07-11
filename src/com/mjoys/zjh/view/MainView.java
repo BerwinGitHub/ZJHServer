@@ -38,7 +38,8 @@ public class MainView extends JFrame implements ChangeListener, WindowListener {
 	private JButton btnStop = null;
 
 	public MainView() {
-		this.gameServer = new Server("127.0.0.1", 8867);
+		this.gameServer = new Server(Configs.stringValue("server_ip"),
+				Configs.intValue("server_port"));
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());// 当前系统风格
@@ -68,7 +69,7 @@ public class MainView extends JFrame implements ChangeListener, WindowListener {
 		// SOUTH
 		JPanel south = new JPanel();
 		this.add(south, BorderLayout.SOUTH);
-		this.btnStart = new JButton("开启服务");
+		this.btnStart = new JButton(Language.get("btn_start_server"));
 		south.add(this.btnStart);
 		this.btnStart.addActionListener(new ActionListener() {
 
@@ -79,7 +80,7 @@ public class MainView extends JFrame implements ChangeListener, WindowListener {
 				btnStop.setEnabled(gameServer.isRunning());
 			}
 		});
-		this.btnStop = new JButton("停止服务");
+		this.btnStop = new JButton(Language.get("btn_stop_server"));
 		south.add(this.btnStop);
 		this.btnStop.addActionListener(new ActionListener() {
 

@@ -14,14 +14,13 @@ public class LifeCircleController extends IController implements
 
 	@Override
 	public void onDisconnect(SocketIOClient arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("onDisconnect:" + arg0.getAllRooms().size());
 
 	}
 
 	@Override
 	public void onConnect(SocketIOClient arg0) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Connect:" + arg0.getAllRooms().size());
 	}
 
 }
