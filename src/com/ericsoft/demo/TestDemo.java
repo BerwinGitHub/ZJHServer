@@ -17,14 +17,14 @@ public class TestDemo {
 
 		initBmob();// 初始化
 		// Search();//查询
-		// update();//修改
+		update();// 修改
 		// delete();//删除
 		// insert();// 新增
 		// callFunction();//调用云代码
 		// findPayOrder();//查询支付订单
 		// count();//计数
 		// upload();// 上传文件
-		 requestSms();//发送短信
+		// requestSms();// 发送短信
 		System.out.println("...");
 	}
 
@@ -52,8 +52,7 @@ public class TestDemo {
 		BSONObject where = new BSONObject();
 		where.put("score", where1);
 		// find方法很多，可自行尝试
-		String result = Bmob.find("Your TableName", where.toString(), 0, 50,
-				"order");
+		String result = Bmob.find("Your TableName", where.toString(), 0, 50, "order");
 		Bmob.findBQL("BQL");
 		Bmob.findBQL("BQL", "value");
 		// 可使用JSON 或者 BSON 转换成Object
@@ -62,9 +61,10 @@ public class TestDemo {
 
 	private static void update() {
 		BSONObject bson = new BSONObject();
-		bson.put("score", 100);
+		bson.put("coin", 1023);
 		// score 修改为100
-		Bmob.update("Your TableName", "Your objectId", bson.toString());
+		String result = Bmob.update("_User", "e7e86374f3", bson.toString());
+		System.out.println(result);
 	}
 
 	private static void delete() {
@@ -134,13 +134,10 @@ public class TestDemo {
 		BSONObject bson_class = new BSONObject(class1.toString());
 		BSON.Log("BSON:" + bson_class + "\n");
 		BSON.Log("Build date:" + bson_class.getDate("build"));
-		BSON.Log("Is teacher offer? "
-				+ bson_class.getBSONObject("teacher").getBoolean("offer"));
-		BSON.Log("Teacher's age:"
-				+ bson_class.getBSONObject("teacher").getInt("age"));
+		BSON.Log("Is teacher offer? " + bson_class.getBSONObject("teacher").getBoolean("offer"));
+		BSON.Log("Teacher's age:" + bson_class.getBSONObject("teacher").getInt("age"));
 		BSON.Log("First student's name:"
-				+ bson_class.getBSONObject("students").getBSONArray("student")[0]
-						.getString("name"));
+				+ bson_class.getBSONObject("students").getBSONArray("student")[0].getString("name"));
 
 	}
 

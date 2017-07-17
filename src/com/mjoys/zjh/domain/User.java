@@ -1,86 +1,100 @@
 package com.mjoys.zjh.domain;
 
-public class User {
+import java.util.Date;
 
-	private int id;
+/**
+ * 请保证属性名和数据库字段名字一致
+ * 
+ * @author t_Ber
+ *
+ */
+public class User extends IBmobObject {
 
-	private String deviceId;
+	private String objectId = null;
 
-	private String userName;
+	private String username = null;
 
-	private String passWord;
+	private boolean mobilePhoneNumberVerified;
 
-	private int coin;
+	private String mobilePhoneNumber = null;
+
+	private int totalInning;
+
+	private int winInning;
 
 	private int diamond;
 
-	private boolean mobilePhoneNumberVer;
+	private int coin;
 
-	private boolean mobilePhoneNumber;
+	private String deviceId = null;
+
+	private int id;
+
+	private String authData = null;
+
+	private Date createdAt = null;
+
+	private Date updatedAt = null;
+
+	private boolean specialMode;
 
 	public User() {
 	}
 
-	public User(int id, String deviceId, String userName, String passWord,
-			int coin, int diamond, boolean mobilePhoneNumberVer,
-			boolean mobilePhoneNumber) {
-		super();
-		this.id = id;
-		this.deviceId = deviceId;
-		this.userName = userName;
-		this.passWord = passWord;
-		this.coin = coin;
-		this.diamond = diamond;
-		this.mobilePhoneNumberVer = mobilePhoneNumberVer;
-		this.mobilePhoneNumber = mobilePhoneNumber;
+	public String getObjectId() {
+		return objectId;
 	}
 
-	public int getId() {
-		return id;
+	public void setObjectId(String objectId) {
+		this.objectId = objectId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public String getUsername() {
+		return username;
 	}
 
-	public String getDeviceId() {
-		return deviceId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
+	public boolean isMobilePhoneNumberVerified() {
+		return mobilePhoneNumberVerified;
 	}
 
-	public String getUserName() {
-		return userName;
+	public void setMobilePhoneNumberVerified(boolean mobilePhoneNumberVerified) {
+		this.mobilePhoneNumberVerified = mobilePhoneNumberVerified;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassWord() {
-		return passWord;
-	}
-
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
-	}
-
-	public boolean isMobilePhoneNumberVer() {
-		return mobilePhoneNumberVer;
-	}
-
-	public void setMobilePhoneNumberVer(boolean mobilePhoneNumberVer) {
-		this.mobilePhoneNumberVer = mobilePhoneNumberVer;
-	}
-
-	public boolean isMobilePhoneNumber() {
+	public String getMobilePhoneNumber() {
 		return mobilePhoneNumber;
 	}
 
-	public void setMobilePhoneNumber(boolean mobilePhoneNumber) {
+	public void setMobilePhoneNumber(String mobilePhoneNumber) {
 		this.mobilePhoneNumber = mobilePhoneNumber;
+	}
+
+	public int getTotalInning() {
+		return totalInning;
+	}
+
+	public void setTotalInning(int totalInning) {
+		this.totalInning = totalInning;
+	}
+
+	public int getWinInning() {
+		return winInning;
+	}
+
+	public void setWinInning(int winInning) {
+		this.winInning = winInning;
+	}
+
+	public int getDiamond() {
+		return diamond;
+	}
+
+	public void setDiamond(int diamond) {
+		this.diamond = diamond;
 	}
 
 	public int getCoin() {
@@ -91,12 +105,57 @@ public class User {
 		this.coin = coin;
 	}
 
-	public int getDiamond() {
-		return diamond;
+	public String getDeviceId() {
+		return deviceId;
 	}
 
-	public void setDiamond(int diamond) {
-		this.diamond = diamond;
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAuthData() {
+		return authData;
+	}
+
+	public void setAuthData(String authData) {
+		this.authData = authData;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public boolean isSpecialMode() {
+		return specialMode;
+	}
+
+	public void setSpecialMode(boolean specialMode) {
+		this.specialMode = specialMode;
+	}
+
+	@Override
+	public String getTableName() {
+		return "_User";
 	}
 
 }
