@@ -2,11 +2,13 @@ package com.mjoys.zjh.domain;
 
 import java.util.Date;
 
+import com.mjoys.zjh.proto.Protobufs;
+
 /**
  * 请保证属性名和数据库字段名字一致
  * 
  * @author t_Ber
- *
+ * 
  */
 public class User extends IBmobObject {
 
@@ -39,6 +41,10 @@ public class User extends IBmobObject {
 	private boolean specialMode;
 
 	public User() {
+	}
+
+	public User(byte[] pBytes) {
+		toUser(pBytes);
 	}
 
 	public String getObjectId() {
@@ -156,6 +162,35 @@ public class User extends IBmobObject {
 	@Override
 	public String getTableName() {
 		return "_User";
+	}
+
+	/**
+	 * 转成ProtoBufBytes
+	 * 
+	 * @return
+	 */
+	public byte[] toProtoBufBytes() {
+		Protobufs.User.Builder builder = Protobufs.User.newBuilder();
+		builder.setObjectId(this.objectId);
+		builder.setUsername(this.username);
+		builder.setMobilePhoneNumberVerified(this.mobilePhoneNumberVerified);
+		builder.setMobilePhoneNumber(this.mobilePhoneNumber);
+		builder.setTotalInning(this.totalInning);
+		builder.setWinInning(this.winInning);
+		builder.setDiamond(this.diamond);
+		builder.setCoin(this.coin);
+		builder.setDeviceId(this.deviceId);
+		builder.setId(this.id);
+		builder.setAuthData(this.authData);
+		builder.setCreatedAt(this.createdAt.getTime());
+		builder.setUpdatedAt(this.updatedAt.getTime());
+		builder.setSpecialMode(this.specialMode);
+		Protobufs.User pUser = builder.build();
+		return pUser.toByteArray();
+	}
+
+	private void toUser(byte[] pBytes) {
+		// TODO 用proto转成User
 	}
 
 }

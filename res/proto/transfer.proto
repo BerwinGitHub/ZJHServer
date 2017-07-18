@@ -1,5 +1,5 @@
 syntax = "proto3";
-option java_package = "com.mjoys.berwin.proto"; 
+option java_package = "com.mjoys.zjh.proto";
 option java_outer_classname = "Protobufs";
 
 // repeated string names = 1;
@@ -23,11 +23,21 @@ message TransferData {
 }
 
 message User {
-	int32 userId	= 1;
-	string userName	= 2;
-	string passWord = 3;
-	int32 score		= 4;
-	bool verify		= 5;
+	string objectId					=	1;
+	string username					=	2;
+	bool mobilePhoneNumberVerified	=	3;
+	string mobilePhoneNumber		=	4;
+	int32 totalInning				=	5;
+	int32 winInning					=	6;
+	int32 diamond					=	7;
+	int32 coin						=	8;	
+	string deviceId					=	9;
+	int32 id						=	10;
+	string authData					=	11;
+	uint64 createdAt				=	12;
+	uint64 updatedAt				=	13;
+	bool specialMode				=	14; // for test
+	
 }
 
 message Login {
