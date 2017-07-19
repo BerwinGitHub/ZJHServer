@@ -23,6 +23,8 @@ public class LoginController extends IController implements DataListener<String>
 		UserService userService = new UserService();
 		user = userService.queryByDeviceID(user.getDeviceId());
 		if (user != null) { // 登录成功，返回用户数据
+			// 添加到在线用户中
+			arg0.set("user", user);
 			String userMsg = ProtobufUtility.packDataToString(0, user.toProtoBufBytes());
 			arg0.sendEvent(CSMapping.S2C_LOGIN_SUCCESS, userMsg);
 		} else { // 登录失败

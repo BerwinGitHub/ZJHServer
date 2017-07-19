@@ -10,8 +10,8 @@ package com.mjoys.zjh.common;
 public class CSMapping {
 
 	// client to server
-	public static final String C2S_LOGIN = "login";
-	public static final String C2S_MESSAGE = "message";
+	public static final String C2S_LOGIN = "login"; // 客户端请求登录
+	public static final String C2S_MESSAGE = "message"; // 客户端发送消息
 	public static final String C2S_CREATE_ROOM = "createRoom";
 	public static final String C2S_JOIN_ROOM = "joinRoom";
 	public static final String C2S_GAME = "game";
