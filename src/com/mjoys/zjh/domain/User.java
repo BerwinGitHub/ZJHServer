@@ -2,6 +2,7 @@ package com.mjoys.zjh.domain;
 
 import java.util.Date;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.mjoys.zjh.proto.Protobufs;
 
 /**
@@ -190,7 +191,26 @@ public class User extends IBmobObject {
 	}
 
 	private void toUser(byte[] pBytes) {
-		// TODO 用proto转成User
+		try {
+			Protobufs.User u = Protobufs.User.parseFrom(pBytes);
+			this.setObjectId(u.getObjectId());
+			this.setUsername(u.getUsername());
+			this.setMobilePhoneNumberVerified(u.getMobilePhoneNumberVerified());
+			this.setMobilePhoneNumber(u.getMobilePhoneNumber());
+			this.setTotalInning(u.getTotalInning());
+			this.setWinInning(u.getWinInning());
+			this.setDiamond(u.getDiamond());
+			this.setCoin(u.getCoin());
+			this.setDeviceId(u.getDeviceId());
+			this.setId(u.getId());
+			this.setAuthData(u.getAuthData());
+			this.setCreatedAt(new Date(u.getCreatedAt()));
+			this.setUpdatedAt(new Date(u.getUpdatedAt()));
+			this.setSpecialMode(u.getSpecialMode());
+		} catch (InvalidProtocolBufferException e) {
+			System.out.println("byte -> user error");
+			e.printStackTrace();
+		}
 	}
 
 }

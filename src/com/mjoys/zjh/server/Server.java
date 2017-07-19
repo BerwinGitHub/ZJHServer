@@ -2,6 +2,7 @@ package com.mjoys.zjh.server;
 
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;
+import com.mjoys.zjh.common.CSMapping;
 import com.mjoys.zjh.controller.GameController;
 import com.mjoys.zjh.controller.LifeCircleController;
 import com.mjoys.zjh.controller.LoginController;
@@ -32,27 +33,23 @@ public class Server {
 		this.server.addDisconnectListener(lifeCircle);
 
 		// Message
-		this.server.addEventListener("message", String.class,
-				new MessageController(this.server));
+		this.server.addEventListener(CSMapping.C2S_MESSAGE, String.class, new MessageController(this.server));
 
 		// Login
-		this.server.addEventListener("login", String.class,
-				new LoginController(this.server));
+		this.server.addEventListener(CSMapping.C2S_LOGIN, String.class, new LoginController(this.server));
 
 		// createRoom
 		RoomController room = new RoomController(server);
-		this.server.addEventListener("createRoom", String.class, room);
-		this.server.addEventListener("joinRoom", String.class, room);
+		this.server.addEventListener(CSMapping.C2S_CREATE_ROOM, String.class, room);
+		this.server.addEventListener(CSMapping.C2S_JOIN_ROOM, String.class, room);
 
 		// game
-		this.server.addEventListener("game", String.class, new GameController(
-				server));
+		this.server.addEventListener(CSMapping.C2S_GAME, String.class, new GameController(server));
 	}
 
 	public void start() {
 		server.start();
-		System.out.println("Server start at - "
-				+ this.server.getConfiguration().getHostname() + ":"
+		System.out.println("Server start at - " + this.server.getConfiguration().getHostname() + ":"
 				+ this.server.getConfiguration().getPort());
 		this.isRunning = true;
 	}

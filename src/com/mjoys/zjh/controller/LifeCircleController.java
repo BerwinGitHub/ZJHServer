@@ -5,8 +5,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
-public class LifeCircleController extends IController implements
-		ConnectListener, DisconnectListener {
+public class LifeCircleController extends IController implements ConnectListener, DisconnectListener {
 
 	public LifeCircleController(SocketIOServer server) {
 		super(server);
