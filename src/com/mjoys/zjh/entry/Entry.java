@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.ericsoft.bmob.restapi.Bmob;
 import com.mjoys.zjh.confgs.Configs;
 import com.mjoys.zjh.utility.FileUtility;
 import com.mjoys.zjh.utility.Utility;
@@ -31,6 +32,11 @@ public class Entry {
 				(int) (d.width * Configs.floatValue("window_scale")));
 		Configs.set("windows_height",
 				(int) (d.height * Configs.floatValue("window_scale")));
+		// 初始化数据库
+		Bmob.setTimeout(15 * 1000);
+		Bmob.initBmob(Configs.stringValue("db_application_id"),
+				Configs.stringValue("db_rest_api_key"));
+		Bmob.initMaster(Configs.stringValue("db_master_key"));
 
 	}
 

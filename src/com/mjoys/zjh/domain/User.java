@@ -1,5 +1,6 @@
 package com.mjoys.zjh.domain;
 
+import java.lang.reflect.Field;
 import java.util.Date;
 
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -172,20 +173,35 @@ public class User extends IBmobObject {
 	 */
 	public byte[] toProtoBufBytes() {
 		Protobufs.User.Builder builder = Protobufs.User.newBuilder();
-		builder.setObjectId(this.objectId);
-		builder.setUsername(this.username);
-		builder.setMobilePhoneNumberVerified(this.mobilePhoneNumberVerified);
-		builder.setMobilePhoneNumber(this.mobilePhoneNumber);
-		builder.setTotalInning(this.totalInning);
-		builder.setWinInning(this.winInning);
-		builder.setDiamond(this.diamond);
-		builder.setCoin(this.coin);
-		builder.setDeviceId(this.deviceId);
-		builder.setId(this.id);
-		builder.setAuthData(this.authData);
-		builder.setCreatedAt(this.createdAt.getTime());
-		builder.setUpdatedAt(this.updatedAt.getTime());
-		builder.setSpecialMode(this.specialMode);
+		Field[] fields = this.getClass().getDeclaredFields();
+		Field[] pFields = builder.getClass().getDeclaredFields();
+		for (int i = 0; i < fields.length; i++) {
+			Field f = fields[i];
+			for (int j = 0; j < pFields.length; j++) {
+				Field pf = pFields[j];
+				if ((f.getName() + "_").equals(pf.getName())) { // 可以赋值，PROTO后面加了个下划线
+					boolean accessible = f.isAccessible();
+					boolean pAccessible = pf.isAccessible();
+					f.setAccessible(true);
+					pf.setAccessible(true);
+					Object value = null;
+					try {
+						value = f.get(this);
+						if (value != null && value instanceof Date) {
+							pf.set(builder, ((Date) value).getTime());
+						} else if (value != null) {
+							pf.set(builder, value);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+					f.setAccessible(accessible);
+					pf.setAccessible(pAccessible);
+					break;
+				}
+			}
+		}
 		Protobufs.User pUser = builder.build();
 		return pUser.toByteArray();
 	}
