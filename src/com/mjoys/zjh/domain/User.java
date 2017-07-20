@@ -42,6 +42,8 @@ public class User extends IBmobObject {
 
 	private boolean specialMode;
 
+	private String headerUrl = null;
+
 	public User() {
 	}
 
@@ -161,6 +163,14 @@ public class User extends IBmobObject {
 		this.specialMode = specialMode;
 	}
 
+	public String getHeaderUrl() {
+		return headerUrl;
+	}
+
+	public void setHeaderUrl(String headerUrl) {
+		this.headerUrl = headerUrl;
+	}
+
 	@Override
 	public String getTableName() {
 		return "_User";
@@ -223,6 +233,7 @@ public class User extends IBmobObject {
 			this.setCreatedAt(new Date(u.getCreatedAt()));
 			this.setUpdatedAt(new Date(u.getUpdatedAt()));
 			this.setSpecialMode(u.getSpecialMode());
+			this.setHeaderUrl(u.getHeaderUrl());
 		} catch (InvalidProtocolBufferException e) {
 			System.out.println("byte -> user error");
 			e.printStackTrace();

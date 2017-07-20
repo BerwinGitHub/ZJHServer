@@ -10,7 +10,7 @@ import net.sf.json.JSONObject;
 /**
  * 
  * @author t_Ber
- *
+ * 
  */
 public class UserService extends IService<User> {
 
@@ -40,7 +40,8 @@ public class UserService extends IService<User> {
 	@Override
 	public void update(User e) {
 		BSONObject bson = e.toUpdateBSONObject();
-		String result = Bmob.update(e.getTableName(), e.getObjectId(), bson.toString());
+		String result = Bmob.update(e.getTableName(), e.getObjectId(),
+				bson.toString());
 		System.out.println(result);
 	}
 
@@ -55,6 +56,7 @@ public class UserService extends IService<User> {
 		} catch (Exception e) {
 			System.out.println(result);
 			e.printStackTrace();
+			return null;
 		}
 		return user;
 	}

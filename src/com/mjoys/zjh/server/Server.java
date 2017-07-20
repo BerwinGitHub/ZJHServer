@@ -33,19 +33,19 @@ public class Server {
 		this.server.addDisconnectListener(lifeCircle);
 
 		// Message
-		this.server.addEventListener(CSMapping.C2S_MESSAGE, String.class, new MessageController(this.server));
+		this.server.addEventListener(CSMapping.C2S.MESSAGE, String.class, new MessageController(this.server));
 
 		// Login
-		this.server.addEventListener(CSMapping.C2S_LOGIN, String.class, new LoginController(this.server));
+		this.server.addEventListener(CSMapping.C2S.LOGIN, String.class, new LoginController(this.server));
 
 		// createRoom
 		RoomController room = new RoomController(server);
-		this.server.addEventListener(CSMapping.C2S_CREATE_ROOM, String.class, room.new CreateController(server));
-		this.server.addEventListener(CSMapping.C2S_JOIN_ROOM, String.class, room.new JoinRoomController(server));
-		this.server.addEventListener(CSMapping.C2S_QUICK_START, String.class, room.new QuickStartController(server));
+		this.server.addEventListener(CSMapping.C2S.CREATE_ROOM, String.class, room.new CreateController(server));
+		this.server.addEventListener(CSMapping.C2S.JOIN_ROOM, String.class, room.new JoinRoomController(server));
+		this.server.addEventListener(CSMapping.C2S.QUICK_START, String.class, room.new QuickStartController(server));
 
 		// game
-		this.server.addEventListener(CSMapping.C2S_GAME, String.class, new GameController(server));
+		this.server.addEventListener(CSMapping.C2S.GAME, String.class, new GameController(server));
 	}
 
 	public void start() {
