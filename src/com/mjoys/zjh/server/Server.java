@@ -40,8 +40,9 @@ public class Server {
 
 		// createRoom
 		RoomController room = new RoomController(server);
-		this.server.addEventListener(CSMapping.C2S_CREATE_ROOM, String.class, room);
-		this.server.addEventListener(CSMapping.C2S_JOIN_ROOM, String.class, room);
+		this.server.addEventListener(CSMapping.C2S_CREATE_ROOM, String.class, room.new CreateController(server));
+		this.server.addEventListener(CSMapping.C2S_JOIN_ROOM, String.class, room.new JoinRoomController(server));
+		this.server.addEventListener(CSMapping.C2S_QUICK_START, String.class, room.new QuickStartController(server));
 
 		// game
 		this.server.addEventListener(CSMapping.C2S_GAME, String.class, new GameController(server));

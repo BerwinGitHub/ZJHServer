@@ -13,7 +13,7 @@ public class GameController extends IController implements DataListener<String> 
 
 	@Override
 	public void onData(SocketIOClient arg0, String arg1, AckRequest arg2) throws Exception {
-
+		
 	}
 
 }
