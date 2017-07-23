@@ -22,11 +22,9 @@ public class ProtobufUtility {
 	}
 
 	public static String stringify(byte[] bs) {
-		String result = "[";
-		for (int i = 0; i < bs.length; i++) {
+		String result = "";
+		for (int i = 0; i < bs.length; i++)
 			result += (bs[i] + (i != bs.length - 1 ? "," : ""));
-		}
-		result += "]";
 		return result;
 	}
 }
