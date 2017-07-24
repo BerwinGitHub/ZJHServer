@@ -1,8 +1,12 @@
 package com.mjoys.zjh.entity;
 
+import com.corundumstudio.socketio.SocketIOClient;
+import com.google.protobuf.GeneratedMessageV3.Builder;
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.mjoys.zjh.domain.User;
+import com.mjoys.zjh.proto.Protobufs;
 
-public class Seat {
+public class Seat extends IProtobufEntity<Protobufs.Seat> {
 
 	private int seatID;
 
@@ -10,10 +14,25 @@ public class Seat {
 
 	private User user;
 
-	public Seat(int seatID, User u) {
+	private SocketIOClient socketIOClient;
+
+	public Seat(byte[] bs) {
+		this.toEntity(bs);
+	}
+
+	public Seat(int seatID, User u, SocketIOClient socketIOClient) {
+		this.socketIOClient = socketIOClient;
 		this.seatID = seatID;
 		this.user = u;
 		this.callCoin = 0;
+	}
+
+	public SocketIOClient getSocketIOClient() {
+		return socketIOClient;
+	}
+
+	public void setSocketIOClient(SocketIOClient socketIOClient) {
+		this.socketIOClient = socketIOClient;
 	}
 
 	public int getSeatID() {
@@ -38,6 +57,23 @@ public class Seat {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	protected com.mjoys.zjh.proto.Protobufs.Seat parseEntityFromProtoBytes(
+			byte[] bytes) {
+		Protobufs.Seat seat = null;
+		try {
+			seat = Protobufs.Seat.parseFrom(bytes);
+		} catch (InvalidProtocolBufferException e) {
+			e.printStackTrace();
+		}
+		return seat;
+	}
+
+	@Override
+	protected Builder<?> getEntityProtoBuilder() {
+		return Protobufs.Seat.newBuilder();
 	}
 
 }

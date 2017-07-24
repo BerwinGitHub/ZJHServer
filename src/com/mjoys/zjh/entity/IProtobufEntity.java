@@ -10,16 +10,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 /**
  * @author t_Ber
- *
+ * 
  */
 public abstract class IProtobufEntity<PE> {
-
-	public IProtobufEntity() {
-	}
-
-	public IProtobufEntity(byte[] bytes) {
-		this.toEntity(bytes);
-	}
 
 	/**
 	 * proto bytes -> entity
@@ -43,8 +36,10 @@ public abstract class IProtobufEntity<PE> {
 					pf.setAccessible(true);
 					Object value = null;
 					try {
-						value = pf.get(this);
-						if (value != null && f.getGenericType().toString().equals("class java.util.Date")) {
+						value = pf.get(pe);
+						if (value != null
+								&& f.getGenericType().toString()
+										.equals("class java.util.Date")) {
 							f.set(this, new Date((long) value));
 						} else if (value != null) {
 							f.set(this, value);
@@ -59,7 +54,6 @@ public abstract class IProtobufEntity<PE> {
 				}
 			}
 		}
-
 	}
 
 	protected abstract PE parseEntityFromProtoBytes(byte[] bytes);
@@ -72,7 +66,8 @@ public abstract class IProtobufEntity<PE> {
 	 * @return
 	 */
 	public byte[] toByteArray() {
-		com.google.protobuf.GeneratedMessageV3.Builder<?> builder = this.getEntityProtoBuilder();
+		com.google.protobuf.GeneratedMessageV3.Builder<?> builder = this
+				.getEntityProtoBuilder();
 		Field[] fields = this.getClass().getDeclaredFields();
 		Field[] pFields = builder.getClass().getDeclaredFields();
 		for (int i = 0; i < fields.length; i++) {
@@ -87,7 +82,7 @@ public abstract class IProtobufEntity<PE> {
 					Object value = null;
 					try {
 						value = f.get(this);
-						if (value != null && value instanceof Date) {
+						if (value != null && value instanceof Date) { // 日期类型处理
 							pf.set(builder, ((Date) value).getTime());
 						} else if (value != null) {
 							pf.set(builder, value);

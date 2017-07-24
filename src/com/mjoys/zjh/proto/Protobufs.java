@@ -809,8 +809,7 @@ public final class Protobufs {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-
-		public static com.mjoys.zjh.proto.Protobufs.User parseFrom(byte[] data)
+    public static com.mjoys.zjh.proto.Protobufs.User parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
@@ -1805,11 +1804,1719 @@ public final class Protobufs {
 
   }
 
+  public interface SeatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Seat)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 seatID = 1;</code>
+     */
+    int getSeatID();
+
+    /**
+     * <code>int32 callCoin = 2;</code>
+     */
+    int getCallCoin();
+
+    /**
+     * <code>.User user = 3;</code>
+     */
+    boolean hasUser();
+    /**
+     * <code>.User user = 3;</code>
+     */
+    com.mjoys.zjh.proto.Protobufs.User getUser();
+    /**
+     * <code>.User user = 3;</code>
+     */
+    com.mjoys.zjh.proto.Protobufs.UserOrBuilder getUserOrBuilder();
+  }
+  /**
+   * Protobuf type {@code Seat}
+   */
+  public  static final class Seat extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Seat)
+      SeatOrBuilder {
+    // Use Seat.newBuilder() to construct.
+    private Seat(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Seat() {
+      seatID_ = 0;
+      callCoin_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Seat(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              seatID_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              callCoin_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              com.mjoys.zjh.proto.Protobufs.User.Builder subBuilder = null;
+              if (user_ != null) {
+                subBuilder = user_.toBuilder();
+              }
+              user_ = input.readMessage(com.mjoys.zjh.proto.Protobufs.User.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(user_);
+                user_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.mjoys.zjh.proto.Protobufs.internal_static_Seat_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.mjoys.zjh.proto.Protobufs.internal_static_Seat_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.mjoys.zjh.proto.Protobufs.Seat.class, com.mjoys.zjh.proto.Protobufs.Seat.Builder.class);
+    }
+
+    public static final int SEATID_FIELD_NUMBER = 1;
+    private int seatID_;
+    /**
+     * <code>int32 seatID = 1;</code>
+     */
+    public int getSeatID() {
+      return seatID_;
+    }
+
+    public static final int CALLCOIN_FIELD_NUMBER = 2;
+    private int callCoin_;
+    /**
+     * <code>int32 callCoin = 2;</code>
+     */
+    public int getCallCoin() {
+      return callCoin_;
+    }
+
+    public static final int USER_FIELD_NUMBER = 3;
+    private com.mjoys.zjh.proto.Protobufs.User user_;
+    /**
+     * <code>.User user = 3;</code>
+     */
+    public boolean hasUser() {
+      return user_ != null;
+    }
+    /**
+     * <code>.User user = 3;</code>
+     */
+    public com.mjoys.zjh.proto.Protobufs.User getUser() {
+      return user_ == null ? com.mjoys.zjh.proto.Protobufs.User.getDefaultInstance() : user_;
+    }
+    /**
+     * <code>.User user = 3;</code>
+     */
+    public com.mjoys.zjh.proto.Protobufs.UserOrBuilder getUserOrBuilder() {
+      return getUser();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (seatID_ != 0) {
+        output.writeInt32(1, seatID_);
+      }
+      if (callCoin_ != 0) {
+        output.writeInt32(2, callCoin_);
+      }
+      if (user_ != null) {
+        output.writeMessage(3, getUser());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (seatID_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, seatID_);
+      }
+      if (callCoin_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, callCoin_);
+      }
+      if (user_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getUser());
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.mjoys.zjh.proto.Protobufs.Seat)) {
+        return super.equals(obj);
+      }
+      com.mjoys.zjh.proto.Protobufs.Seat other = (com.mjoys.zjh.proto.Protobufs.Seat) obj;
+
+      boolean result = true;
+      result = result && (getSeatID()
+          == other.getSeatID());
+      result = result && (getCallCoin()
+          == other.getCallCoin());
+      result = result && (hasUser() == other.hasUser());
+      if (hasUser()) {
+        result = result && getUser()
+            .equals(other.getUser());
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SEATID_FIELD_NUMBER;
+      hash = (53 * hash) + getSeatID();
+      hash = (37 * hash) + CALLCOIN_FIELD_NUMBER;
+      hash = (53 * hash) + getCallCoin();
+      if (hasUser()) {
+        hash = (37 * hash) + USER_FIELD_NUMBER;
+        hash = (53 * hash) + getUser().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Seat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.mjoys.zjh.proto.Protobufs.Seat prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Seat}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Seat)
+        com.mjoys.zjh.proto.Protobufs.SeatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_Seat_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_Seat_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.mjoys.zjh.proto.Protobufs.Seat.class, com.mjoys.zjh.proto.Protobufs.Seat.Builder.class);
+      }
+
+      // Construct using com.mjoys.zjh.proto.Protobufs.Seat.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        seatID_ = 0;
+
+        callCoin_ = 0;
+
+        if (userBuilder_ == null) {
+          user_ = null;
+        } else {
+          user_ = null;
+          userBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_Seat_descriptor;
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.Seat getDefaultInstanceForType() {
+        return com.mjoys.zjh.proto.Protobufs.Seat.getDefaultInstance();
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.Seat build() {
+        com.mjoys.zjh.proto.Protobufs.Seat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.Seat buildPartial() {
+        com.mjoys.zjh.proto.Protobufs.Seat result = new com.mjoys.zjh.proto.Protobufs.Seat(this);
+        result.seatID_ = seatID_;
+        result.callCoin_ = callCoin_;
+        if (userBuilder_ == null) {
+          result.user_ = user_;
+        } else {
+          result.user_ = userBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.mjoys.zjh.proto.Protobufs.Seat) {
+          return mergeFrom((com.mjoys.zjh.proto.Protobufs.Seat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.mjoys.zjh.proto.Protobufs.Seat other) {
+        if (other == com.mjoys.zjh.proto.Protobufs.Seat.getDefaultInstance()) return this;
+        if (other.getSeatID() != 0) {
+          setSeatID(other.getSeatID());
+        }
+        if (other.getCallCoin() != 0) {
+          setCallCoin(other.getCallCoin());
+        }
+        if (other.hasUser()) {
+          mergeUser(other.getUser());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.mjoys.zjh.proto.Protobufs.Seat parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.mjoys.zjh.proto.Protobufs.Seat) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int seatID_ ;
+      /**
+       * <code>int32 seatID = 1;</code>
+       */
+      public int getSeatID() {
+        return seatID_;
+      }
+      /**
+       * <code>int32 seatID = 1;</code>
+       */
+      public Builder setSeatID(int value) {
+        
+        seatID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 seatID = 1;</code>
+       */
+      public Builder clearSeatID() {
+        
+        seatID_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int callCoin_ ;
+      /**
+       * <code>int32 callCoin = 2;</code>
+       */
+      public int getCallCoin() {
+        return callCoin_;
+      }
+      /**
+       * <code>int32 callCoin = 2;</code>
+       */
+      public Builder setCallCoin(int value) {
+        
+        callCoin_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 callCoin = 2;</code>
+       */
+      public Builder clearCallCoin() {
+        
+        callCoin_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.mjoys.zjh.proto.Protobufs.User user_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.mjoys.zjh.proto.Protobufs.User, com.mjoys.zjh.proto.Protobufs.User.Builder, com.mjoys.zjh.proto.Protobufs.UserOrBuilder> userBuilder_;
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public boolean hasUser() {
+        return userBuilder_ != null || user_ != null;
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.User getUser() {
+        if (userBuilder_ == null) {
+          return user_ == null ? com.mjoys.zjh.proto.Protobufs.User.getDefaultInstance() : user_;
+        } else {
+          return userBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public Builder setUser(com.mjoys.zjh.proto.Protobufs.User value) {
+        if (userBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          user_ = value;
+          onChanged();
+        } else {
+          userBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public Builder setUser(
+          com.mjoys.zjh.proto.Protobufs.User.Builder builderForValue) {
+        if (userBuilder_ == null) {
+          user_ = builderForValue.build();
+          onChanged();
+        } else {
+          userBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public Builder mergeUser(com.mjoys.zjh.proto.Protobufs.User value) {
+        if (userBuilder_ == null) {
+          if (user_ != null) {
+            user_ =
+              com.mjoys.zjh.proto.Protobufs.User.newBuilder(user_).mergeFrom(value).buildPartial();
+          } else {
+            user_ = value;
+          }
+          onChanged();
+        } else {
+          userBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public Builder clearUser() {
+        if (userBuilder_ == null) {
+          user_ = null;
+          onChanged();
+        } else {
+          user_ = null;
+          userBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.User.Builder getUserBuilder() {
+        
+        onChanged();
+        return getUserFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.UserOrBuilder getUserOrBuilder() {
+        if (userBuilder_ != null) {
+          return userBuilder_.getMessageOrBuilder();
+        } else {
+          return user_ == null ?
+              com.mjoys.zjh.proto.Protobufs.User.getDefaultInstance() : user_;
+        }
+      }
+      /**
+       * <code>.User user = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.mjoys.zjh.proto.Protobufs.User, com.mjoys.zjh.proto.Protobufs.User.Builder, com.mjoys.zjh.proto.Protobufs.UserOrBuilder> 
+          getUserFieldBuilder() {
+        if (userBuilder_ == null) {
+          userBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.mjoys.zjh.proto.Protobufs.User, com.mjoys.zjh.proto.Protobufs.User.Builder, com.mjoys.zjh.proto.Protobufs.UserOrBuilder>(
+                  getUser(),
+                  getParentForChildren(),
+                  isClean());
+          user_ = null;
+        }
+        return userBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Seat)
+    }
+
+    // @@protoc_insertion_point(class_scope:Seat)
+    private static final com.mjoys.zjh.proto.Protobufs.Seat DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.mjoys.zjh.proto.Protobufs.Seat();
+    }
+
+    public static com.mjoys.zjh.proto.Protobufs.Seat getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Seat>
+        PARSER = new com.google.protobuf.AbstractParser<Seat>() {
+      public Seat parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Seat(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Seat> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Seat> getParserForType() {
+      return PARSER;
+    }
+
+    public com.mjoys.zjh.proto.Protobufs.Seat getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TableOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Table)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 tableID = 1;</code>
+     */
+    int getTableID();
+
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    java.util.List<com.mjoys.zjh.proto.Protobufs.Seat> 
+        getSeatsList();
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    com.mjoys.zjh.proto.Protobufs.Seat getSeats(int index);
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    int getSeatsCount();
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    java.util.List<? extends com.mjoys.zjh.proto.Protobufs.SeatOrBuilder> 
+        getSeatsOrBuilderList();
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    com.mjoys.zjh.proto.Protobufs.SeatOrBuilder getSeatsOrBuilder(
+        int index);
+
+    /**
+     * <code>int32 minBet = 3;</code>
+     */
+    int getMinBet();
+
+    /**
+     * <code>int32 maxBet = 4;</code>
+     */
+    int getMaxBet();
+
+    /**
+     * <code>int32 round = 5;</code>
+     */
+    int getRound();
+  }
+  /**
+   * Protobuf type {@code Table}
+   */
+  public  static final class Table extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Table)
+      TableOrBuilder {
+    // Use Table.newBuilder() to construct.
+    private Table(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Table() {
+      tableID_ = 0;
+      seats_ = java.util.Collections.emptyList();
+      minBet_ = 0;
+      maxBet_ = 0;
+      round_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Table(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              tableID_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                seats_ = new java.util.ArrayList<com.mjoys.zjh.proto.Protobufs.Seat>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              seats_.add(
+                  input.readMessage(com.mjoys.zjh.proto.Protobufs.Seat.parser(), extensionRegistry));
+              break;
+            }
+            case 24: {
+
+              minBet_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              maxBet_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              round_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          seats_ = java.util.Collections.unmodifiableList(seats_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.mjoys.zjh.proto.Protobufs.internal_static_Table_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.mjoys.zjh.proto.Protobufs.internal_static_Table_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.mjoys.zjh.proto.Protobufs.Table.class, com.mjoys.zjh.proto.Protobufs.Table.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int TABLEID_FIELD_NUMBER = 1;
+    private int tableID_;
+    /**
+     * <code>int32 tableID = 1;</code>
+     */
+    public int getTableID() {
+      return tableID_;
+    }
+
+    public static final int SEATS_FIELD_NUMBER = 2;
+    private java.util.List<com.mjoys.zjh.proto.Protobufs.Seat> seats_;
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    public java.util.List<com.mjoys.zjh.proto.Protobufs.Seat> getSeatsList() {
+      return seats_;
+    }
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    public java.util.List<? extends com.mjoys.zjh.proto.Protobufs.SeatOrBuilder> 
+        getSeatsOrBuilderList() {
+      return seats_;
+    }
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    public int getSeatsCount() {
+      return seats_.size();
+    }
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    public com.mjoys.zjh.proto.Protobufs.Seat getSeats(int index) {
+      return seats_.get(index);
+    }
+    /**
+     * <code>repeated .Seat seats = 2;</code>
+     */
+    public com.mjoys.zjh.proto.Protobufs.SeatOrBuilder getSeatsOrBuilder(
+        int index) {
+      return seats_.get(index);
+    }
+
+    public static final int MINBET_FIELD_NUMBER = 3;
+    private int minBet_;
+    /**
+     * <code>int32 minBet = 3;</code>
+     */
+    public int getMinBet() {
+      return minBet_;
+    }
+
+    public static final int MAXBET_FIELD_NUMBER = 4;
+    private int maxBet_;
+    /**
+     * <code>int32 maxBet = 4;</code>
+     */
+    public int getMaxBet() {
+      return maxBet_;
+    }
+
+    public static final int ROUND_FIELD_NUMBER = 5;
+    private int round_;
+    /**
+     * <code>int32 round = 5;</code>
+     */
+    public int getRound() {
+      return round_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (tableID_ != 0) {
+        output.writeInt32(1, tableID_);
+      }
+      for (int i = 0; i < seats_.size(); i++) {
+        output.writeMessage(2, seats_.get(i));
+      }
+      if (minBet_ != 0) {
+        output.writeInt32(3, minBet_);
+      }
+      if (maxBet_ != 0) {
+        output.writeInt32(4, maxBet_);
+      }
+      if (round_ != 0) {
+        output.writeInt32(5, round_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (tableID_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, tableID_);
+      }
+      for (int i = 0; i < seats_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, seats_.get(i));
+      }
+      if (minBet_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, minBet_);
+      }
+      if (maxBet_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, maxBet_);
+      }
+      if (round_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, round_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.mjoys.zjh.proto.Protobufs.Table)) {
+        return super.equals(obj);
+      }
+      com.mjoys.zjh.proto.Protobufs.Table other = (com.mjoys.zjh.proto.Protobufs.Table) obj;
+
+      boolean result = true;
+      result = result && (getTableID()
+          == other.getTableID());
+      result = result && getSeatsList()
+          .equals(other.getSeatsList());
+      result = result && (getMinBet()
+          == other.getMinBet());
+      result = result && (getMaxBet()
+          == other.getMaxBet());
+      result = result && (getRound()
+          == other.getRound());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TABLEID_FIELD_NUMBER;
+      hash = (53 * hash) + getTableID();
+      if (getSeatsCount() > 0) {
+        hash = (37 * hash) + SEATS_FIELD_NUMBER;
+        hash = (53 * hash) + getSeatsList().hashCode();
+      }
+      hash = (37 * hash) + MINBET_FIELD_NUMBER;
+      hash = (53 * hash) + getMinBet();
+      hash = (37 * hash) + MAXBET_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxBet();
+      hash = (37 * hash) + ROUND_FIELD_NUMBER;
+      hash = (53 * hash) + getRound();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.Table parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.mjoys.zjh.proto.Protobufs.Table prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Table}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Table)
+        com.mjoys.zjh.proto.Protobufs.TableOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_Table_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_Table_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.mjoys.zjh.proto.Protobufs.Table.class, com.mjoys.zjh.proto.Protobufs.Table.Builder.class);
+      }
+
+      // Construct using com.mjoys.zjh.proto.Protobufs.Table.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getSeatsFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        tableID_ = 0;
+
+        if (seatsBuilder_ == null) {
+          seats_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          seatsBuilder_.clear();
+        }
+        minBet_ = 0;
+
+        maxBet_ = 0;
+
+        round_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_Table_descriptor;
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.Table getDefaultInstanceForType() {
+        return com.mjoys.zjh.proto.Protobufs.Table.getDefaultInstance();
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.Table build() {
+        com.mjoys.zjh.proto.Protobufs.Table result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.Table buildPartial() {
+        com.mjoys.zjh.proto.Protobufs.Table result = new com.mjoys.zjh.proto.Protobufs.Table(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.tableID_ = tableID_;
+        if (seatsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            seats_ = java.util.Collections.unmodifiableList(seats_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.seats_ = seats_;
+        } else {
+          result.seats_ = seatsBuilder_.build();
+        }
+        result.minBet_ = minBet_;
+        result.maxBet_ = maxBet_;
+        result.round_ = round_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.mjoys.zjh.proto.Protobufs.Table) {
+          return mergeFrom((com.mjoys.zjh.proto.Protobufs.Table)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.mjoys.zjh.proto.Protobufs.Table other) {
+        if (other == com.mjoys.zjh.proto.Protobufs.Table.getDefaultInstance()) return this;
+        if (other.getTableID() != 0) {
+          setTableID(other.getTableID());
+        }
+        if (seatsBuilder_ == null) {
+          if (!other.seats_.isEmpty()) {
+            if (seats_.isEmpty()) {
+              seats_ = other.seats_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureSeatsIsMutable();
+              seats_.addAll(other.seats_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.seats_.isEmpty()) {
+            if (seatsBuilder_.isEmpty()) {
+              seatsBuilder_.dispose();
+              seatsBuilder_ = null;
+              seats_ = other.seats_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              seatsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getSeatsFieldBuilder() : null;
+            } else {
+              seatsBuilder_.addAllMessages(other.seats_);
+            }
+          }
+        }
+        if (other.getMinBet() != 0) {
+          setMinBet(other.getMinBet());
+        }
+        if (other.getMaxBet() != 0) {
+          setMaxBet(other.getMaxBet());
+        }
+        if (other.getRound() != 0) {
+          setRound(other.getRound());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.mjoys.zjh.proto.Protobufs.Table parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.mjoys.zjh.proto.Protobufs.Table) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int tableID_ ;
+      /**
+       * <code>int32 tableID = 1;</code>
+       */
+      public int getTableID() {
+        return tableID_;
+      }
+      /**
+       * <code>int32 tableID = 1;</code>
+       */
+      public Builder setTableID(int value) {
+        
+        tableID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 tableID = 1;</code>
+       */
+      public Builder clearTableID() {
+        
+        tableID_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.mjoys.zjh.proto.Protobufs.Seat> seats_ =
+        java.util.Collections.emptyList();
+      private void ensureSeatsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          seats_ = new java.util.ArrayList<com.mjoys.zjh.proto.Protobufs.Seat>(seats_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.mjoys.zjh.proto.Protobufs.Seat, com.mjoys.zjh.proto.Protobufs.Seat.Builder, com.mjoys.zjh.proto.Protobufs.SeatOrBuilder> seatsBuilder_;
+
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public java.util.List<com.mjoys.zjh.proto.Protobufs.Seat> getSeatsList() {
+        if (seatsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(seats_);
+        } else {
+          return seatsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public int getSeatsCount() {
+        if (seatsBuilder_ == null) {
+          return seats_.size();
+        } else {
+          return seatsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.Seat getSeats(int index) {
+        if (seatsBuilder_ == null) {
+          return seats_.get(index);
+        } else {
+          return seatsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder setSeats(
+          int index, com.mjoys.zjh.proto.Protobufs.Seat value) {
+        if (seatsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSeatsIsMutable();
+          seats_.set(index, value);
+          onChanged();
+        } else {
+          seatsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder setSeats(
+          int index, com.mjoys.zjh.proto.Protobufs.Seat.Builder builderForValue) {
+        if (seatsBuilder_ == null) {
+          ensureSeatsIsMutable();
+          seats_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          seatsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder addSeats(com.mjoys.zjh.proto.Protobufs.Seat value) {
+        if (seatsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSeatsIsMutable();
+          seats_.add(value);
+          onChanged();
+        } else {
+          seatsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder addSeats(
+          int index, com.mjoys.zjh.proto.Protobufs.Seat value) {
+        if (seatsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSeatsIsMutable();
+          seats_.add(index, value);
+          onChanged();
+        } else {
+          seatsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder addSeats(
+          com.mjoys.zjh.proto.Protobufs.Seat.Builder builderForValue) {
+        if (seatsBuilder_ == null) {
+          ensureSeatsIsMutable();
+          seats_.add(builderForValue.build());
+          onChanged();
+        } else {
+          seatsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder addSeats(
+          int index, com.mjoys.zjh.proto.Protobufs.Seat.Builder builderForValue) {
+        if (seatsBuilder_ == null) {
+          ensureSeatsIsMutable();
+          seats_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          seatsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder addAllSeats(
+          java.lang.Iterable<? extends com.mjoys.zjh.proto.Protobufs.Seat> values) {
+        if (seatsBuilder_ == null) {
+          ensureSeatsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, seats_);
+          onChanged();
+        } else {
+          seatsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder clearSeats() {
+        if (seatsBuilder_ == null) {
+          seats_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          seatsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public Builder removeSeats(int index) {
+        if (seatsBuilder_ == null) {
+          ensureSeatsIsMutable();
+          seats_.remove(index);
+          onChanged();
+        } else {
+          seatsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.Seat.Builder getSeatsBuilder(
+          int index) {
+        return getSeatsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.SeatOrBuilder getSeatsOrBuilder(
+          int index) {
+        if (seatsBuilder_ == null) {
+          return seats_.get(index);  } else {
+          return seatsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public java.util.List<? extends com.mjoys.zjh.proto.Protobufs.SeatOrBuilder> 
+           getSeatsOrBuilderList() {
+        if (seatsBuilder_ != null) {
+          return seatsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(seats_);
+        }
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.Seat.Builder addSeatsBuilder() {
+        return getSeatsFieldBuilder().addBuilder(
+            com.mjoys.zjh.proto.Protobufs.Seat.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.Seat.Builder addSeatsBuilder(
+          int index) {
+        return getSeatsFieldBuilder().addBuilder(
+            index, com.mjoys.zjh.proto.Protobufs.Seat.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Seat seats = 2;</code>
+       */
+      public java.util.List<com.mjoys.zjh.proto.Protobufs.Seat.Builder> 
+           getSeatsBuilderList() {
+        return getSeatsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.mjoys.zjh.proto.Protobufs.Seat, com.mjoys.zjh.proto.Protobufs.Seat.Builder, com.mjoys.zjh.proto.Protobufs.SeatOrBuilder> 
+          getSeatsFieldBuilder() {
+        if (seatsBuilder_ == null) {
+          seatsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.mjoys.zjh.proto.Protobufs.Seat, com.mjoys.zjh.proto.Protobufs.Seat.Builder, com.mjoys.zjh.proto.Protobufs.SeatOrBuilder>(
+                  seats_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          seats_ = null;
+        }
+        return seatsBuilder_;
+      }
+
+      private int minBet_ ;
+      /**
+       * <code>int32 minBet = 3;</code>
+       */
+      public int getMinBet() {
+        return minBet_;
+      }
+      /**
+       * <code>int32 minBet = 3;</code>
+       */
+      public Builder setMinBet(int value) {
+        
+        minBet_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 minBet = 3;</code>
+       */
+      public Builder clearMinBet() {
+        
+        minBet_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int maxBet_ ;
+      /**
+       * <code>int32 maxBet = 4;</code>
+       */
+      public int getMaxBet() {
+        return maxBet_;
+      }
+      /**
+       * <code>int32 maxBet = 4;</code>
+       */
+      public Builder setMaxBet(int value) {
+        
+        maxBet_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 maxBet = 4;</code>
+       */
+      public Builder clearMaxBet() {
+        
+        maxBet_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int round_ ;
+      /**
+       * <code>int32 round = 5;</code>
+       */
+      public int getRound() {
+        return round_;
+      }
+      /**
+       * <code>int32 round = 5;</code>
+       */
+      public Builder setRound(int value) {
+        
+        round_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 round = 5;</code>
+       */
+      public Builder clearRound() {
+        
+        round_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Table)
+    }
+
+    // @@protoc_insertion_point(class_scope:Table)
+    private static final com.mjoys.zjh.proto.Protobufs.Table DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.mjoys.zjh.proto.Protobufs.Table();
+    }
+
+    public static com.mjoys.zjh.proto.Protobufs.Table getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Table>
+        PARSER = new com.google.protobuf.AbstractParser<Table>() {
+      public Table parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Table(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Table> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Table> getParserForType() {
+      return PARSER;
+    }
+
+    public com.mjoys.zjh.proto.Protobufs.Table getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_User_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_User_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Seat_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Seat_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Table_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Table_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1827,8 +3534,12 @@ public final class Protobufs {
       "\001(\005\022\020\n\010deviceId\030\t \001(\t\022\n\n\002id\030\n \001(\005\022\020\n\010aut" +
       "hData\030\013 \001(\t\022\021\n\tcreatedAt\030\014 \001(\004\022\021\n\tupdate" +
       "dAt\030\r \001(\004\022\023\n\013specialMode\030\016 \001(\010\022\021\n\theader" +
-      "Url\030\017 \001(\tB \n\023com.mjoys.zjh.protoB\tProtob" +
-      "ufsb\006proto3"
+      "Url\030\017 \001(\t\"=\n\004Seat\022\016\n\006seatID\030\001 \001(\005\022\020\n\010cal" +
+      "lCoin\030\002 \001(\005\022\023\n\004user\030\003 \001(\0132\005.User\"]\n\005Tabl",
+      "e\022\017\n\007tableID\030\001 \001(\005\022\024\n\005seats\030\002 \003(\0132\005.Seat" +
+      "\022\016\n\006minBet\030\003 \001(\005\022\016\n\006maxBet\030\004 \001(\005\022\r\n\005roun" +
+      "d\030\005 \001(\005B \n\023com.mjoys.zjh.protoB\tProtobuf" +
+      "sb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1848,6 +3559,18 @@ public final class Protobufs {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_User_descriptor,
         new java.lang.String[] { "ObjectId", "Username", "MobilePhoneNumberVerified", "MobilePhoneNumber", "TotalInning", "WinInning", "Diamond", "Coin", "DeviceId", "Id", "AuthData", "CreatedAt", "UpdatedAt", "SpecialMode", "HeaderUrl", });
+    internal_static_Seat_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_Seat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Seat_descriptor,
+        new java.lang.String[] { "SeatID", "CallCoin", "User", });
+    internal_static_Table_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Table_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Table_descriptor,
+        new java.lang.String[] { "TableID", "Seats", "MinBet", "MaxBet", "Round", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -10,17 +10,13 @@ public abstract class IBmobObject<PE> extends IProtobufEntity<PE> {
 	public IBmobObject() {
 	}
 
-	public IBmobObject(byte[] bytes) {
-		super(bytes);
-	}
-
 	public abstract String getTableName();
 
 	/**
 	 * 这几个字段是不能够被修改的
 	 */
-	public static final String[] DEFAULT_COLUMNS_EXCLUDE = { "objectId", "mobilePhoneNumber", "createdAt",
-			"updatedAt" };
+	public static final String[] DEFAULT_COLUMNS_EXCLUDE = { "objectId",
+			"mobilePhoneNumber", "createdAt", "updatedAt" };
 
 	public BSONObject toBSONObject() {
 		return this.toBSONObjectWithoutDefaultColumns(new String[] {});

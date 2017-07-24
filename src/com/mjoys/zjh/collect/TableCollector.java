@@ -3,6 +3,7 @@ package com.mjoys.zjh.collect;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.mjoys.zjh.controller.TableController;
 import com.mjoys.zjh.domain.User;
@@ -30,37 +31,42 @@ public class TableCollector {
 	 * 
 	 * @return
 	 */
-	public synchronized TableController quickStart(SocketIOServer server, User u) {
+	public synchronized TableController quickStart(SocketIOServer server,
+			User u, SocketIOClient sIoClient) {
 		for (int i = 0; i < tableCollector.size(); i++) {
-			if (this.tableCollector.get(i).addSeat(u)) { // 向位置上添加用户，成功返回true
+			if (this.tableCollector.get(i).addSeat(u, sIoClient)) { // 向位置上添加用户，成功返回true
 				return tableCollector.get(i);
 			}
 		}
 		// 没有找到就创建一个TableController
-		TableController tableController = new TableController(server, this.buildTable());
+		TableController tableController = new TableController(server,
+				this.buildTable());
 		// 向table中添加一个Seat
-		tableController.addSeat(u);
+		tableController.addSeat(u, sIoClient);
 		// 添加到缓存中
 		this.tableCollector.add(tableController);
 		return tableController;
 	}
 
-	public synchronized TableController createTable(SocketIOServer server, User u, Table table) {
+	public synchronized TableController createTable(SocketIOServer server,
+			User u, Table table, SocketIOClient sIoClient) {
 		// 没有找到就创建一个TableController
-		TableController tableController = new TableController(server, this.buildTable());
+		TableController tableController = new TableController(server,
+				this.buildTable());
 		tableController.getTable().setMinBet(table.getMinBet());
 		tableController.getTable().setMaxBet(table.getMaxBet());
 		// 向table中添加一个Seat
-		tableController.addSeat(u);
+		tableController.addSeat(u, sIoClient);
 		// 添加到缓存中
 		this.tableCollector.add(tableController);
 		return tableController;
 	}
 
-	public synchronized TableController joinTable(SocketIOServer server, User u, int tableID) {
+	public synchronized TableController joinTable(SocketIOServer server,
+			User u, int tableID, SocketIOClient sIoClient) {
 		TableController tc = this.getTableControllerByID(tableID);
 		if (tc != null) {
-			tc.addSeat(u);
+			tc.addSeat(u, sIoClient);
 		}
 		return tc;
 	}
@@ -90,6 +96,15 @@ public class TableCollector {
 			}
 		}
 		return null;
+	}
+
+	public void removeTableControlleByID(int tableID) {
+		for (int i = 0; i < tableCollector.size(); i++) {
+			if (this.tableCollector.get(i).getTable().getTableID() == tableID) { // 向位置上添加用户，成功返回true
+				this.tableCollector.remove(i);
+			}
+		}
+
 	}
 
 }

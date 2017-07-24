@@ -47,7 +47,7 @@ public class User extends IBmobObject<Protobufs.User> {
 	}
 
 	public User(byte[] bytes) {
-		super(bytes);
+		this.toEntity(bytes);
 	}
 
 	public String getObjectId() {
@@ -240,7 +240,8 @@ public class User extends IBmobObject<Protobufs.User> {
 	// }
 
 	@Override
-	protected com.mjoys.zjh.proto.Protobufs.User parseEntityFromProtoBytes(byte[] bytes) {
+	protected com.mjoys.zjh.proto.Protobufs.User parseEntityFromProtoBytes(
+			byte[] bytes) {
 		com.mjoys.zjh.proto.Protobufs.User user = null;
 		try {
 			user = com.mjoys.zjh.proto.Protobufs.User.parseFrom(bytes);
