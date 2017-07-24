@@ -1,9 +1,8 @@
 package com.mjoys.zjh.domain;
 
-import java.lang.reflect.Field;
 import java.util.Date;
 
-import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.GeneratedMessageV3.Builder;
 import com.mjoys.zjh.proto.Protobufs;
 
 /**
@@ -12,7 +11,7 @@ import com.mjoys.zjh.proto.Protobufs;
  * @author t_Ber
  * 
  */
-public class User extends IBmobObject {
+public class User extends IBmobObject<Protobufs.User> {
 
 	private String objectId = null;
 
@@ -47,8 +46,8 @@ public class User extends IBmobObject {
 	public User() {
 	}
 
-	public User(byte[] pBytes) {
-		toUser(pBytes);
+	public User(byte[] bytes) {
+		super(bytes);
 	}
 
 	public String getObjectId() {
@@ -181,63 +180,79 @@ public class User extends IBmobObject {
 	 * 
 	 * @return
 	 */
-	public byte[] toProtoBufBytes() {
-		Protobufs.User.Builder builder = Protobufs.User.newBuilder();
-		Field[] fields = this.getClass().getDeclaredFields();
-		Field[] pFields = builder.getClass().getDeclaredFields();
-		for (int i = 0; i < fields.length; i++) {
-			Field f = fields[i];
-			for (int j = 0; j < pFields.length; j++) {
-				Field pf = pFields[j];
-				if ((f.getName() + "_").equals(pf.getName())) { // 可以赋值，PROTO后面加了个下划线
-					boolean accessible = f.isAccessible();
-					boolean pAccessible = pf.isAccessible();
-					f.setAccessible(true);
-					pf.setAccessible(true);
-					Object value = null;
-					try {
-						value = f.get(this);
-						if (value != null && value instanceof Date) {
-							pf.set(builder, ((Date) value).getTime());
-						} else if (value != null) {
-							pf.set(builder, value);
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+	// public byte[] toProtoBufBytes() {
+	// Protobufs.User.Builder builder = Protobufs.User.newBuilder();
+	// Field[] fields = this.getClass().getDeclaredFields();
+	// Field[] pFields = builder.getClass().getDeclaredFields();
+	// for (int i = 0; i < fields.length; i++) {
+	// Field f = fields[i];
+	// for (int j = 0; j < pFields.length; j++) {
+	// Field pf = pFields[j];
+	// if ((f.getName() + "_").equals(pf.getName())) { // 可以赋值，PROTO后面加了个下划线
+	// boolean accessible = f.isAccessible();
+	// boolean pAccessible = pf.isAccessible();
+	// f.setAccessible(true);
+	// pf.setAccessible(true);
+	// Object value = null;
+	// try {
+	// value = f.get(this);
+	// if (value != null && value instanceof Date) {
+	// pf.set(builder, ((Date) value).getTime());
+	// } else if (value != null) {
+	// pf.set(builder, value);
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	//
+	// f.setAccessible(accessible);
+	// pf.setAccessible(pAccessible);
+	// break;
+	// }
+	// }
+	// }
+	// Protobufs.User pUser = builder.build();
+	// return pUser.toByteArray();
+	// }
 
-					f.setAccessible(accessible);
-					pf.setAccessible(pAccessible);
-					break;
-				}
-			}
-		}
-		Protobufs.User pUser = builder.build();
-		return pUser.toByteArray();
-	}
+	// private void toUser(byte[] pBytes) {
+	// try {
+	// Protobufs.User u = Protobufs.User.parseFrom(pBytes);
+	// this.setObjectId(u.getObjectId());
+	// this.setUsername(u.getUsername());
+	// this.setMobilePhoneNumberVerified(u.getMobilePhoneNumberVerified());
+	// this.setMobilePhoneNumber(u.getMobilePhoneNumber());
+	// this.setTotalInning(u.getTotalInning());
+	// this.setWinInning(u.getWinInning());
+	// this.setDiamond(u.getDiamond());
+	// this.setCoin(u.getCoin());
+	// this.setDeviceId(u.getDeviceId());
+	// this.setId(u.getId());
+	// this.setAuthData(u.getAuthData());
+	// this.setCreatedAt(new Date(u.getCreatedAt()));
+	// this.setUpdatedAt(new Date(u.getUpdatedAt()));
+	// this.setSpecialMode(u.getSpecialMode());
+	// this.setHeaderUrl(u.getHeaderUrl());
+	// } catch (InvalidProtocolBufferException e) {
+	// System.out.println("byte -> user error");
+	// e.printStackTrace();
+	// }
+	// }
 
-	private void toUser(byte[] pBytes) {
+	@Override
+	protected com.mjoys.zjh.proto.Protobufs.User parseEntityFromProtoBytes(byte[] bytes) {
+		com.mjoys.zjh.proto.Protobufs.User user = null;
 		try {
-			Protobufs.User u = Protobufs.User.parseFrom(pBytes);
-			this.setObjectId(u.getObjectId());
-			this.setUsername(u.getUsername());
-			this.setMobilePhoneNumberVerified(u.getMobilePhoneNumberVerified());
-			this.setMobilePhoneNumber(u.getMobilePhoneNumber());
-			this.setTotalInning(u.getTotalInning());
-			this.setWinInning(u.getWinInning());
-			this.setDiamond(u.getDiamond());
-			this.setCoin(u.getCoin());
-			this.setDeviceId(u.getDeviceId());
-			this.setId(u.getId());
-			this.setAuthData(u.getAuthData());
-			this.setCreatedAt(new Date(u.getCreatedAt()));
-			this.setUpdatedAt(new Date(u.getUpdatedAt()));
-			this.setSpecialMode(u.getSpecialMode());
-			this.setHeaderUrl(u.getHeaderUrl());
-		} catch (InvalidProtocolBufferException e) {
-			System.out.println("byte -> user error");
+			user = com.mjoys.zjh.proto.Protobufs.User.parseFrom(bytes);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return user;
+	}
+
+	@Override
+	protected Builder<?> getEntityProtoBuilder() {
+		return Protobufs.User.newBuilder();
 	}
 
 }

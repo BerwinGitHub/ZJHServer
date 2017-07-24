@@ -13,6 +13,6 @@
 	<classpathentry kind="lib" path="libs/netty-socketio/netty-socketio-1.7.13-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="libs/netty-socketio/slf4j-nop-1.7.25.jar"/>
 	<classpathentry kind="lib" path="libs/commons-codec-1.10.jar"/>
-	<classpathentry kind="lib" path="libs/proto-libs/protobuf-java-3.3.0.jar"/>
+	<classpathentry kind="lib" path="libs/proto-libs/protobuf-java-3.3.0.jar" sourcepath="libs/proto-libs/protobuf-java-3.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

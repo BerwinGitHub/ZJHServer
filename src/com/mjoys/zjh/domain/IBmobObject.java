@@ -3,8 +3,16 @@ package com.mjoys.zjh.domain;
 import java.lang.reflect.Field;
 
 import com.ericsoft.bmob.bson.BSONObject;
+import com.mjoys.zjh.entity.IProtobufEntity;
 
-public abstract class IBmobObject {
+public abstract class IBmobObject<PE> extends IProtobufEntity<PE> {
+
+	public IBmobObject() {
+	}
+
+	public IBmobObject(byte[] bytes) {
+		super(bytes);
+	}
 
 	public abstract String getTableName();
 

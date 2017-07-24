@@ -6,9 +6,15 @@ public class Seat {
 
 	private int seatID;
 
-	private int roundCoin;
+	private int callCoin;
 
 	private User user;
+
+	public Seat(int seatID, User u) {
+		this.seatID = seatID;
+		this.user = u;
+		this.callCoin = 0;
+	}
 
 	public int getSeatID() {
 		return seatID;
@@ -18,12 +24,12 @@ public class Seat {
 		this.seatID = seatID;
 	}
 
-	public int getRoundCoin() {
-		return roundCoin;
+	public int getCallCoin() {
+		return callCoin;
 	}
 
-	public void setRoundCoin(int roundCoin) {
-		this.roundCoin = roundCoin;
+	public void setCallCoin(int callCoin) {
+		this.callCoin = callCoin;
 	}
 
 	public User getUser() {

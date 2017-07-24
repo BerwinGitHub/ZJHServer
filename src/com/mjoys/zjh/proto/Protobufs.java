@@ -809,7 +809,8 @@ public final class Protobufs {
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.mjoys.zjh.proto.Protobufs.User parseFrom(byte[] data)
+
+		public static com.mjoys.zjh.proto.Protobufs.User parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
