@@ -12,6 +12,8 @@ public class Seat extends IProtobufEntity<Protobufs.Seat> {
 
 	private int callCoin;
 
+	private boolean isPrepare = false;
+
 	private User user;
 
 	private SocketIOClient socketIOClient;
@@ -25,6 +27,14 @@ public class Seat extends IProtobufEntity<Protobufs.Seat> {
 		this.seatID = seatID;
 		this.user = u;
 		this.callCoin = 0;
+	}
+
+	public boolean isPrepare() {
+		return isPrepare;
+	}
+
+	public void setPrepare(boolean isPrepare) {
+		this.isPrepare = isPrepare;
 	}
 
 	public SocketIOClient getSocketIOClient() {
