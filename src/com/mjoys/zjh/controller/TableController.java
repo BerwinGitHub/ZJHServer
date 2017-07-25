@@ -11,9 +11,11 @@ import com.mjoys.zjh.entity.Seat;
 import com.mjoys.zjh.entity.Table;
 import com.mjoys.zjh.utility.ProtobufUtility;
 
-public class TableController extends IController {
+public class TableController extends IController implements Runnable {
 
 	private Table table;
+
+	private boolean isRunning = false;
 
 	public TableController(SocketIOServer server, Table table) {
 		super(server);
@@ -33,13 +35,11 @@ public class TableController extends IController {
 		for (int i = 0; i < seats.size(); i++) {
 			if (seats.get(i).getUser().getId() == u.getId()) {
 				// 移除
-				seats.get(i).getSocketIOClient()
-						.leaveRoom(this.table.getTableID() + "");
+				seats.get(i).getSocketIOClient().leaveRoom(this.table.getTableID() + "");
 				seats.remove(i);
 				// 如果Table里面没有人了就移除这个Table
 				if (seats.size() <= 0) {
-					TableCollector.getInstance().removeTableControlleByID(
-							this.table.getTableID());
+					TableCollector.getInstance().removeTableControlleByID(this.table.getTableID());
 				} else {// 需要向其他用户广播
 					this.broadcast(CSMapping.S2C.USER_EXIT_TABLE);
 				}
@@ -63,8 +63,16 @@ public class TableController extends IController {
 
 	public void broadcast(String name) {
 		byte[] bytes = this.table.toByteArray();
-		this.server.getRoomOperations(this.getTable().getTableID() + "")
-				.sendEvent(name, ProtobufUtility.stringify(bytes));
+		this.server.getRoomOperations(this.getTable().getTableID() + "").sendEvent(name,
+				ProtobufUtility.stringify(bytes));
+	}
+
+	@Override
+	public void run() {
+		// TODO 游戏中依次出牌
+		while (isRunning) {
+			
+		}
 	}
 
 }
