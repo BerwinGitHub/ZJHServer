@@ -4,21 +4,23 @@ import com.mjoys.zjh.entity.Poker;
 
 public class ZJHPokerService {
 
-	/**
-	 * 第13张表示 是A
-	 */
-	public static final int POKER_A = 13;
+	public static final int POKER_A = 12; // A
+	public static final int POKER_2 = 0; // 2
+	public static final int POKER_3 = 1;// 3
 
 	public enum CardType {
 		SINGLE, // 单牌
 		PAIR, // 对子
+		QUEUE_A23, // 最小的顺子，奇葩
 		QUEUE, // 顺子
 		SAME_COLOR, // 金花
+		QUEUE_SAME_COLOR_A23, // 最小的顺金，奇葩
 		QUEUE_SAME_COLOR, // 顺金
 		SSS; // 三同
 
 		public String toString() {
-			String[] names = new String[] { "单牌", "对子", "顺子", "金花", "顺金", "三同" };
+			String[] names = new String[] { "单牌", "对子", "顺子(A23)", "顺子", "金花",
+					"顺金(A23)", "顺金", "三同" };
 			return names[this.ordinal()];
 		}
 	}
@@ -36,10 +38,14 @@ public class ZJHPokerService {
 	 * @return >0 前者大 <0后者大 =0一样大
 	 */
 	public int compareCards(byte[] bs1, byte[] bs2) {
-		int[] c1 = new int[] { poker.getLitter(bs1[0]), poker.getLitter(bs1[1]), poker.getLitter(bs1[2]) };
-		int[] c2 = new int[] { poker.getLitter(bs2[0]), poker.getLitter(bs2[1]), poker.getLitter(bs2[2]) };
-		int[] pc1 = new int[] { poker.getColor(bs1[0]), poker.getColor(bs1[1]), poker.getColor(bs1[2]) };
-		int[] pc2 = new int[] { poker.getColor(bs2[0]), poker.getColor(bs2[1]), poker.getColor(bs2[2]) };
+		int[] c1 = new int[] { poker.getLitter(bs1[0]),
+				poker.getLitter(bs1[1]), poker.getLitter(bs1[2]) };
+		int[] c2 = new int[] { poker.getLitter(bs2[0]),
+				poker.getLitter(bs2[1]), poker.getLitter(bs2[2]) };
+		int[] pc1 = new int[] { poker.getColor(bs1[0]), poker.getColor(bs1[1]),
+				poker.getColor(bs1[2]) };
+		int[] pc2 = new int[] { poker.getColor(bs2[0]), poker.getColor(bs2[1]),
+				poker.getColor(bs2[2]) };
 		CardType cs1 = this.geCardType(c1, pc1);
 		CardType cs2 = this.geCardType(c2, pc2);
 		int result = cs1.ordinal() - cs2.ordinal();
@@ -72,12 +78,16 @@ public class ZJHPokerService {
 			return CardType.SSS;
 		} else if (pc[0] == pc[1] && pc[1] == pc[2]) { // 三个同色
 			// 再看是不是顺
-			if (is[2] - is[1] == 1 && is[1] - is[0] == 1) { // 连续的三张牌
+			if (is[2] - is[1] == 1 && is[1] - is[0] == 1) { // 连续的三张牌/A23
 				return CardType.QUEUE_SAME_COLOR; // 顺金
+			} else if (is[2] == POKER_A && is[0] == POKER_2 && is[1] == POKER_3) {
+				return CardType.QUEUE_SAME_COLOR_A23;// 特殊顺金A23
 			}
 			return CardType.SAME_COLOR; // 金花
-		} else if (is[2] - is[1] == 1 && is[1] - is[0] == 1) {
+		} else if (is[2] - is[1] == 1 && is[1] - is[0] == 1) { // 连续的三张牌/A23
 			return CardType.QUEUE;// 顺子
+		} else if (is[2] == POKER_A && is[0] == POKER_2 && is[1] == POKER_3) {// 特殊顺子A23
+			return CardType.QUEUE_A23;
 		} else if (is[0] == is[1] || is[1] == is[2] || is[2] == is[0]) {
 			return CardType.PAIR;// 对子
 		}
@@ -100,13 +110,16 @@ public class ZJHPokerService {
 	public String toCardString(byte[] bs) {
 		String str = "";
 		String colors[] = new String[] { "方块", "樱花", "红心", "黑桃" };
-		String numbers[] = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+		String numbers[] = new String[] { "2", "3", "4", "5", "6", "7", "8",
+				"9", "10", "J", "Q", "K", "A" };
 		for (byte b : bs) {
 			int c = poker.getColor(b);
 			str += colors[c] + ":" + numbers[poker.getLitter(b)] + "\t";
 		}
-		int[] c1 = new int[] { poker.getLitter(bs[0]), poker.getLitter(bs[1]), poker.getLitter(bs[2]) };
-		int[] pc1 = new int[] { poker.getColor(bs[0]), poker.getColor(bs[1]), poker.getColor(bs[2]) };
+		int[] c1 = new int[] { poker.getLitter(bs[0]), poker.getLitter(bs[1]),
+				poker.getLitter(bs[2]) };
+		int[] pc1 = new int[] { poker.getColor(bs[0]), poker.getColor(bs[1]),
+				poker.getColor(bs[2]) };
 		str += "-" + this.geCardType(c1, pc1).toString();
 		return str;
 	}
@@ -137,22 +150,24 @@ public class ZJHPokerService {
 		// }
 
 		ZJHPokerService zjh = new ZJHPokerService();
-		for (int i = 0; i < 50; i++) {
-			zjh.poker.shufflePoker();
-			zjh.poker.cutPoker(20);
-			byte[] bs1 = new byte[] { zjh.poker.nextCard(), zjh.poker.nextCard(), zjh.poker.nextCard() };
-			byte[] bs2 = new byte[] { zjh.poker.nextCard(), zjh.poker.nextCard(), zjh.poker.nextCard() };
-			int res = zjh.compareCards(bs1, bs2);
-			System.out.println(zjh.toCardString(bs1) + (res > 0 ? "\t-大" : ""));
-			System.out.println(zjh.toCardString(bs2) + (res < 0 ? "\t-大" : ""));
-			System.out.println();
-		}
-
-		// byte[] bs1 = new byte[] { 0x01, 0x18, 0x0B };
-		// byte[] bs2 = new byte[] { 0x12, 0x24, 0x3C };
+		// for (int i = 0; i < 50; i++) {
+		// zjh.poker.shufflePoker();
+		// zjh.poker.cutPoker(20);
+		// byte[] bs1 = new byte[] { zjh.poker.nextCard(),
+		// zjh.poker.nextCard(), zjh.poker.nextCard() };
+		// byte[] bs2 = new byte[] { zjh.poker.nextCard(),
+		// zjh.poker.nextCard(), zjh.poker.nextCard() };
 		// int res = zjh.compareCards(bs1, bs2);
 		// System.out.println(zjh.toCardString(bs1) + (res > 0 ? "\t-大" : ""));
 		// System.out.println(zjh.toCardString(bs2) + (res < 0 ? "\t-大" : ""));
+		// System.out.println();
+		// }
+
+		byte[] bs1 = new byte[] { 0x01, 0x02, 0x03 };
+		byte[] bs2 = new byte[] { 0x1C, 0x10, 0x11 };
+		int res = zjh.compareCards(bs1, bs2);
+		System.out.println(zjh.toCardString(bs1) + (res > 0 ? "\t-大" : ""));
+		System.out.println(zjh.toCardString(bs2) + (res < 0 ? "\t-大" : ""));
 
 		// sim();
 		// sim();
@@ -175,9 +190,11 @@ public class ZJHPokerService {
 				}
 			}
 			for (int j = 0; j < bs.length; j++) {
-				int[] c1 = new int[] { zjh.poker.getLitter(bs[j][0]), zjh.poker.getLitter(bs[j][1]),
+				int[] c1 = new int[] { zjh.poker.getLitter(bs[j][0]),
+						zjh.poker.getLitter(bs[j][1]),
 						zjh.poker.getLitter(bs[j][2]) };
-				int[] pc1 = new int[] { zjh.poker.getColor(bs[j][0]), zjh.poker.getColor(bs[j][1]),
+				int[] pc1 = new int[] { zjh.poker.getColor(bs[j][0]),
+						zjh.poker.getColor(bs[j][1]),
 						zjh.poker.getColor(bs[j][2]) };
 				int t = zjh.geCardType(c1, pc1).ordinal();
 				parts[t]++;
@@ -186,7 +203,8 @@ public class ZJHPokerService {
 		total = total * players;
 		for (int i = 0; i < parts.length; i++) {
 			if (parts[i] != 0)
-				System.out.println(names[i] + "-次数:" + parts[i] + "\t\t概率:" + (parts[i] / total));
+				System.out.println(names[i] + "-次数:" + parts[i] + "\t\t概率:"
+						+ (parts[i] / total));
 		}
 		System.out.println();
 	}

@@ -9,15 +9,16 @@ import com.mjoys.zjh.domain.User;
 import com.mjoys.zjh.service.UserService;
 import com.mjoys.zjh.utility.ProtobufUtility;
 
-public class LoginController extends IController implements DataListener<String> {
+public class LoginController extends IController implements
+		DataListener<String> {
 
 	public LoginController(SocketIOServer server) {
 		super(server);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void onData(SocketIOClient arg0, String arg1, AckRequest arg2) throws Exception {
+	public void onData(SocketIOClient arg0, String arg1, AckRequest arg2)
+			throws Exception {
 		byte bytes[] = ProtobufUtility.toBytes(arg1);
 		User user = new User(bytes);
 		UserService userService = new UserService();

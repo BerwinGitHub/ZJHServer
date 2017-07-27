@@ -28,7 +28,7 @@ message User {
 	string authData					=	11;
 	uint64 createdAt				=	12;
 	uint64 updatedAt				=	13;
-	bool specialMode				=	14; // for test	
+	bool placement					=	14; // for test	
 	string headerUrl				=	15;
 }
 

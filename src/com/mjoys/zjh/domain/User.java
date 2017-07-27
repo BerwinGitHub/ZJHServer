@@ -39,7 +39,7 @@ public class User extends IBmobObject<Protobufs.User> {
 
 	private Date updatedAt = null;
 
-	private boolean specialMode;
+	private boolean placement;
 
 	private String headerUrl = null;
 
@@ -154,12 +154,12 @@ public class User extends IBmobObject<Protobufs.User> {
 		this.updatedAt = updatedAt;
 	}
 
-	public boolean isSpecialMode() {
-		return specialMode;
+	public boolean isPlacement() {
+		return placement;
 	}
 
-	public void setSpecialMode(boolean specialMode) {
-		this.specialMode = specialMode;
+	public void setPlacement(boolean placement) {
+		this.placement = placement;
 	}
 
 	public String getHeaderUrl() {

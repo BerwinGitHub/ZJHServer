@@ -113,9 +113,9 @@ public final class Protobufs {
      * for test	
      * </pre>
      *
-     * <code>bool specialMode = 14;</code>
+     * <code>bool placement = 14;</code>
      */
-    boolean getSpecialMode();
+    boolean getPlacement();
 
     /**
      * <code>string headerUrl = 15;</code>
@@ -152,7 +152,7 @@ public final class Protobufs {
       authData_ = "";
       createdAt_ = 0L;
       updatedAt_ = 0L;
-      specialMode_ = false;
+      placement_ = false;
       headerUrl_ = "";
     }
 
@@ -253,7 +253,7 @@ public final class Protobufs {
             }
             case 112: {
 
-              specialMode_ = input.readBool();
+              placement_ = input.readBool();
               break;
             }
             case 122: {
@@ -527,17 +527,17 @@ public final class Protobufs {
       return updatedAt_;
     }
 
-    public static final int SPECIALMODE_FIELD_NUMBER = 14;
-    private boolean specialMode_;
+    public static final int PLACEMENT_FIELD_NUMBER = 14;
+    private boolean placement_;
     /**
      * <pre>
      * for test	
      * </pre>
      *
-     * <code>bool specialMode = 14;</code>
+     * <code>bool placement = 14;</code>
      */
-    public boolean getSpecialMode() {
-      return specialMode_;
+    public boolean getPlacement() {
+      return placement_;
     }
 
     public static final int HEADERURL_FIELD_NUMBER = 15;
@@ -625,8 +625,8 @@ public final class Protobufs {
       if (updatedAt_ != 0L) {
         output.writeUInt64(13, updatedAt_);
       }
-      if (specialMode_ != false) {
-        output.writeBool(14, specialMode_);
+      if (placement_ != false) {
+        output.writeBool(14, placement_);
       }
       if (!getHeaderUrlBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 15, headerUrl_);
@@ -685,9 +685,9 @@ public final class Protobufs {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(13, updatedAt_);
       }
-      if (specialMode_ != false) {
+      if (placement_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(14, specialMode_);
+          .computeBoolSize(14, placement_);
       }
       if (!getHeaderUrlBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(15, headerUrl_);
@@ -734,8 +734,8 @@ public final class Protobufs {
           == other.getCreatedAt());
       result = result && (getUpdatedAt()
           == other.getUpdatedAt());
-      result = result && (getSpecialMode()
-          == other.getSpecialMode());
+      result = result && (getPlacement()
+          == other.getPlacement());
       result = result && getHeaderUrl()
           .equals(other.getHeaderUrl());
       return result;
@@ -777,9 +777,9 @@ public final class Protobufs {
       hash = (37 * hash) + UPDATEDAT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getUpdatedAt());
-      hash = (37 * hash) + SPECIALMODE_FIELD_NUMBER;
+      hash = (37 * hash) + PLACEMENT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSpecialMode());
+          getPlacement());
       hash = (37 * hash) + HEADERURL_FIELD_NUMBER;
       hash = (53 * hash) + getHeaderUrl().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -937,7 +937,7 @@ public final class Protobufs {
 
         updatedAt_ = 0L;
 
-        specialMode_ = false;
+        placement_ = false;
 
         headerUrl_ = "";
 
@@ -976,7 +976,7 @@ public final class Protobufs {
         result.authData_ = authData_;
         result.createdAt_ = createdAt_;
         result.updatedAt_ = updatedAt_;
-        result.specialMode_ = specialMode_;
+        result.placement_ = placement_;
         result.headerUrl_ = headerUrl_;
         onBuilt();
         return result;
@@ -1063,8 +1063,8 @@ public final class Protobufs {
         if (other.getUpdatedAt() != 0L) {
           setUpdatedAt(other.getUpdatedAt());
         }
-        if (other.getSpecialMode() != false) {
-          setSpecialMode(other.getSpecialMode());
+        if (other.getPlacement() != false) {
+          setPlacement(other.getPlacement());
         }
         if (!other.getHeaderUrl().isEmpty()) {
           headerUrl_ = other.headerUrl_;
@@ -1649,27 +1649,27 @@ public final class Protobufs {
         return this;
       }
 
-      private boolean specialMode_ ;
+      private boolean placement_ ;
       /**
        * <pre>
        * for test	
        * </pre>
        *
-       * <code>bool specialMode = 14;</code>
+       * <code>bool placement = 14;</code>
        */
-      public boolean getSpecialMode() {
-        return specialMode_;
+      public boolean getPlacement() {
+        return placement_;
       }
       /**
        * <pre>
        * for test	
        * </pre>
        *
-       * <code>bool specialMode = 14;</code>
+       * <code>bool placement = 14;</code>
        */
-      public Builder setSpecialMode(boolean value) {
+      public Builder setPlacement(boolean value) {
         
-        specialMode_ = value;
+        placement_ = value;
         onChanged();
         return this;
       }
@@ -1678,11 +1678,11 @@ public final class Protobufs {
        * for test	
        * </pre>
        *
-       * <code>bool specialMode = 14;</code>
+       * <code>bool placement = 14;</code>
        */
-      public Builder clearSpecialMode() {
+      public Builder clearPlacement() {
         
-        specialMode_ = false;
+        placement_ = false;
         onChanged();
         return this;
       }
@@ -1819,22 +1819,22 @@ public final class Protobufs {
     int getCallCoin();
 
     /**
-     * <code>bool isPrepare = 3;</code>
-     */
-    boolean getIsPrepare();
-
-    /**
-     * <code>.User user = 4;</code>
+     * <code>.User user = 3;</code>
      */
     boolean hasUser();
     /**
-     * <code>.User user = 4;</code>
+     * <code>.User user = 3;</code>
      */
     com.mjoys.zjh.proto.Protobufs.User getUser();
     /**
-     * <code>.User user = 4;</code>
+     * <code>.User user = 3;</code>
      */
     com.mjoys.zjh.proto.Protobufs.UserOrBuilder getUserOrBuilder();
+
+    /**
+     * <code>bool isPrepared = 4;</code>
+     */
+    boolean getIsPrepared();
   }
   /**
    * Protobuf type {@code Seat}
@@ -1850,7 +1850,7 @@ public final class Protobufs {
     private Seat() {
       seatID_ = 0;
       callCoin_ = 0;
-      isPrepare_ = false;
+      isPrepared_ = false;
     }
 
     @java.lang.Override
@@ -1888,12 +1888,7 @@ public final class Protobufs {
               callCoin_ = input.readInt32();
               break;
             }
-            case 24: {
-
-              isPrepare_ = input.readBool();
-              break;
-            }
-            case 34: {
+            case 26: {
               com.mjoys.zjh.proto.Protobufs.User.Builder subBuilder = null;
               if (user_ != null) {
                 subBuilder = user_.toBuilder();
@@ -1904,6 +1899,11 @@ public final class Protobufs {
                 user_ = subBuilder.buildPartial();
               }
 
+              break;
+            }
+            case 32: {
+
+              isPrepared_ = input.readBool();
               break;
             }
           }
@@ -1947,34 +1947,34 @@ public final class Protobufs {
       return callCoin_;
     }
 
-    public static final int ISPREPARE_FIELD_NUMBER = 3;
-    private boolean isPrepare_;
-    /**
-     * <code>bool isPrepare = 3;</code>
-     */
-    public boolean getIsPrepare() {
-      return isPrepare_;
-    }
-
-    public static final int USER_FIELD_NUMBER = 4;
+    public static final int USER_FIELD_NUMBER = 3;
     private com.mjoys.zjh.proto.Protobufs.User user_;
     /**
-     * <code>.User user = 4;</code>
+     * <code>.User user = 3;</code>
      */
     public boolean hasUser() {
       return user_ != null;
     }
     /**
-     * <code>.User user = 4;</code>
+     * <code>.User user = 3;</code>
      */
     public com.mjoys.zjh.proto.Protobufs.User getUser() {
       return user_ == null ? com.mjoys.zjh.proto.Protobufs.User.getDefaultInstance() : user_;
     }
     /**
-     * <code>.User user = 4;</code>
+     * <code>.User user = 3;</code>
      */
     public com.mjoys.zjh.proto.Protobufs.UserOrBuilder getUserOrBuilder() {
       return getUser();
+    }
+
+    public static final int ISPREPARED_FIELD_NUMBER = 4;
+    private boolean isPrepared_;
+    /**
+     * <code>bool isPrepared = 4;</code>
+     */
+    public boolean getIsPrepared() {
+      return isPrepared_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1995,11 +1995,11 @@ public final class Protobufs {
       if (callCoin_ != 0) {
         output.writeInt32(2, callCoin_);
       }
-      if (isPrepare_ != false) {
-        output.writeBool(3, isPrepare_);
-      }
       if (user_ != null) {
-        output.writeMessage(4, getUser());
+        output.writeMessage(3, getUser());
+      }
+      if (isPrepared_ != false) {
+        output.writeBool(4, isPrepared_);
       }
     }
 
@@ -2016,13 +2016,13 @@ public final class Protobufs {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, callCoin_);
       }
-      if (isPrepare_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, isPrepare_);
-      }
       if (user_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getUser());
+          .computeMessageSize(3, getUser());
+      }
+      if (isPrepared_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, isPrepared_);
       }
       memoizedSize = size;
       return size;
@@ -2044,13 +2044,13 @@ public final class Protobufs {
           == other.getSeatID());
       result = result && (getCallCoin()
           == other.getCallCoin());
-      result = result && (getIsPrepare()
-          == other.getIsPrepare());
       result = result && (hasUser() == other.hasUser());
       if (hasUser()) {
         result = result && getUser()
             .equals(other.getUser());
       }
+      result = result && (getIsPrepared()
+          == other.getIsPrepared());
       return result;
     }
 
@@ -2065,13 +2065,13 @@ public final class Protobufs {
       hash = (53 * hash) + getSeatID();
       hash = (37 * hash) + CALLCOIN_FIELD_NUMBER;
       hash = (53 * hash) + getCallCoin();
-      hash = (37 * hash) + ISPREPARE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsPrepare());
       if (hasUser()) {
         hash = (37 * hash) + USER_FIELD_NUMBER;
         hash = (53 * hash) + getUser().hashCode();
       }
+      hash = (37 * hash) + ISPREPARED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsPrepared());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2205,14 +2205,14 @@ public final class Protobufs {
 
         callCoin_ = 0;
 
-        isPrepare_ = false;
-
         if (userBuilder_ == null) {
           user_ = null;
         } else {
           user_ = null;
           userBuilder_ = null;
         }
+        isPrepared_ = false;
+
         return this;
       }
 
@@ -2237,12 +2237,12 @@ public final class Protobufs {
         com.mjoys.zjh.proto.Protobufs.Seat result = new com.mjoys.zjh.proto.Protobufs.Seat(this);
         result.seatID_ = seatID_;
         result.callCoin_ = callCoin_;
-        result.isPrepare_ = isPrepare_;
         if (userBuilder_ == null) {
           result.user_ = user_;
         } else {
           result.user_ = userBuilder_.build();
         }
+        result.isPrepared_ = isPrepared_;
         onBuilt();
         return result;
       }
@@ -2290,11 +2290,11 @@ public final class Protobufs {
         if (other.getCallCoin() != 0) {
           setCallCoin(other.getCallCoin());
         }
-        if (other.getIsPrepare() != false) {
-          setIsPrepare(other.getIsPrepare());
-        }
         if (other.hasUser()) {
           mergeUser(other.getUser());
+        }
+        if (other.getIsPrepared() != false) {
+          setIsPrepared(other.getIsPrepared());
         }
         onChanged();
         return this;
@@ -2374,43 +2374,17 @@ public final class Protobufs {
         return this;
       }
 
-      private boolean isPrepare_ ;
-      /**
-       * <code>bool isPrepare = 3;</code>
-       */
-      public boolean getIsPrepare() {
-        return isPrepare_;
-      }
-      /**
-       * <code>bool isPrepare = 3;</code>
-       */
-      public Builder setIsPrepare(boolean value) {
-        
-        isPrepare_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool isPrepare = 3;</code>
-       */
-      public Builder clearIsPrepare() {
-        
-        isPrepare_ = false;
-        onChanged();
-        return this;
-      }
-
       private com.mjoys.zjh.proto.Protobufs.User user_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.mjoys.zjh.proto.Protobufs.User, com.mjoys.zjh.proto.Protobufs.User.Builder, com.mjoys.zjh.proto.Protobufs.UserOrBuilder> userBuilder_;
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public boolean hasUser() {
         return userBuilder_ != null || user_ != null;
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public com.mjoys.zjh.proto.Protobufs.User getUser() {
         if (userBuilder_ == null) {
@@ -2420,7 +2394,7 @@ public final class Protobufs {
         }
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public Builder setUser(com.mjoys.zjh.proto.Protobufs.User value) {
         if (userBuilder_ == null) {
@@ -2436,7 +2410,7 @@ public final class Protobufs {
         return this;
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public Builder setUser(
           com.mjoys.zjh.proto.Protobufs.User.Builder builderForValue) {
@@ -2450,7 +2424,7 @@ public final class Protobufs {
         return this;
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public Builder mergeUser(com.mjoys.zjh.proto.Protobufs.User value) {
         if (userBuilder_ == null) {
@@ -2468,7 +2442,7 @@ public final class Protobufs {
         return this;
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public Builder clearUser() {
         if (userBuilder_ == null) {
@@ -2482,7 +2456,7 @@ public final class Protobufs {
         return this;
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public com.mjoys.zjh.proto.Protobufs.User.Builder getUserBuilder() {
         
@@ -2490,7 +2464,7 @@ public final class Protobufs {
         return getUserFieldBuilder().getBuilder();
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       public com.mjoys.zjh.proto.Protobufs.UserOrBuilder getUserOrBuilder() {
         if (userBuilder_ != null) {
@@ -2501,7 +2475,7 @@ public final class Protobufs {
         }
       }
       /**
-       * <code>.User user = 4;</code>
+       * <code>.User user = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.mjoys.zjh.proto.Protobufs.User, com.mjoys.zjh.proto.Protobufs.User.Builder, com.mjoys.zjh.proto.Protobufs.UserOrBuilder> 
@@ -2515,6 +2489,32 @@ public final class Protobufs {
           user_ = null;
         }
         return userBuilder_;
+      }
+
+      private boolean isPrepared_ ;
+      /**
+       * <code>bool isPrepared = 4;</code>
+       */
+      public boolean getIsPrepared() {
+        return isPrepared_;
+      }
+      /**
+       * <code>bool isPrepared = 4;</code>
+       */
+      public Builder setIsPrepared(boolean value) {
+        
+        isPrepared_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isPrepared = 4;</code>
+       */
+      public Builder clearIsPrepared() {
+        
+        isPrepared_ = false;
+        onChanged();
+        return this;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -3590,20 +3590,20 @@ public final class Protobufs {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\027examples/transfer.proto\"\255\002\n\004User\022\020\n\010ob" +
+      "\n\027examples/transfer.proto\"\253\002\n\004User\022\020\n\010ob" +
       "jectId\030\001 \001(\t\022\020\n\010username\030\002 \001(\t\022!\n\031mobile" +
       "PhoneNumberVerified\030\003 \001(\010\022\031\n\021mobilePhone" +
       "Number\030\004 \001(\t\022\023\n\013totalInning\030\005 \001(\005\022\021\n\twin" +
       "Inning\030\006 \001(\005\022\017\n\007diamond\030\007 \001(\005\022\014\n\004coin\030\010 " +
       "\001(\005\022\020\n\010deviceId\030\t \001(\t\022\n\n\002id\030\n \001(\005\022\020\n\010aut" +
       "hData\030\013 \001(\t\022\021\n\tcreatedAt\030\014 \001(\004\022\021\n\tupdate" +
-      "dAt\030\r \001(\004\022\023\n\013specialMode\030\016 \001(\010\022\021\n\theader" +
-      "Url\030\017 \001(\t\"P\n\004Seat\022\016\n\006seatID\030\001 \001(\005\022\020\n\010cal" +
-      "lCoin\030\002 \001(\005\022\021\n\tisPrepare\030\003 \001(\010\022\023\n\004user\030\004",
-      " \001(\0132\005.User\"]\n\005Table\022\017\n\007tableID\030\001 \001(\005\022\024\n" +
-      "\005seats\030\002 \003(\0132\005.Seat\022\016\n\006minBet\030\003 \001(\005\022\016\n\006m" +
-      "axBet\030\004 \001(\005\022\r\n\005round\030\005 \001(\005B \n\023com.mjoys." +
-      "zjh.protoB\tProtobufsb\006proto3"
+      "dAt\030\r \001(\004\022\021\n\tplacement\030\016 \001(\010\022\021\n\theaderUr" +
+      "l\030\017 \001(\t\"Q\n\004Seat\022\016\n\006seatID\030\001 \001(\005\022\020\n\010callC" +
+      "oin\030\002 \001(\005\022\023\n\004user\030\003 \001(\0132\005.User\022\022\n\nisPrep",
+      "ared\030\004 \001(\010\"]\n\005Table\022\017\n\007tableID\030\001 \001(\005\022\024\n\005" +
+      "seats\030\002 \003(\0132\005.Seat\022\016\n\006minBet\030\003 \001(\005\022\016\n\006ma" +
+      "xBet\030\004 \001(\005\022\r\n\005round\030\005 \001(\005B \n\023com.mjoys.z" +
+      "jh.protoB\tProtobufsb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3622,13 +3622,13 @@ public final class Protobufs {
     internal_static_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_User_descriptor,
-        new java.lang.String[] { "ObjectId", "Username", "MobilePhoneNumberVerified", "MobilePhoneNumber", "TotalInning", "WinInning", "Diamond", "Coin", "DeviceId", "Id", "AuthData", "CreatedAt", "UpdatedAt", "SpecialMode", "HeaderUrl", });
+        new java.lang.String[] { "ObjectId", "Username", "MobilePhoneNumberVerified", "MobilePhoneNumber", "TotalInning", "WinInning", "Diamond", "Coin", "DeviceId", "Id", "AuthData", "CreatedAt", "UpdatedAt", "Placement", "HeaderUrl", });
     internal_static_Seat_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Seat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Seat_descriptor,
-        new java.lang.String[] { "SeatID", "CallCoin", "IsPrepare", "User", });
+        new java.lang.String[] { "SeatID", "CallCoin", "User", "IsPrepared", });
     internal_static_Table_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_Table_fieldAccessorTable = new

@@ -26,10 +26,8 @@ public class CSMapping {
 
 		public static final String USER_EXIT_TABLE = "userExitTable"; // 玩家退出桌子  Prrotobuf -> Seat
 		public static final String USER_ENTER_TABLE = "userEnterTable"; // 玩家进入桌子  Prrotobuf -> Seat
-		public static final String MATCHED_TABLE_SUCCESS = "matchTableSuccess"; // 匹配/加入桌子成功 Prrotobuf -> Table
-		public static final String MATCHED_TABLE_FAILED = "matchTableFailed"; // 匹配/加入桌子失败 null
-		public static final String CREATE_TABLE_SUCCESS = "createTableSuccess"; // 创建桌子成功
-		public static final String CREATE_TABLE_FAILED = "createTableFailed"; // 创建桌子失败
+		public static final String ENTER_TABLE_SUCCESS = "enterTableSuccess"; // 匹配/加入桌子成功 Prrotobuf -> Table
+		public static final String ENTER_TABLE_FAILED = "enterTableFailed"; // 匹配/加入桌子失败 null
 
 		public static final String USER_PREPARE = "userPrepare"; // 玩家准备 Prrotobuf -> Seat
 
