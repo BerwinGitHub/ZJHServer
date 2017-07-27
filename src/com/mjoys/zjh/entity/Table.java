@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.protobuf.GeneratedMessageV3.Builder;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.mjoys.zjh.confgs.Configs;
+import com.mjoys.zjh.domain.User;
 import com.mjoys.zjh.proto.Protobufs;
 
 /**
@@ -16,8 +17,7 @@ import com.mjoys.zjh.proto.Protobufs;
  */
 public class Table extends IProtobufEntity<Protobufs.Table> {
 
-	public static final int MAX_SEAT_PLAYER = Configs
-			.intValue("max_seat_player");
+	public static final int MAX_SEAT_PLAYER = Configs.intValue("max_seat_player");
 
 	/**
 	 * 牌桌编号
@@ -94,6 +94,15 @@ public class Table extends IProtobufEntity<Protobufs.Table> {
 		this.round = round;
 	}
 
+	public Seat getSeatByUser(User u) {
+		for (int i = 0; i < seats.size(); i++) {
+			if (seats.get(i).getUser().getId() == u.getId()) { // 找到了
+				return seats.get(i);
+			}
+		}
+		return null;
+	}
+
 	public Seat getSeatByID(int seatID) {
 		for (int i = 0; i < seats.size(); i++) {
 			if (seats.get(i).getSeatID() == seatID) { // 找到了
@@ -113,9 +122,24 @@ public class Table extends IProtobufEntity<Protobufs.Table> {
 		return -1;
 	}
 
+	public int getPrepareCount() {
+		int total = 0;
+		for (int i = 0; i < seats.size(); i++) {
+			if (seats.get(i).isPrepared())
+				total++;
+		}
+		return total;
+	}
+
+	public void clearTable() {
+		this.round = 0;
+		for (int i = 0; i < seats.size(); i++) {
+			this.seats.get(i).clearSeat();
+		}
+	}
+
 	@Override
-	protected com.mjoys.zjh.proto.Protobufs.Table parseEntityFromProtoBytes(
-			byte[] bytes) {
+	protected com.mjoys.zjh.proto.Protobufs.Table parseEntityFromProtoBytes(byte[] bytes) {
 		Protobufs.Table table = null;
 		try {
 			table = Protobufs.Table.parseFrom(bytes);

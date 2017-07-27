@@ -10,4 +10,5 @@
 	db_rest_api_key:"ef622f1a6c10c3d711aa9d0c12dd5c7a",
 	db_master_key:"064bf73ed9f00b0c9274572fee71981f",
 	max_seat_player:7,
+	min_player_start:2,
 }

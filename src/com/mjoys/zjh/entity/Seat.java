@@ -14,6 +14,8 @@ public class Seat extends IProtobufEntity<Protobufs.Seat> {
 
 	private User user;
 
+	private boolean isPrepared;
+
 	private SocketIOClient socketIOClient;
 
 	public Seat(byte[] bs) {
@@ -25,6 +27,14 @@ public class Seat extends IProtobufEntity<Protobufs.Seat> {
 		this.seatID = seatID;
 		this.user = u;
 		this.callCoin = 0;
+	}
+
+	public boolean isPrepared() {
+		return isPrepared;
+	}
+
+	public void setPrepared(boolean isPrepared) {
+		this.isPrepared = isPrepared;
 	}
 
 	public SocketIOClient getSocketIOClient() {
@@ -60,8 +70,7 @@ public class Seat extends IProtobufEntity<Protobufs.Seat> {
 	}
 
 	@Override
-	protected com.mjoys.zjh.proto.Protobufs.Seat parseEntityFromProtoBytes(
-			byte[] bytes) {
+	protected com.mjoys.zjh.proto.Protobufs.Seat parseEntityFromProtoBytes(byte[] bytes) {
 		Protobufs.Seat seat = null;
 		try {
 			seat = Protobufs.Seat.parseFrom(bytes);
@@ -74,6 +83,11 @@ public class Seat extends IProtobufEntity<Protobufs.Seat> {
 	@Override
 	protected Builder<?> getEntityProtoBuilder() {
 		return Protobufs.Seat.newBuilder();
+	}
+
+	public void clearSeat() {
+		this.callCoin = 0;
+		this.isPrepared = false;
 	}
 
 }

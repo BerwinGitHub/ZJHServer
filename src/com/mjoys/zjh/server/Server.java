@@ -45,7 +45,8 @@ public class Server {
 		this.server.addEventListener(CSMapping.C2S.QUICK_START, String.class, room.new QuickStartController(server));
 
 		// game
-		this.server.addEventListener(CSMapping.C2S.GAME, String.class, new GameController(server));
+		GameController gc = new GameController(server);
+		this.server.addEventListener(CSMapping.C2S.GAME, String.class, gc.new PrepareController(server));
 	}
 
 	public void start() {
