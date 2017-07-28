@@ -6,19 +6,18 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.mjoys.zjh.common.CSMapping;
 import com.mjoys.zjh.domain.User;
+import com.mjoys.zjh.proto.Protobufs;
 import com.mjoys.zjh.service.UserService;
 import com.mjoys.zjh.utility.ProtobufUtility;
 
-public class LoginController extends IController implements
-		DataListener<String> {
+public class LoginController extends IController implements DataListener<String> {
 
 	public LoginController(SocketIOServer server) {
 		super(server);
 	}
 
 	@Override
-	public void onData(SocketIOClient arg0, String arg1, AckRequest arg2)
-			throws Exception {
+	public void onData(SocketIOClient arg0, String arg1, AckRequest arg2) throws Exception {
 		byte bytes[] = ProtobufUtility.toBytes(arg1);
 		User user = new User(bytes);
 		UserService userService = new UserService();

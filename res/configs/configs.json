@@ -4,7 +4,7 @@
 	windows_height:400,
 	file_userdefault:"./res/configs/userdefault.json",
 	file_language:"./res/configs/language.json",
-	server_ip:"192.168.1.80",
+	server_ip:"192.168.0.209",
 	server_port:8868,
 	db_application_id:"1760eafcc521aa8814d87623e7e04a77",
 	db_rest_api_key:"ef622f1a6c10c3d711aa9d0c12dd5c7a",

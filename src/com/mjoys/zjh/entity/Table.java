@@ -3,9 +3,8 @@ package com.mjoys.zjh.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.protobuf.GeneratedMessageV3.Builder;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.mjoys.zjh.confgs.Configs;
+import com.mjoys.zjh.domain.IBPEntity;
 import com.mjoys.zjh.domain.User;
 import com.mjoys.zjh.proto.Protobufs;
 
@@ -15,7 +14,7 @@ import com.mjoys.zjh.proto.Protobufs;
  * @author t_Ber
  * 
  */
-public class Table extends IProtobufEntity<Protobufs.Table> {
+public class Table extends IBPEntity<Protobufs.Table> {
 
 	public static final int MAX_SEAT_PLAYER = Configs.intValue("max_seat_player");
 
@@ -44,14 +43,17 @@ public class Table extends IProtobufEntity<Protobufs.Table> {
 	 */
 	private int round;
 
+	public Table() {
+	}
+
+	public Table(byte[] bs) {
+		this.toEntity(bs);
+	}
+
 	public Table(int tableID) {
 		this.tableID = tableID;
 		this.seats = new ArrayList<>();
 		this.round = 0;
-	}
-
-	public Table(byte[] pb) {
-		this.toEntity(pb);
 	}
 
 	public int getTableID() {
@@ -139,19 +141,8 @@ public class Table extends IProtobufEntity<Protobufs.Table> {
 	}
 
 	@Override
-	protected com.mjoys.zjh.proto.Protobufs.Table parseEntityFromProtoBytes(byte[] bytes) {
-		Protobufs.Table table = null;
-		try {
-			table = Protobufs.Table.parseFrom(bytes);
-		} catch (InvalidProtocolBufferException e) {
-			e.printStackTrace();
-		}
-		return table;
-	}
-
-	@Override
-	protected Builder<?> getEntityProtoBuilder() {
-		return Protobufs.Table.newBuilder();
+	public String getTableName() {
+		return "";
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.mjoys.zjh.service;
 
-import com.mjoys.zjh.domain.IBmobObject;
+import com.mjoys.zjh.domain.IBPEntity;
 
-public abstract class IService<E extends IBmobObject> {
+public abstract class IService<E extends IBPEntity> {
 
 	public abstract void insert(E e);
 

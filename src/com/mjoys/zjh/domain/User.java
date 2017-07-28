@@ -2,8 +2,8 @@ package com.mjoys.zjh.domain;
 
 import java.util.Date;
 
-import com.google.protobuf.GeneratedMessageV3.Builder;
 import com.mjoys.zjh.proto.Protobufs;
+import com.mjoys.zjh.utility.ProtobufUtility;
 
 /**
  * 请保证属性名和数据库字段名字一致
@@ -11,7 +11,7 @@ import com.mjoys.zjh.proto.Protobufs;
  * @author t_Ber
  * 
  */
-public class User extends IBmobObject<Protobufs.User> {
+public class User extends IBPEntity<Protobufs.User> {
 
 	private String objectId = null;
 
@@ -46,8 +46,8 @@ public class User extends IBmobObject<Protobufs.User> {
 	public User() {
 	}
 
-	public User(byte[] bytes) {
-		this.toEntity(bytes);
+	public User(byte[] bs) {
+		this.toEntity(bs);
 	}
 
 	public String getObjectId() {
@@ -175,6 +175,17 @@ public class User extends IBmobObject<Protobufs.User> {
 		return "_User";
 	}
 
+	@Override
+	public byte[] toByteArray() {
+		Protobufs.User user = null;
+		try {
+			user = ProtobufUtility.toPBEntity(this, Protobufs.User.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user.toByteArray();
+	}
+
 	/**
 	 * 转成ProtoBufBytes
 	 * 
@@ -238,22 +249,5 @@ public class User extends IBmobObject<Protobufs.User> {
 	// e.printStackTrace();
 	// }
 	// }
-
-	@Override
-	protected com.mjoys.zjh.proto.Protobufs.User parseEntityFromProtoBytes(
-			byte[] bytes) {
-		com.mjoys.zjh.proto.Protobufs.User user = null;
-		try {
-			user = com.mjoys.zjh.proto.Protobufs.User.parseFrom(bytes);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return user;
-	}
-
-	@Override
-	protected Builder<?> getEntityProtoBuilder() {
-		return Protobufs.User.newBuilder();
-	}
 
 }
