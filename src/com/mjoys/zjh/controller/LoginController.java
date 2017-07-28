@@ -6,7 +6,6 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.mjoys.zjh.common.CSMapping;
 import com.mjoys.zjh.domain.User;
-import com.mjoys.zjh.proto.Protobufs;
 import com.mjoys.zjh.service.UserService;
 import com.mjoys.zjh.utility.ProtobufUtility;
 

@@ -7,13 +7,13 @@ import com.mjoys.zjh.proto.Protobufs;
 
 public class Seat extends IBPEntity<Protobufs.Seat> {
 
-	private int seatID;
+	private int seatID = 0;
 
-	private int callCoin;
+	private int callCoin = 0;
 
 	private User user;
 
-	private boolean isPrepared;
+	private boolean isPrepared = false;
 
 	private SocketIOClient socketIOClient;
 

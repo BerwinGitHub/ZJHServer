@@ -143,31 +143,36 @@ public class ProtobufUtility {
 	}
 
 	public static void main(String[] args) {
-		Table table = new Table(00001);
-		table.setMinBet(100);
-		table.setMaxBet(1000);
-		table.setRound(1);
-		for (int i = 0; i < 3; i++) {
-			User user = new User();
-			user.setObjectId("oei9381qf" + i);
-			user.setId(10000 + i);
-			user.setUsername("Berwin" + i);
-			user.setUpdatedAt(new Date(System.currentTimeMillis()));
-			user.setCreatedAt(new Date(System.currentTimeMillis()));
-			Seat seat = new Seat(1000 + i, user, null);
-			table.getSeats().add(seat);
-		}
-		try {
-			byte[] bs = table.toByteArray();
-			for (byte b : bs) {
-				System.out.print(b + ",");
-			}
-			System.out.println();
-			Table table2 = new Table(bs);
-			System.out.println();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// Table table = new Table(00001);
+		// table.setMinBet(100);
+		// table.setMaxBet(1000);
+		// table.setRound(1);
+		// for (int i = 0; i < 3; i++) {
+		// User user = new User();
+		// user.setObjectId("oei9381qf" + i);
+		// user.setId(10000 + i);
+		// user.setUsername("Berwin" + i);
+		// user.setUpdatedAt(new Date(System.currentTimeMillis()));
+		// user.setCreatedAt(new Date(System.currentTimeMillis()));
+		// Seat seat = new Seat(1000 + i, user, null);
+		// table.getSeats().add(seat);
+		// }
+		// try {
+		// byte[] bs = table.toByteArray();
+		// for (byte b : bs) {
+		// System.out.print(b + ",");
+		// }
+		// System.out.println();
+		// Table table2 = new Table(bs);
+		// System.out.println();
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		Protobufs.Seat.Builder builder = Protobufs.Seat.newBuilder();
+		builder.setSeatID(1);
+		builder.setUser(Protobufs.User.newBuilder().build());
+		byte[] bs = builder.build().toByteArray();
+		System.out.println();
 	}
 
 }
