@@ -40,8 +40,7 @@ public class UserService extends IService<User> {
 	@Override
 	public void update(User e) {
 		BSONObject bson = e.toUpdateBSONObject();
-		String result = Bmob.update(e.getTableName(), e.getObjectId(),
-				bson.toString());
+		String result = Bmob.update(e.getTableName(), e.getObjectId(), bson.toString());
 		System.out.println(result);
 	}
 
@@ -54,8 +53,7 @@ public class UserService extends IService<User> {
 			JSONObject o2 = JSONObject.fromObject(jsonArray.get(0));
 			user = (User) JSONObject.toBean(o2, User.class);
 		} catch (Exception e) {
-			System.out.println(result);
-			e.printStackTrace();
+			System.err.println(result);
 			return null;
 		}
 		return user;

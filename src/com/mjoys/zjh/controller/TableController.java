@@ -67,7 +67,8 @@ public class TableController extends IController implements Runnable {
 				} else {// 需要向其他用户广播
 					this.broadcast(CSMapping.S2C.USER_EXIT_TABLE, bs);
 				}
-				System.out.println("移除房间:" + this.getTable().getTableID() + "\tsize:" + seats.size());
+				System.out.println(
+						"移除\t用户:" + u.getId() + " 房间:" + this.getTable().getTableID() + "\t剩余:" + seats.size());
 				return;
 			}
 		}
@@ -81,7 +82,8 @@ public class TableController extends IController implements Runnable {
 		Seat seat = new Seat(this.table.getEmptySeatID(), u, socketIOClient);
 		socketIOClient.joinRoom(this.table.getTableID() + "");
 		this.table.getSeats().add(seat);
-		System.out.println("加入房间:" + this.getTable().getTableID() + "\tsize:" + this.table.getSeats().size());
+		System.out.println(
+				"加入\t用户:" + u.getId() + " 房间:" + this.getTable().getTableID() + "\t剩余:" + this.table.getSeats().size());
 		// 广播添加了一个用户
 		this.broadcast(CSMapping.S2C.USER_ENTER_TABLE, seat.toByteArray());
 		return true;

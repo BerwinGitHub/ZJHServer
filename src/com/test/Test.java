@@ -1,77 +1,16 @@
 package com.test;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import com.mjoys.zjh.entity.Seat;
+import com.mjoys.zjh.utility.ProtobufUtility;
 
 public class Test {
 
 	// J$BF35095B-4003-4AF2-BF2E-5B2EBA6BA748
 	public static void main(String[] args) {
-		int MAX_SEARCH = 10;
-		double ADD_OFFSET = 0.5f;
-		System.out.println("设:");
-		System.out.println("w	+	x	=	8");
-		System.out.println("+		+");
-		System.out.println("y	-	z	=	6");
-		System.out.println("‖		‖");
-		System.out.println("13		8");
-		try {
-			Thread.sleep(1000 * 3);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("开始计算");
-		long start = System.currentTimeMillis();
-		// double w = 3.5f, x = 4.5f, y = 9.5, z = 3.5;
-		double w = 0.0f, x = 0.0f, y = 0.0f, z = 0.0f;
-		for (w = 1; w < MAX_SEARCH; w += ADD_OFFSET) {
-			for (x = 1; x < MAX_SEARCH; x += ADD_OFFSET) {
-				for (y = 1; y < MAX_SEARCH; y += ADD_OFFSET) {
-					for (z = 1; z < MAX_SEARCH; z += ADD_OFFSET) {
-						System.out.println("查找:w=" + w + "\tx:" + x + "\ty="
-								+ y + "\tz=" + z);
-						if ((w + x == 8) && (y - z == 6) && (w + y == 13)
-								&& (x + z == 8)) {
-							System.out
-									.println("=============================================");
-							System.out.println("时间:"
-									+ (System.currentTimeMillis() - start)
-									+ "毫秒");
-							System.out.println("结果:w=" + w + "\tx:" + x
-									+ "\ty=" + y + "\tz=" + z);
-							System.out
-									.println("=============================================");
-							System.out.println(w + "	+	" + x + "	=	8");
-							System.out.println("+		+");
-							System.out.println(y + "	-	" + z + "	=	6");
-							System.out.println("‖		‖");
-							System.out.println("13		8");
-							return;
-						}
-					}
-				}
-
-			}
-		}
-		System.out.println("没找到");
-
-		// try {
-		// String res = URLDecoder
-		// .decode("J $ B F 3 5 0 9 5 B - 4 0 0 3 - 4 A F 2 - B F 2 E - 5 B 2 E B A 6 B A 7 4 8",
-		// "UTF-8");
-		// System.out.println(tos(res));
-		// } catch (UnsupportedEncodingException e) {
-		// e.printStackTrace();
-		// }
-	}
-
-	public static String tos(String s) {
-		char[] cs = s.toCharArray();
-		String res = "";
-		for (int i = 0; i < cs.length; i++) {
-			res += String.valueOf((int) cs[i]);
-		}
-		return res;
+		byte[] bs = ProtobufUtility.toBytes(
+				"{'0':8,'1':1,'2':26,'3':166,'4':1,'5':10,'6':8,'7':106,'8':89,'9':54,'10':102,'11':70,'12':70,'13':70,'14':83,'15':18,'16':5,'17':83,'18':97,'19':109,'20':109,'21':105,'22':34,'23':11,'24':49,'25':56,'26':50,'27':48,'28':50,'29':56,'30':49,'31':53,'32':55,'33':50,'34':48,'35':56,'36':10,'37':64,'38':232,'39':7,'40':74,'41':36,'42':65,'43':70,'44':82,'45':53,'46':48,'47':52,'48':53,'49':66,'50':45,'51':52,'52':48,'53':48,'54':51,'55':45,'56':50,'57':65,'58':70,'59':50,'60':45,'61':66,'62':70,'63':50,'64':69,'65':45,'66':53,'67':66,'68':50,'69':69,'70':66,'71':65,'72':54,'73':66,'74':65,'75':55,'76':52,'77':56,'78':80,'79':161,'80':141,'81':6,'82':96,'83':158,'84':210,'85':245,'86':241,'87':217,'88':43,'89':104,'90':165,'91':210,'92':245,'93':241,'94':217,'95':43,'96':122,'97':73,'98':104,'99':116,'100':116,'101':112,'102':115,'103':58,'104':47,'105':47,'106':115,'107':115,'108':50,'109':46,'110':98,'111':97,'112':105,'113':100,'114':117,'115':46,'116':99,'117':111,'118':109,'119':47,'120':54,'121':79,'122':78,'123':89,'124':115,'125':106,'126':105,'127':112,'128':48,'129':81,'130':73,'131':90,'132':56,'133':116,'134':121,'135':104,'136':110,'137':113,'138':47,'139':105,'140':116,'141':47,'142':117,'143':61,'144':49,'145':53,'146':48,'147':48,'148':55,'149':50,'150':57,'151':48,'152':48,'153':50,'154':44,'155':49,'156':55,'157':53,'158':56,'159':49,'160':52,'161':55,'162':51,'163':52,'164':51,'165':38,'166':102,'167':109,'168':61,'169':53,'170':56}");
+		Seat seat = new Seat(bs);
+		System.out.println("");
 	}
 
 }

@@ -35,7 +35,10 @@ public class RoomController extends IController {
 			TableController newTc = TableCollector.getInstance().quickStart(this.server, user, arg0);
 			arg0.set(G.CACHE_TABLE_CONTROLLER, newTc);
 			// 向客户端发送房间数据
-			newTc.broadcast(CSMapping.S2C.ENTER_TABLE_SUCCESS, newTc.getTable().toByteArray());
+			arg0.sendEvent(CSMapping.S2C.ENTER_TABLE_SUCCESS,
+					ProtobufUtility.stringify(newTc.getTable().toByteArray()));
+			// newTc.broadcast(CSMapping.S2C.ENTER_TABLE_SUCCESS,
+			// newTc.getTable().toByteArray());
 		}
 	}
 
@@ -59,10 +62,14 @@ public class RoomController extends IController {
 			if (tc != null) {
 				arg0.set(G.CACHE_TABLE_CONTROLLER, newTc);
 				// 回执加入成功
-				newTc.broadcast(CSMapping.S2C.ENTER_TABLE_SUCCESS, newTc.getTable().toByteArray());
+				arg0.sendEvent(CSMapping.S2C.ENTER_TABLE_SUCCESS,
+						ProtobufUtility.stringify(newTc.getTable().toByteArray()));
+				// newTc.broadcast(CSMapping.S2C.ENTER_TABLE_SUCCESS,
+				// newTc.getTable().toByteArray());
 			} else {
 				// 回执加入失败
-				newTc.broadcast(CSMapping.S2C.ENTER_TABLE_FAILED, null);
+				arg0.sendEvent(CSMapping.S2C.ENTER_TABLE_FAILED, "");
+				// newTc.broadcast(CSMapping.S2C.ENTER_TABLE_FAILED, null);
 
 			}
 		}
@@ -88,10 +95,14 @@ public class RoomController extends IController {
 			if (tc != null) {
 				arg0.set(G.CACHE_TABLE_CONTROLLER, newTc);
 				// 回执成功创建
-				newTc.broadcast(CSMapping.S2C.ENTER_TABLE_SUCCESS, newTc.getTable().toByteArray());
+				arg0.sendEvent(CSMapping.S2C.ENTER_TABLE_SUCCESS,
+						ProtobufUtility.stringify(newTc.getTable().toByteArray()));
+				// newTc.broadcast(CSMapping.S2C.ENTER_TABLE_SUCCESS,
+				// newTc.getTable().toByteArray());
 			} else {
 				// 回执创建失败
-				newTc.broadcast(CSMapping.S2C.ENTER_TABLE_FAILED, null);
+				arg0.sendEvent(CSMapping.S2C.ENTER_TABLE_FAILED, "");
+				// newTc.broadcast(CSMapping.S2C.ENTER_TABLE_FAILED, null);
 			}
 		}
 
