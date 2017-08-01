@@ -16,6 +16,7 @@ public class CSMapping {
 		public static final String QUICK_START = "quickStart";
 		public static final String CREATE_ROOM = "createRoom";
 		public static final String JOIN_ROOM = "joinRoom";
+		public static final String EXIT_ROOM = "exitRoom";
 		public static final String GAME = "game";
 	}
 

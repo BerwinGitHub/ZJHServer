@@ -97,4 +97,21 @@ public class RoomController extends IController {
 
 	}
 
+	public class ExitController extends IController implements DataListener<String> {
+
+		public ExitController(SocketIOServer server) {
+			super(server);
+		}
+
+		@Override
+		public void onData(SocketIOClient arg0, String arg1, AckRequest arg2) throws Exception {
+			User user = arg0.get(G.CACHE_USER); // 用户
+			TableController tc = arg0.get(G.CACHE_TABLE_CONTROLLER);
+			if (tc != null) { // 从房间中移除
+				tc.removeSeat(user);
+				arg0.del(G.CACHE_TABLE_CONTROLLER);
+			}
+		}
+	}
+
 }

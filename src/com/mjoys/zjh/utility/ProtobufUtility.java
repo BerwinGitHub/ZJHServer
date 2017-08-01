@@ -169,7 +169,7 @@ public class ProtobufUtility {
 		// e.printStackTrace();
 		// }
 		Protobufs.Seat.Builder builder = Protobufs.Seat.newBuilder();
-		builder.setSeatID(1);
+		builder.setSeatID(0);
 		builder.setUser(Protobufs.User.newBuilder().build());
 		byte[] bs = builder.build().toByteArray();
 		System.out.println();

@@ -43,7 +43,7 @@ public class Server {
 		this.server.addEventListener(CSMapping.C2S.CREATE_ROOM, String.class, room.new CreateController(server));
 		this.server.addEventListener(CSMapping.C2S.JOIN_ROOM, String.class, room.new JoinRoomController(server));
 		this.server.addEventListener(CSMapping.C2S.QUICK_START, String.class, room.new QuickStartController(server));
-
+		this.server.addEventListener(CSMapping.C2S.EXIT_ROOM, String.class, room.new ExitController(server));
 		// game
 		GameController gc = new GameController(server);
 		this.server.addEventListener(CSMapping.C2S.GAME, String.class, gc.new PrepareController(server));

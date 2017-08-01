@@ -18,8 +18,7 @@ public class TableController extends IController implements Runnable {
 	/**
 	 * 最少多少人准备才可以开始游戏，支持配置
 	 */
-	public static final int MIN_PLAYER_START = Configs
-			.intValue("min_player_start");
+	public static final int MIN_PLAYER_START = Configs.intValue("min_player_start");
 
 	private Table table;
 
@@ -59,17 +58,16 @@ public class TableController extends IController implements Runnable {
 		for (int i = 0; i < seats.size(); i++) {
 			if (seats.get(i).getUser().getId() == u.getId()) {
 				// 移除
-				seats.get(i).getSocketIOClient()
-						.leaveRoom(this.table.getTableID() + "");
+				byte[] bs = seats.get(i).toByteArray();
+				seats.get(i).getSocketIOClient().leaveRoom(this.table.getTableID() + "");
 				seats.remove(i);
 				// 如果Table里面没有人了就移除这个Table
 				if (seats.size() <= 0) {
-					TableCollector.getInstance().removeTableControlleByID(
-							this.table.getTableID());
+					TableCollector.getInstance().removeTableControlleByID(this.table.getTableID());
 				} else {// 需要向其他用户广播
-					this.broadcast(CSMapping.S2C.USER_EXIT_TABLE, seats.get(i)
-							.toByteArray());
+					this.broadcast(CSMapping.S2C.USER_EXIT_TABLE, bs);
 				}
+				System.out.println("移除房间:" + this.getTable().getTableID() + "\tsize:" + seats.size());
 				return;
 			}
 		}
@@ -83,14 +81,15 @@ public class TableController extends IController implements Runnable {
 		Seat seat = new Seat(this.table.getEmptySeatID(), u, socketIOClient);
 		socketIOClient.joinRoom(this.table.getTableID() + "");
 		this.table.getSeats().add(seat);
+		System.out.println("加入房间:" + this.getTable().getTableID() + "\tsize:" + this.table.getSeats().size());
 		// 广播添加了一个用户
 		this.broadcast(CSMapping.S2C.USER_ENTER_TABLE, seat.toByteArray());
 		return true;
 	}
 
 	public void broadcast(String name, byte[] bytes) {
-		this.server.getRoomOperations(this.getTable().getTableID() + "")
-				.sendEvent(name, ProtobufUtility.stringify(bytes));
+		this.server.getRoomOperations(this.getTable().getTableID() + "").sendEvent(name,
+				ProtobufUtility.stringify(bytes));
 	}
 
 	@Override
