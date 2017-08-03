@@ -43,7 +43,7 @@ public class UserService extends IService<User> {
 				user.setMobilePhoneNumber("18200387036");
 				user.setWinInning(0);
 				user.setPlacement(false);
-				user.setId(1000000);
+				user.setId(100000);
 				user.setHeaderUrl("https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=930562350,2384138428&fm=58");
 				user.setDiamond(1001);
 				user.setDeviceId("BF35095B-4003-4AF2-BF2E-5B2EBA6BA748");
@@ -57,7 +57,7 @@ public class UserService extends IService<User> {
 				user.setMobilePhoneNumber("18202815720");
 				user.setWinInning(0);
 				user.setPlacement(false);
-				user.setId(1000001);
+				user.setId(100001);
 				user.setHeaderUrl("https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1500729002,1758147343&fm=58");
 				user.setDiamond(10);
 				user.setDeviceId("AFR5045B-4003-2AF2-BF2E-5B2EBA6BA748");

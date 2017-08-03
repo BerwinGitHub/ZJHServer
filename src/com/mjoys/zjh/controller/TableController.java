@@ -46,7 +46,7 @@ public class TableController extends IController implements Runnable {
 			return;
 		seat.setPrepared(true);
 		// 广播用户准备的消息
-		this.broadcast(CSMapping.S2C.USER_PREPARE, seat.toByteArray());
+		this.broadcast(CSMapping.S2C.USER_PREPARED, seat.toByteArray());
 		// 如果>=两个人，就可以开始倒计时开始游戏
 		if (this.table.getPrepareCount() >= MIN_PLAYER_START) {
 
