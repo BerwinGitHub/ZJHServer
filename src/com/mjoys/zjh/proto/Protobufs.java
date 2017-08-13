@@ -14,6 +14,256 @@ public final class Protobufs {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  /**
+   * Protobuf enum {@code GameAction}
+   */
+  public enum GameAction
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * 准备
+     * </pre>
+     *
+     * <code>PREPARE = 0;</code>
+     */
+    PREPARE(0),
+    /**
+     * <pre>
+     * 加注
+     * </pre>
+     *
+     * <code>ADDBET = 1;</code>
+     */
+    ADDBET(1),
+    /**
+     * <pre>
+     * 跟注
+     * </pre>
+     *
+     * <code>FOLLOW = 2;</code>
+     */
+    FOLLOW(2),
+    /**
+     * <pre>
+     * 放弃
+     * </pre>
+     *
+     * <code>GIVEUP = 3;</code>
+     */
+    GIVEUP(3),
+    /**
+     * <pre>
+     * 比牌
+     * </pre>
+     *
+     * <code>COMPARE = 4;</code>
+     */
+    COMPARE(4),
+    /**
+     * <pre>
+     * 看牌
+     * </pre>
+     *
+     * <code>WATCH = 5;</code>
+     */
+    WATCH(5),
+    /**
+     * <pre>
+     * 倒计时开始
+     * </pre>
+     *
+     * <code>COUNTDOWN_START = 6;</code>
+     */
+    COUNTDOWN_START(6),
+    /**
+     * <pre>
+     * 发牌
+     * </pre>
+     *
+     * <code>SEND_CARD = 7;</code>
+     */
+    SEND_CARD(7),
+    /**
+     * <pre>
+     * 到某个人出牌
+     * </pre>
+     *
+     * <code>TURN = 8;</code>
+     */
+    TURN(8),
+    /**
+     * <pre>
+     * 游戏结束
+     * </pre>
+     *
+     * <code>END = 9;</code>
+     */
+    END(9),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * 准备
+     * </pre>
+     *
+     * <code>PREPARE = 0;</code>
+     */
+    public static final int PREPARE_VALUE = 0;
+    /**
+     * <pre>
+     * 加注
+     * </pre>
+     *
+     * <code>ADDBET = 1;</code>
+     */
+    public static final int ADDBET_VALUE = 1;
+    /**
+     * <pre>
+     * 跟注
+     * </pre>
+     *
+     * <code>FOLLOW = 2;</code>
+     */
+    public static final int FOLLOW_VALUE = 2;
+    /**
+     * <pre>
+     * 放弃
+     * </pre>
+     *
+     * <code>GIVEUP = 3;</code>
+     */
+    public static final int GIVEUP_VALUE = 3;
+    /**
+     * <pre>
+     * 比牌
+     * </pre>
+     *
+     * <code>COMPARE = 4;</code>
+     */
+    public static final int COMPARE_VALUE = 4;
+    /**
+     * <pre>
+     * 看牌
+     * </pre>
+     *
+     * <code>WATCH = 5;</code>
+     */
+    public static final int WATCH_VALUE = 5;
+    /**
+     * <pre>
+     * 倒计时开始
+     * </pre>
+     *
+     * <code>COUNTDOWN_START = 6;</code>
+     */
+    public static final int COUNTDOWN_START_VALUE = 6;
+    /**
+     * <pre>
+     * 发牌
+     * </pre>
+     *
+     * <code>SEND_CARD = 7;</code>
+     */
+    public static final int SEND_CARD_VALUE = 7;
+    /**
+     * <pre>
+     * 到某个人出牌
+     * </pre>
+     *
+     * <code>TURN = 8;</code>
+     */
+    public static final int TURN_VALUE = 8;
+    /**
+     * <pre>
+     * 游戏结束
+     * </pre>
+     *
+     * <code>END = 9;</code>
+     */
+    public static final int END_VALUE = 9;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static GameAction valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static GameAction forNumber(int value) {
+      switch (value) {
+        case 0: return PREPARE;
+        case 1: return ADDBET;
+        case 2: return FOLLOW;
+        case 3: return GIVEUP;
+        case 4: return COMPARE;
+        case 5: return WATCH;
+        case 6: return COUNTDOWN_START;
+        case 7: return SEND_CARD;
+        case 8: return TURN;
+        case 9: return END;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<GameAction>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        GameAction> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<GameAction>() {
+            public GameAction findValueByNumber(int number) {
+              return GameAction.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.mjoys.zjh.proto.Protobufs.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final GameAction[] VALUES = values();
+
+    public static GameAction valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private GameAction(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:GameAction)
+  }
+
   public interface UserOrBuilder extends
       // @@protoc_insertion_point(interface_extends:User)
       com.google.protobuf.MessageOrBuilder {
@@ -3566,6 +3816,979 @@ public final class Protobufs {
 
   }
 
+  public interface GameOperateOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:GameOperate)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.GameAction action = 1;</code>
+     */
+    int getActionValue();
+    /**
+     * <code>.GameAction action = 1;</code>
+     */
+    com.mjoys.zjh.proto.Protobufs.GameAction getAction();
+
+    /**
+     * <code>int32 seatID = 2;</code>
+     */
+    int getSeatID();
+
+    /**
+     * <pre>
+     * 用户比较的第二个玩家ID/
+     * </pre>
+     *
+     * <code>int32 placementSeatID = 3;</code>
+     */
+    int getPlacementSeatID();
+
+    /**
+     * <code>int32 coin = 4;</code>
+     */
+    int getCoin();
+
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * <code>repeated bytes cards = 5;</code>
+     */
+    java.util.List<com.google.protobuf.ByteString> getCardsList();
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * <code>repeated bytes cards = 5;</code>
+     */
+    int getCardsCount();
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * <code>repeated bytes cards = 5;</code>
+     */
+    com.google.protobuf.ByteString getCards(int index);
+
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>uint64 millis = 6;</code>
+     */
+    long getMillis();
+  }
+  /**
+   * Protobuf type {@code GameOperate}
+   */
+  public  static final class GameOperate extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:GameOperate)
+      GameOperateOrBuilder {
+    // Use GameOperate.newBuilder() to construct.
+    private GameOperate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private GameOperate() {
+      action_ = 0;
+      seatID_ = 0;
+      placementSeatID_ = 0;
+      coin_ = 0;
+      cards_ = java.util.Collections.emptyList();
+      millis_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private GameOperate(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+
+              action_ = rawValue;
+              break;
+            }
+            case 16: {
+
+              seatID_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              placementSeatID_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              coin_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                cards_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              cards_.add(input.readBytes());
+              break;
+            }
+            case 48: {
+
+              millis_ = input.readUInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          cards_ = java.util.Collections.unmodifiableList(cards_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.mjoys.zjh.proto.Protobufs.internal_static_GameOperate_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.mjoys.zjh.proto.Protobufs.internal_static_GameOperate_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.mjoys.zjh.proto.Protobufs.GameOperate.class, com.mjoys.zjh.proto.Protobufs.GameOperate.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int ACTION_FIELD_NUMBER = 1;
+    private int action_;
+    /**
+     * <code>.GameAction action = 1;</code>
+     */
+    public int getActionValue() {
+      return action_;
+    }
+    /**
+     * <code>.GameAction action = 1;</code>
+     */
+    public com.mjoys.zjh.proto.Protobufs.GameAction getAction() {
+      com.mjoys.zjh.proto.Protobufs.GameAction result = com.mjoys.zjh.proto.Protobufs.GameAction.valueOf(action_);
+      return result == null ? com.mjoys.zjh.proto.Protobufs.GameAction.UNRECOGNIZED : result;
+    }
+
+    public static final int SEATID_FIELD_NUMBER = 2;
+    private int seatID_;
+    /**
+     * <code>int32 seatID = 2;</code>
+     */
+    public int getSeatID() {
+      return seatID_;
+    }
+
+    public static final int PLACEMENTSEATID_FIELD_NUMBER = 3;
+    private int placementSeatID_;
+    /**
+     * <pre>
+     * 用户比较的第二个玩家ID/
+     * </pre>
+     *
+     * <code>int32 placementSeatID = 3;</code>
+     */
+    public int getPlacementSeatID() {
+      return placementSeatID_;
+    }
+
+    public static final int COIN_FIELD_NUMBER = 4;
+    private int coin_;
+    /**
+     * <code>int32 coin = 4;</code>
+     */
+    public int getCoin() {
+      return coin_;
+    }
+
+    public static final int CARDS_FIELD_NUMBER = 5;
+    private java.util.List<com.google.protobuf.ByteString> cards_;
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * <code>repeated bytes cards = 5;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getCardsList() {
+      return cards_;
+    }
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * <code>repeated bytes cards = 5;</code>
+     */
+    public int getCardsCount() {
+      return cards_.size();
+    }
+    /**
+     * <pre>
+     * 牌
+     * </pre>
+     *
+     * <code>repeated bytes cards = 5;</code>
+     */
+    public com.google.protobuf.ByteString getCards(int index) {
+      return cards_.get(index);
+    }
+
+    public static final int MILLIS_FIELD_NUMBER = 6;
+    private long millis_;
+    /**
+     * <pre>
+     * 时间
+     * </pre>
+     *
+     * <code>uint64 millis = 6;</code>
+     */
+    public long getMillis() {
+      return millis_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (action_ != com.mjoys.zjh.proto.Protobufs.GameAction.PREPARE.getNumber()) {
+        output.writeEnum(1, action_);
+      }
+      if (seatID_ != 0) {
+        output.writeInt32(2, seatID_);
+      }
+      if (placementSeatID_ != 0) {
+        output.writeInt32(3, placementSeatID_);
+      }
+      if (coin_ != 0) {
+        output.writeInt32(4, coin_);
+      }
+      for (int i = 0; i < cards_.size(); i++) {
+        output.writeBytes(5, cards_.get(i));
+      }
+      if (millis_ != 0L) {
+        output.writeUInt64(6, millis_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (action_ != com.mjoys.zjh.proto.Protobufs.GameAction.PREPARE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, action_);
+      }
+      if (seatID_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, seatID_);
+      }
+      if (placementSeatID_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, placementSeatID_);
+      }
+      if (coin_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, coin_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < cards_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(cards_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getCardsList().size();
+      }
+      if (millis_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(6, millis_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.mjoys.zjh.proto.Protobufs.GameOperate)) {
+        return super.equals(obj);
+      }
+      com.mjoys.zjh.proto.Protobufs.GameOperate other = (com.mjoys.zjh.proto.Protobufs.GameOperate) obj;
+
+      boolean result = true;
+      result = result && action_ == other.action_;
+      result = result && (getSeatID()
+          == other.getSeatID());
+      result = result && (getPlacementSeatID()
+          == other.getPlacementSeatID());
+      result = result && (getCoin()
+          == other.getCoin());
+      result = result && getCardsList()
+          .equals(other.getCardsList());
+      result = result && (getMillis()
+          == other.getMillis());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ACTION_FIELD_NUMBER;
+      hash = (53 * hash) + action_;
+      hash = (37 * hash) + SEATID_FIELD_NUMBER;
+      hash = (53 * hash) + getSeatID();
+      hash = (37 * hash) + PLACEMENTSEATID_FIELD_NUMBER;
+      hash = (53 * hash) + getPlacementSeatID();
+      hash = (37 * hash) + COIN_FIELD_NUMBER;
+      hash = (53 * hash) + getCoin();
+      if (getCardsCount() > 0) {
+        hash = (37 * hash) + CARDS_FIELD_NUMBER;
+        hash = (53 * hash) + getCardsList().hashCode();
+      }
+      hash = (37 * hash) + MILLIS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getMillis());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.mjoys.zjh.proto.Protobufs.GameOperate prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code GameOperate}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:GameOperate)
+        com.mjoys.zjh.proto.Protobufs.GameOperateOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_GameOperate_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_GameOperate_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.mjoys.zjh.proto.Protobufs.GameOperate.class, com.mjoys.zjh.proto.Protobufs.GameOperate.Builder.class);
+      }
+
+      // Construct using com.mjoys.zjh.proto.Protobufs.GameOperate.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        action_ = 0;
+
+        seatID_ = 0;
+
+        placementSeatID_ = 0;
+
+        coin_ = 0;
+
+        cards_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        millis_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.mjoys.zjh.proto.Protobufs.internal_static_GameOperate_descriptor;
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.GameOperate getDefaultInstanceForType() {
+        return com.mjoys.zjh.proto.Protobufs.GameOperate.getDefaultInstance();
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.GameOperate build() {
+        com.mjoys.zjh.proto.Protobufs.GameOperate result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.mjoys.zjh.proto.Protobufs.GameOperate buildPartial() {
+        com.mjoys.zjh.proto.Protobufs.GameOperate result = new com.mjoys.zjh.proto.Protobufs.GameOperate(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.action_ = action_;
+        result.seatID_ = seatID_;
+        result.placementSeatID_ = placementSeatID_;
+        result.coin_ = coin_;
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          cards_ = java.util.Collections.unmodifiableList(cards_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.cards_ = cards_;
+        result.millis_ = millis_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.mjoys.zjh.proto.Protobufs.GameOperate) {
+          return mergeFrom((com.mjoys.zjh.proto.Protobufs.GameOperate)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.mjoys.zjh.proto.Protobufs.GameOperate other) {
+        if (other == com.mjoys.zjh.proto.Protobufs.GameOperate.getDefaultInstance()) return this;
+        if (other.action_ != 0) {
+          setActionValue(other.getActionValue());
+        }
+        if (other.getSeatID() != 0) {
+          setSeatID(other.getSeatID());
+        }
+        if (other.getPlacementSeatID() != 0) {
+          setPlacementSeatID(other.getPlacementSeatID());
+        }
+        if (other.getCoin() != 0) {
+          setCoin(other.getCoin());
+        }
+        if (!other.cards_.isEmpty()) {
+          if (cards_.isEmpty()) {
+            cards_ = other.cards_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureCardsIsMutable();
+            cards_.addAll(other.cards_);
+          }
+          onChanged();
+        }
+        if (other.getMillis() != 0L) {
+          setMillis(other.getMillis());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.mjoys.zjh.proto.Protobufs.GameOperate parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.mjoys.zjh.proto.Protobufs.GameOperate) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int action_ = 0;
+      /**
+       * <code>.GameAction action = 1;</code>
+       */
+      public int getActionValue() {
+        return action_;
+      }
+      /**
+       * <code>.GameAction action = 1;</code>
+       */
+      public Builder setActionValue(int value) {
+        action_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GameAction action = 1;</code>
+       */
+      public com.mjoys.zjh.proto.Protobufs.GameAction getAction() {
+        com.mjoys.zjh.proto.Protobufs.GameAction result = com.mjoys.zjh.proto.Protobufs.GameAction.valueOf(action_);
+        return result == null ? com.mjoys.zjh.proto.Protobufs.GameAction.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.GameAction action = 1;</code>
+       */
+      public Builder setAction(com.mjoys.zjh.proto.Protobufs.GameAction value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        action_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.GameAction action = 1;</code>
+       */
+      public Builder clearAction() {
+        
+        action_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int seatID_ ;
+      /**
+       * <code>int32 seatID = 2;</code>
+       */
+      public int getSeatID() {
+        return seatID_;
+      }
+      /**
+       * <code>int32 seatID = 2;</code>
+       */
+      public Builder setSeatID(int value) {
+        
+        seatID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 seatID = 2;</code>
+       */
+      public Builder clearSeatID() {
+        
+        seatID_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int placementSeatID_ ;
+      /**
+       * <pre>
+       * 用户比较的第二个玩家ID/
+       * </pre>
+       *
+       * <code>int32 placementSeatID = 3;</code>
+       */
+      public int getPlacementSeatID() {
+        return placementSeatID_;
+      }
+      /**
+       * <pre>
+       * 用户比较的第二个玩家ID/
+       * </pre>
+       *
+       * <code>int32 placementSeatID = 3;</code>
+       */
+      public Builder setPlacementSeatID(int value) {
+        
+        placementSeatID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 用户比较的第二个玩家ID/
+       * </pre>
+       *
+       * <code>int32 placementSeatID = 3;</code>
+       */
+      public Builder clearPlacementSeatID() {
+        
+        placementSeatID_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int coin_ ;
+      /**
+       * <code>int32 coin = 4;</code>
+       */
+      public int getCoin() {
+        return coin_;
+      }
+      /**
+       * <code>int32 coin = 4;</code>
+       */
+      public Builder setCoin(int value) {
+        
+        coin_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 coin = 4;</code>
+       */
+      public Builder clearCoin() {
+        
+        coin_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.google.protobuf.ByteString> cards_ = java.util.Collections.emptyList();
+      private void ensureCardsIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          cards_ = new java.util.ArrayList<com.google.protobuf.ByteString>(cards_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getCardsList() {
+        return java.util.Collections.unmodifiableList(cards_);
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public int getCardsCount() {
+        return cards_.size();
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public com.google.protobuf.ByteString getCards(int index) {
+        return cards_.get(index);
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public Builder setCards(
+          int index, com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureCardsIsMutable();
+        cards_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public Builder addCards(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureCardsIsMutable();
+        cards_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public Builder addAllCards(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        ensureCardsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, cards_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 牌
+       * </pre>
+       *
+       * <code>repeated bytes cards = 5;</code>
+       */
+      public Builder clearCards() {
+        cards_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+
+      private long millis_ ;
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>uint64 millis = 6;</code>
+       */
+      public long getMillis() {
+        return millis_;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>uint64 millis = 6;</code>
+       */
+      public Builder setMillis(long value) {
+        
+        millis_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 时间
+       * </pre>
+       *
+       * <code>uint64 millis = 6;</code>
+       */
+      public Builder clearMillis() {
+        
+        millis_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:GameOperate)
+    }
+
+    // @@protoc_insertion_point(class_scope:GameOperate)
+    private static final com.mjoys.zjh.proto.Protobufs.GameOperate DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.mjoys.zjh.proto.Protobufs.GameOperate();
+    }
+
+    public static com.mjoys.zjh.proto.Protobufs.GameOperate getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<GameOperate>
+        PARSER = new com.google.protobuf.AbstractParser<GameOperate>() {
+      public GameOperate parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new GameOperate(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<GameOperate> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<GameOperate> getParserForType() {
+      return PARSER;
+    }
+
+    public com.mjoys.zjh.proto.Protobufs.GameOperate getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_User_descriptor;
   private static final 
@@ -3581,6 +4804,11 @@ public final class Protobufs {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Table_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_GameOperate_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_GameOperate_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3602,8 +4830,15 @@ public final class Protobufs {
       "oin\030\002 \001(\005\022\023\n\004user\030\003 \001(\0132\005.User\022\022\n\nisPrep",
       "ared\030\004 \001(\010\"]\n\005Table\022\017\n\007tableID\030\001 \001(\005\022\024\n\005" +
       "seats\030\002 \003(\0132\005.Seat\022\016\n\006minBet\030\003 \001(\005\022\016\n\006ma" +
-      "xBet\030\004 \001(\005\022\r\n\005round\030\005 \001(\005B \n\023com.mjoys.z" +
-      "jh.protoB\tProtobufsb\006proto3"
+      "xBet\030\004 \001(\005\022\r\n\005round\030\005 \001(\005\"\200\001\n\013GameOperat" +
+      "e\022\033\n\006action\030\001 \001(\0162\013.GameAction\022\016\n\006seatID" +
+      "\030\002 \001(\005\022\027\n\017placementSeatID\030\003 \001(\005\022\014\n\004coin\030" +
+      "\004 \001(\005\022\r\n\005cards\030\005 \003(\014\022\016\n\006millis\030\006 \001(\004*\214\001\n" +
+      "\nGameAction\022\013\n\007PREPARE\020\000\022\n\n\006ADDBET\020\001\022\n\n\006" +
+      "FOLLOW\020\002\022\n\n\006GIVEUP\020\003\022\013\n\007COMPARE\020\004\022\t\n\005WAT" +
+      "CH\020\005\022\023\n\017COUNTDOWN_START\020\006\022\r\n\tSEND_CARD\020\007" +
+      "\022\010\n\004TURN\020\010\022\007\n\003END\020\tB \n\023com.mjoys.zjh.pro",
+      "toB\tProtobufsb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -3635,6 +4870,12 @@ public final class Protobufs {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Table_descriptor,
         new java.lang.String[] { "TableID", "Seats", "MinBet", "MaxBet", "Round", });
+    internal_static_GameOperate_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_GameOperate_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_GameOperate_descriptor,
+        new java.lang.String[] { "Action", "SeatID", "PlacementSeatID", "Coin", "Cards", "Millis", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

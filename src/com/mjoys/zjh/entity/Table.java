@@ -16,8 +16,6 @@ import com.mjoys.zjh.proto.Protobufs;
  */
 public class Table extends IBPEntity<Protobufs.Table> {
 
-	public static final int MAX_SEAT_PLAYER = Configs.intValue("max_seat_player");
-
 	/**
 	 * 牌桌编号
 	 */
@@ -114,8 +112,8 @@ public class Table extends IBPEntity<Protobufs.Table> {
 		return null;
 	}
 
-	public int getEmptySeatID() {
-		for (int i = 0; i < MAX_SEAT_PLAYER; i++) {
+	public int getEmptySeatID(int max) {
+		for (int i = 0; i < max; i++) {
 			Seat seat = this.getSeatByID(i);
 			if (seat == null) {
 				return i;

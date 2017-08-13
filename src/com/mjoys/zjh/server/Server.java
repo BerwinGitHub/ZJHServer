@@ -46,7 +46,7 @@ public class Server {
 		this.server.addEventListener(CSMapping.C2S.EXIT_ROOM, String.class, room.new ExitController(server));
 		// game
 		GameController gc = new GameController(server);
-		this.server.addEventListener(CSMapping.C2S.USER_PREPARE, String.class, gc.new PrepareController(server));
+		this.server.addEventListener(CSMapping.C2S.GAMEING, String.class, gc);
 	}
 
 	public void start() {

@@ -25,6 +25,8 @@ public class Poker {
 	 */
 	private List<Byte> cards = null;
 
+	private int cardNumber = 0;
+
 	/**
 	 * 是否带有大小王
 	 */
@@ -42,6 +44,7 @@ public class Poker {
 	public void resetPoker() {
 		this.cards.clear(); // 先移除所有的牌
 		this.cards = new ArrayList<Byte>(Arrays.asList((this.isJoker ? CARDS_WITH_JOKER : CARDS_WITHOUT_JOKER)));
+		this.cardNumber = this.cards.size();
 	}
 
 	/**
@@ -77,6 +80,15 @@ public class Poker {
 	public byte nextCard() {
 		Byte b = this.cards.remove(this.cards.size() - 1);
 		return b.byteValue();
+	}
+
+	/**
+	 * 牌的张数
+	 * 
+	 * @return
+	 */
+	public int getCardNumer() {
+		return this.cardNumber;
 	}
 
 	/**

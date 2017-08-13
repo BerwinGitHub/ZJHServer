@@ -18,6 +18,10 @@ public class Configs {
 		return (int) configsMap.get(key);
 	}
 
+	public static long longValue(String key) {
+		return (long) configsMap.get(key);
+	}
+
 	public static float floatValue(String key) {
 		return (float) doubleValue(key);
 	}

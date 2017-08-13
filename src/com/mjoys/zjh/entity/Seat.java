@@ -1,11 +1,14 @@
 package com.mjoys.zjh.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.corundumstudio.socketio.SocketIOClient;
 import com.mjoys.zjh.domain.IBPEntity;
 import com.mjoys.zjh.domain.User;
 import com.mjoys.zjh.proto.Protobufs;
 
-public class Seat extends IBPEntity<Protobufs.Seat> {
+public class Seat extends IBPEntity<Protobufs.Seat> implements Comparable<Seat> {
 
 	private int seatID = 0;
 
@@ -14,6 +17,8 @@ public class Seat extends IBPEntity<Protobufs.Seat> {
 	private User user;
 
 	private boolean isPrepared = false;
+
+	private List<Byte> cards = new ArrayList<>();
 
 	private SocketIOClient socketIOClient;
 
@@ -79,6 +84,19 @@ public class Seat extends IBPEntity<Protobufs.Seat> {
 	@Override
 	public String getTableName() {
 		return null;
+	}
+
+	@Override
+	public int compareTo(Seat o) {
+		return this.seatID - o.seatID;
+	}
+
+	public List<Byte> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Byte> cards) {
+		this.cards = cards;
 	}
 
 }
