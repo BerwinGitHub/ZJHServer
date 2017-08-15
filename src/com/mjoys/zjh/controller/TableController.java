@@ -139,10 +139,11 @@ public class TableController extends IController implements Runnable {
 		}
 		// 游戏正式开始，广播游戏开始
 		this.isGameStarted = true;
-		// 广播发牌
-		this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.SEND_CARD, -1, -1, -1, null, 0L));
 		// 根据出牌顺序排序
 		this.makeTurnQueue();
+		// 广播发牌
+		this.broadcast(CSMapping.S2C.GAMEING,
+				buildGameOperate(GameAction.SEND_CARD, this.preparedSeats.get(0).getSeatID(), -1, -1, null, 0L));
 		// 洗牌/切牌
 		this.zjhPokerService.shufflePoker();
 		this.zjhPokerService.randomCutPoker();
@@ -157,9 +158,10 @@ public class TableController extends IController implements Runnable {
 			for (Seat seat : preparedSeats) {
 				WaitThread thread = new WaitThread();
 				seat.getSocketIOClient().set(G.CACHE_WAIT_THREAD, thread);
+				System.out.println("轮到" + seat.getSeatID() + "操作");
 				// 广播该谁操作了
 				this.broadcast(CSMapping.S2C.GAMEING,
-						buildGameOperate(GameAction.TURN, seat.getSeatID(), -1, -1, null, 0L));
+						buildGameOperate(GameAction.TURN, seat.getSeatID(), -1, -1, null, GAME_OPT_SECOND * 1000));
 				thread.await(15); // 给用户15秒钟的时间操作
 				// 用户操作了，或者超时 1.先删除等待操作线程
 				seat.getSocketIOClient().del(G.CACHE_WAIT_THREAD);
