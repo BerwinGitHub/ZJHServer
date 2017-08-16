@@ -8,11 +8,11 @@ public class WaitThread extends Thread {
 
 	private CountDownLatch countDownLatch = null;
 
-	private int waitSecond;
+	private long endSecond;
 
 	private boolean invalid = false;
 
-	private long finishTime = 0L;
+	private boolean isTimeout = false;
 
 	private Map<String, Object> parameters;
 
@@ -24,14 +24,14 @@ public class WaitThread extends Thread {
 	/**
 	 * 线程等待
 	 */
-	public void await(int waitSecond) {
+	public void await(long endSecond) {
 		try {
-			this.waitSecond = waitSecond;
-			this.finishTime = System.currentTimeMillis() + this.waitSecond * 1000;
-			this.countDownLatch = new CountDownLatch(2);
+			this.endSecond = endSecond;
+			this.countDownLatch = new CountDownLatch(1);
+			this.invalid = true;
+			this.isTimeout = false;
 			this.start();
 			this.countDownLatch.await();
-			this.invalid = true;
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -55,23 +55,31 @@ public class WaitThread extends Thread {
 		return this.parameters.get(key);
 	}
 
-	public long getFinishTime() {
-		return finishTime;
+	public boolean isTimeout() {
+		return isTimeout;
 	}
 
-	public void setFinishTime(long finishTime) {
-		this.finishTime = finishTime;
+	public void setTimeout(boolean isTimeout) {
+		this.isTimeout = isTimeout;
 	}
 
 	@Override
 	public void run() {
 		super.run();
 		try {
-			Thread.sleep(this.finishTime - System.currentTimeMillis());
+			Thread.sleep(this.endSecond - System.currentTimeMillis());
+			this.isTimeout = true;
 			this.ewait();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println("start");
+		WaitThread wt = new WaitThread();
+		wt.await(System.currentTimeMillis() + 1000 * 5);
+		System.out.println("end");
 	}
 
 }
