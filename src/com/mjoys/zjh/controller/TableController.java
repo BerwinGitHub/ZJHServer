@@ -46,7 +46,6 @@ public class TableController extends IController implements Runnable {
 	private boolean isWaitStarted = false;
 	private boolean isGameStarted = false;
 	private Seat lastWinSeat = null;
-	private WaitThread currentWaitThread = null;
 	/**
 	 * 准备了的用户
 	 */
@@ -67,30 +66,15 @@ public class TableController extends IController implements Runnable {
 		this.table = table;
 	}
 
-	public void prepare(User u) {
-		if (isGameStarted) {
-			// TODO 游戏已经开始了，不能准备了
-			return;
-		}
-		Seat seat = this.table.getSeatByUser(u);
-		if (seat == null)
-			return;
-		seat.setPrepared(true);
-		this.preparedSeats.add(seat);
-		// 广播用户准备的消息
-		this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.PREPARE, seat.getSeatID(), -1, 0, null, 0L));
-		// 如果>=两个人，就可以开始倒计时开始游戏
-		if (!this.isWaitStarted && table.getPrepareCount() >= MIN_PLAYER_START) {
-			new Thread(this).start();// 开启游戏线程
-		}
-	}
-
 	public void removeSeat(User u) {
 		List<Seat> seats = table.getSeats();
 		for (int i = 0; i < seats.size(); i++) {
 			if (seats.get(i).getUser().getId() == u.getId()) {
 				if (seats.get(i).isPrepared()) { // 用户已经准备了
 					this.giveup(seats.get(i)); // 如果准备了，离开就放弃
+					WaitThread wt = seats.get(i).getSocketIOClient().get(G.CACHE_WAIT_THREAD);
+					if (wt != null) // 如果正在游戏中等待的时候退出，那么就结束等待
+						wt.ewait();
 				}
 				// 移除
 				byte[] bs = seats.get(i).toByteArray();
@@ -135,7 +119,7 @@ public class TableController extends IController implements Runnable {
 		long startMillis = System.currentTimeMillis() + PREPARED_WAIT_SECOND * 1000;
 		// 广播在startMillis的时候开始游戏
 		this.broadcast(CSMapping.S2C.GAMEING,
-				buildGameOperate(GameAction.COUNTDOWN_START, -1, -1, -1, null, startMillis));
+				buildGameOperate(GameAction.COUNTDOWN_START, -1, -1, -1, -1, null, startMillis));
 		try {
 			Thread.sleep(startMillis - System.currentTimeMillis()); // 等待时间准备开始
 		} catch (Exception e) {
@@ -147,7 +131,7 @@ public class TableController extends IController implements Runnable {
 		this.makeTurnQueue();
 		// 广播发牌
 		this.broadcast(CSMapping.S2C.GAMEING,
-				buildGameOperate(GameAction.SEND_CARD, this.preparedSeats.get(0).getSeatID(), -1, -1, null, 0L));
+				buildGameOperate(GameAction.SEND_CARD, this.preparedSeats.get(0).getSeatID(), -1, -1, -1, null, 0L));
 		// 洗牌/切牌
 		this.zjhPokerService.shufflePoker();
 		this.zjhPokerService.randomCutPoker();
@@ -160,38 +144,70 @@ public class TableController extends IController implements Runnable {
 		// 开始操作流程
 		while (isGameStarted) {
 			for (Seat seat : preparedSeats) {
-				this.currentWaitThread = new WaitThread();
-				seat.getSocketIOClient().set(G.CACHE_WAIT_THREAD, this.currentWaitThread);
+				WaitThread wt = new WaitThread(); // 创建倒计时器
+				seat.getSocketIOClient().set(G.CACHE_WAIT_THREAD, wt); // 放到缓存中
 				System.out.println("轮到" + seat.getSeatID() + "操作");
 				long endMillis = System.currentTimeMillis() + GAME_OPT_SECOND * 1000;
 				// 广播该谁操作了
 				this.broadcast(CSMapping.S2C.GAMEING,
-						buildGameOperate(GameAction.TURN, seat.getSeatID(), -1, -1, null, endMillis));
-				this.currentWaitThread.await(endMillis); // 给用户15秒钟的时间操作
-				// 用户操作了，或者超时 1.先删除等待操作线程
+						buildGameOperate(GameAction.TURN, seat.getSeatID(), -1, -1, -1, null, endMillis));
+				wt.await(endMillis); // 给用户15秒钟的时间操作
+				// 到此用户操作了，或者超时
+				// 1.先删除等待操作线程
 				seat.getSocketIOClient().del(G.CACHE_WAIT_THREAD);
-				this.currentWaitThread = null;
-				// 取值前 先看看还有几个用户在
+				// 2 检查是否是超时过来的
+				if (wt.isTimeout()) // 超时就放弃
+					this.giveup(seat);
+				// 3.再看有几个用户，小于2个人就结束游戏
 				if (this.preparedSeats.size() <= 1) { // 小于等于1个人
 					this.isGameStarted = false; // 游戏结束
 					break;
 				}
-				// 2 取值
-				if (this.currentWaitThread.isTimeout()) { // 超时就放弃
-					this.giveup(seat);
-				}
-				int action = (int) this.currentWaitThread.get(CSMapping.S.GAME_OPT_ACTION);
-				// 3.TODO 根据操作做不同的处理
-
 			}
 		}
 		// 结束游戏
+		System.out.println("结束一轮");
 		this.lastWinSeat = this.preparedSeats.get(0);
 		this.isGameStarted = false;
 		this.isWaitStarted = false;
 		this.preparedSeats.clear();
-		// TODO 广播游戏结束
-		this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.END, -1, -1, -1, null, 0L));
+		// TODO 广播游戏结束 广播谁赢了
+		this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.END, -1, -1, -1, -1, null, 0L));
+		this.preparedSeats.clear();// 移除所有准备的用户
+	}
+
+	/**
+	 * 准备
+	 * 
+	 * @param u
+	 */
+	public void prepare(User u) {
+		if (isGameStarted) {
+			return;
+		}
+		Seat seat = this.table.getSeatByUser(u);
+		if (seat == null)
+			return;
+		seat.setPrepared(true);
+		this.preparedSeats.add(seat);
+		// 广播用户准备的消息
+		this.broadcast(CSMapping.S2C.GAMEING,
+				buildGameOperate(GameAction.PREPARE, seat.getSeatID(), -1, -1, 0, null, 0L));
+		// 如果>=两个人，就可以开始倒计时开始游戏
+		if (!this.isWaitStarted && table.getPrepareCount() >= MIN_PLAYER_START) {
+			new Thread(this).start();// 开启游戏线程
+		}
+	}
+
+	/**
+	 * 弃牌
+	 * 
+	 * @param seatID
+	 */
+	public void giveup(int seatID) {
+		Seat seat = this.getSeatFromPrepared(seatID);
+		if (seat != null)
+			this.giveup(seat);
 	}
 
 	/**
@@ -199,21 +215,104 @@ public class TableController extends IController implements Runnable {
 	 * 
 	 * @param seat
 	 */
-	private void giveup(Seat seat) {
+	public void giveup(Seat seat) {
 		preparedSeats.remove(seat);
 		seat.setPrepared(false);
+		seat.setWatched(false);
 		// 广播弃牌
-		this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.GIVEUP, seat.getSeatID(), -1, 0, null, 0L));
-		if (preparedSeats.size() <= 1 && this.currentWaitThread != null) { // 当小于2个人的时候通知继续执行
-			this.currentWaitThread.ewait();
+		this.broadcast(CSMapping.S2C.GAMEING,
+				buildGameOperate(GameAction.GIVEUP, seat.getSeatID(), -1, -1, 0, null, 0L));
+	}
+
+	/**
+	 * 用户看牌
+	 * 
+	 * @param seatID
+	 */
+	public void watch(int seatID) {
+		Seat seat = this.getSeatFromPrepared(seatID);
+		if (seat != null) {
+			seat.setWatched(true);
+			byte[] bs = this.buildGameOperate(GameAction.WATCH, seatID, -1, -1, -1, seat.getCards(), 0L);
+			// 向用户发送看牌的消息
+			seat.getSocketIOClient().sendEvent(CSMapping.S2C.GAMEING, bs);
+			// 向房间的人广播，有人看牌了
+			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.WATCH, seatID, -1, -1, -1, null, 0L));
+		}
+
+	}
+
+	/**
+	 * 加注
+	 * 
+	 * @param seatID
+	 * @param addTo
+	 */
+	public void addBet(int seatID, int addTo) {
+		Seat seat = this.getSeatFromPrepared(seatID);
+		if (seat != null) {
+			seat.setCallCoin(seat.getCallCoin() + addTo);
+			// 向房间的人广播，有人加注了
+			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.ADDBET, seatID, -1, -1, addTo, null, 0L));
 		}
 	}
 
-	private byte[] buildGameOperate(GameAction ga, int seatID, int plcSeatID, int coin, List<Byte> cards, long millis) {
+	/**
+	 * 跟注
+	 * 
+	 * @param seatID
+	 * @param bet
+	 */
+	public void followBet(int seatID, int bet) {
+		Seat seat = this.getSeatFromPrepared(seatID);
+		if (seat != null) {
+			seat.setCallCoin(seat.getCallCoin() + bet);
+			// 向房间的人广播，有人跟注了
+			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.FOLLOW, seatID, -1, -1, bet, null, 0L));
+		}
+	}
+
+	/**
+	 * 比牌
+	 * 
+	 * @param seatID
+	 * @param otherSeatID
+	 * @return
+	 */
+	public int compare(int seatID, int otherSeatID) {
+		Seat seat = this.getSeatFromPrepared(seatID);
+		Seat oSeat = this.getSeatFromPrepared(otherSeatID);
+		if (seat != null && oSeat != null) {
+			int res = this.zjhPokerService.compareCards(seat.getCardBytes(), oSeat.getCardBytes());
+			// 广播有人做了比较
+			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.COMPARE, seatID, otherSeatID,
+					res > 0 ? seatID : otherSeatID, 0, null, 0L));
+		}
+		return 0;
+	}
+
+	/**
+	 * 从准备中的用户得到Seat
+	 * 
+	 * @param seatID
+	 * @return
+	 */
+	private Seat getSeatFromPrepared(int seatID) {
+		for (int i = 0; i < this.preparedSeats.size(); i++) {
+			if (seatID == this.preparedSeats.get(i).getSeatID()) {
+				return this.preparedSeats.get(i);
+			}
+		}
+		return null;
+	}
+
+	private byte[] buildGameOperate(GameAction ga, int seatID, int plcSeatID, int winnerSeatID, int coin,
+			List<Byte> cards, long millis) {
 		GameOperate.Builder builder = GameOperate.newBuilder();
 		builder.setAction(ga);
 		builder.setSeatID(seatID);
 		builder.setPlacementSeatID(plcSeatID);
+		builder.setWinnerSeatID(winnerSeatID);
 		builder.setCoin(coin);
 		builder.setMillis(millis);
 		if (cards != null) {

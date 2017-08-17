@@ -22,6 +22,8 @@ public class Seat extends IBPEntity<Protobufs.Seat> implements Comparable<Seat> 
 
 	private SocketIOClient socketIOClient;
 
+	private boolean isWatched = false;
+
 	public Seat() {
 	}
 
@@ -95,8 +97,24 @@ public class Seat extends IBPEntity<Protobufs.Seat> implements Comparable<Seat> 
 		return cards;
 	}
 
+	public byte[] getCardBytes() {
+		byte[] bs = new byte[cards.size()];
+		for (int i = 0; i < cards.size(); i++) {
+			bs[i] = cards.get(i);
+		}
+		return bs;
+	}
+
 	public void setCards(List<Byte> cards) {
 		this.cards = cards;
+	}
+
+	public boolean isWatched() {
+		return isWatched;
+	}
+
+	public void setWatched(boolean isWatched) {
+		this.isWatched = isWatched;
 	}
 
 }

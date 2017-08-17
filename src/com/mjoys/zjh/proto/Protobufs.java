@@ -2085,6 +2085,11 @@ public final class Protobufs {
      * <code>bool isPrepared = 4;</code>
      */
     boolean getIsPrepared();
+
+    /**
+     * <code>bool isWatched = 5;</code>
+     */
+    boolean getIsWatched();
   }
   /**
    * Protobuf type {@code Seat}
@@ -2101,6 +2106,7 @@ public final class Protobufs {
       seatID_ = 0;
       callCoin_ = 0;
       isPrepared_ = false;
+      isWatched_ = false;
     }
 
     @java.lang.Override
@@ -2154,6 +2160,11 @@ public final class Protobufs {
             case 32: {
 
               isPrepared_ = input.readBool();
+              break;
+            }
+            case 40: {
+
+              isWatched_ = input.readBool();
               break;
             }
           }
@@ -2227,6 +2238,15 @@ public final class Protobufs {
       return isPrepared_;
     }
 
+    public static final int ISWATCHED_FIELD_NUMBER = 5;
+    private boolean isWatched_;
+    /**
+     * <code>bool isWatched = 5;</code>
+     */
+    public boolean getIsWatched() {
+      return isWatched_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -2251,6 +2271,9 @@ public final class Protobufs {
       if (isPrepared_ != false) {
         output.writeBool(4, isPrepared_);
       }
+      if (isWatched_ != false) {
+        output.writeBool(5, isWatched_);
+      }
     }
 
     public int getSerializedSize() {
@@ -2273,6 +2296,10 @@ public final class Protobufs {
       if (isPrepared_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, isPrepared_);
+      }
+      if (isWatched_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, isWatched_);
       }
       memoizedSize = size;
       return size;
@@ -2301,6 +2328,8 @@ public final class Protobufs {
       }
       result = result && (getIsPrepared()
           == other.getIsPrepared());
+      result = result && (getIsWatched()
+          == other.getIsWatched());
       return result;
     }
 
@@ -2322,6 +2351,9 @@ public final class Protobufs {
       hash = (37 * hash) + ISPREPARED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsPrepared());
+      hash = (37 * hash) + ISWATCHED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsWatched());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -2463,6 +2495,8 @@ public final class Protobufs {
         }
         isPrepared_ = false;
 
+        isWatched_ = false;
+
         return this;
       }
 
@@ -2493,6 +2527,7 @@ public final class Protobufs {
           result.user_ = userBuilder_.build();
         }
         result.isPrepared_ = isPrepared_;
+        result.isWatched_ = isWatched_;
         onBuilt();
         return result;
       }
@@ -2545,6 +2580,9 @@ public final class Protobufs {
         }
         if (other.getIsPrepared() != false) {
           setIsPrepared(other.getIsPrepared());
+        }
+        if (other.getIsWatched() != false) {
+          setIsWatched(other.getIsWatched());
         }
         onChanged();
         return this;
@@ -2763,6 +2801,32 @@ public final class Protobufs {
       public Builder clearIsPrepared() {
         
         isPrepared_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean isWatched_ ;
+      /**
+       * <code>bool isWatched = 5;</code>
+       */
+      public boolean getIsWatched() {
+        return isWatched_;
+      }
+      /**
+       * <code>bool isWatched = 5;</code>
+       */
+      public Builder setIsWatched(boolean value) {
+        
+        isWatched_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isWatched = 5;</code>
+       */
+      public Builder clearIsWatched() {
+        
+        isWatched_ = false;
         onChanged();
         return this;
       }
@@ -3844,7 +3908,16 @@ public final class Protobufs {
     int getPlacementSeatID();
 
     /**
-     * <code>int32 coin = 4;</code>
+     * <pre>
+     * 用户比较的第二个玩家ID/
+     * </pre>
+     *
+     * <code>int32 winnerSeatID = 4;</code>
+     */
+    int getWinnerSeatID();
+
+    /**
+     * <code>int32 coin = 5;</code>
      */
     int getCoin();
 
@@ -3853,7 +3926,7 @@ public final class Protobufs {
      * 牌
      * </pre>
      *
-     * <code>repeated bytes cards = 5;</code>
+     * <code>repeated bytes cards = 6;</code>
      */
     java.util.List<com.google.protobuf.ByteString> getCardsList();
     /**
@@ -3861,7 +3934,7 @@ public final class Protobufs {
      * 牌
      * </pre>
      *
-     * <code>repeated bytes cards = 5;</code>
+     * <code>repeated bytes cards = 6;</code>
      */
     int getCardsCount();
     /**
@@ -3869,7 +3942,7 @@ public final class Protobufs {
      * 牌
      * </pre>
      *
-     * <code>repeated bytes cards = 5;</code>
+     * <code>repeated bytes cards = 6;</code>
      */
     com.google.protobuf.ByteString getCards(int index);
 
@@ -3878,7 +3951,7 @@ public final class Protobufs {
      * 时间
      * </pre>
      *
-     * <code>uint64 millis = 6;</code>
+     * <code>uint64 millis = 7;</code>
      */
     long getMillis();
   }
@@ -3897,6 +3970,7 @@ public final class Protobufs {
       action_ = 0;
       seatID_ = 0;
       placementSeatID_ = 0;
+      winnerSeatID_ = 0;
       coin_ = 0;
       cards_ = java.util.Collections.emptyList();
       millis_ = 0L;
@@ -3945,18 +4019,23 @@ public final class Protobufs {
             }
             case 32: {
 
+              winnerSeatID_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
               coin_ = input.readInt32();
               break;
             }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+            case 50: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
                 cards_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
-                mutable_bitField0_ |= 0x00000010;
+                mutable_bitField0_ |= 0x00000020;
               }
               cards_.add(input.readBytes());
               break;
             }
-            case 48: {
+            case 56: {
 
               millis_ = input.readUInt64();
               break;
@@ -3969,7 +4048,7 @@ public final class Protobufs {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
           cards_ = java.util.Collections.unmodifiableList(cards_);
         }
         makeExtensionsImmutable();
@@ -4026,23 +4105,36 @@ public final class Protobufs {
       return placementSeatID_;
     }
 
-    public static final int COIN_FIELD_NUMBER = 4;
+    public static final int WINNERSEATID_FIELD_NUMBER = 4;
+    private int winnerSeatID_;
+    /**
+     * <pre>
+     * 用户比较的第二个玩家ID/
+     * </pre>
+     *
+     * <code>int32 winnerSeatID = 4;</code>
+     */
+    public int getWinnerSeatID() {
+      return winnerSeatID_;
+    }
+
+    public static final int COIN_FIELD_NUMBER = 5;
     private int coin_;
     /**
-     * <code>int32 coin = 4;</code>
+     * <code>int32 coin = 5;</code>
      */
     public int getCoin() {
       return coin_;
     }
 
-    public static final int CARDS_FIELD_NUMBER = 5;
+    public static final int CARDS_FIELD_NUMBER = 6;
     private java.util.List<com.google.protobuf.ByteString> cards_;
     /**
      * <pre>
      * 牌
      * </pre>
      *
-     * <code>repeated bytes cards = 5;</code>
+     * <code>repeated bytes cards = 6;</code>
      */
     public java.util.List<com.google.protobuf.ByteString>
         getCardsList() {
@@ -4053,7 +4145,7 @@ public final class Protobufs {
      * 牌
      * </pre>
      *
-     * <code>repeated bytes cards = 5;</code>
+     * <code>repeated bytes cards = 6;</code>
      */
     public int getCardsCount() {
       return cards_.size();
@@ -4063,20 +4155,20 @@ public final class Protobufs {
      * 牌
      * </pre>
      *
-     * <code>repeated bytes cards = 5;</code>
+     * <code>repeated bytes cards = 6;</code>
      */
     public com.google.protobuf.ByteString getCards(int index) {
       return cards_.get(index);
     }
 
-    public static final int MILLIS_FIELD_NUMBER = 6;
+    public static final int MILLIS_FIELD_NUMBER = 7;
     private long millis_;
     /**
      * <pre>
      * 时间
      * </pre>
      *
-     * <code>uint64 millis = 6;</code>
+     * <code>uint64 millis = 7;</code>
      */
     public long getMillis() {
       return millis_;
@@ -4103,14 +4195,17 @@ public final class Protobufs {
       if (placementSeatID_ != 0) {
         output.writeInt32(3, placementSeatID_);
       }
+      if (winnerSeatID_ != 0) {
+        output.writeInt32(4, winnerSeatID_);
+      }
       if (coin_ != 0) {
-        output.writeInt32(4, coin_);
+        output.writeInt32(5, coin_);
       }
       for (int i = 0; i < cards_.size(); i++) {
-        output.writeBytes(5, cards_.get(i));
+        output.writeBytes(6, cards_.get(i));
       }
       if (millis_ != 0L) {
-        output.writeUInt64(6, millis_);
+        output.writeUInt64(7, millis_);
       }
     }
 
@@ -4131,9 +4226,13 @@ public final class Protobufs {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, placementSeatID_);
       }
+      if (winnerSeatID_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, winnerSeatID_);
+      }
       if (coin_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, coin_);
+          .computeInt32Size(5, coin_);
       }
       {
         int dataSize = 0;
@@ -4146,7 +4245,7 @@ public final class Protobufs {
       }
       if (millis_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(6, millis_);
+          .computeUInt64Size(7, millis_);
       }
       memoizedSize = size;
       return size;
@@ -4169,6 +4268,8 @@ public final class Protobufs {
           == other.getSeatID());
       result = result && (getPlacementSeatID()
           == other.getPlacementSeatID());
+      result = result && (getWinnerSeatID()
+          == other.getWinnerSeatID());
       result = result && (getCoin()
           == other.getCoin());
       result = result && getCardsList()
@@ -4191,6 +4292,8 @@ public final class Protobufs {
       hash = (53 * hash) + getSeatID();
       hash = (37 * hash) + PLACEMENTSEATID_FIELD_NUMBER;
       hash = (53 * hash) + getPlacementSeatID();
+      hash = (37 * hash) + WINNERSEATID_FIELD_NUMBER;
+      hash = (53 * hash) + getWinnerSeatID();
       hash = (37 * hash) + COIN_FIELD_NUMBER;
       hash = (53 * hash) + getCoin();
       if (getCardsCount() > 0) {
@@ -4335,10 +4438,12 @@ public final class Protobufs {
 
         placementSeatID_ = 0;
 
+        winnerSeatID_ = 0;
+
         coin_ = 0;
 
         cards_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         millis_ = 0L;
 
         return this;
@@ -4368,10 +4473,11 @@ public final class Protobufs {
         result.action_ = action_;
         result.seatID_ = seatID_;
         result.placementSeatID_ = placementSeatID_;
+        result.winnerSeatID_ = winnerSeatID_;
         result.coin_ = coin_;
-        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
           cards_ = java.util.Collections.unmodifiableList(cards_);
-          bitField0_ = (bitField0_ & ~0x00000010);
+          bitField0_ = (bitField0_ & ~0x00000020);
         }
         result.cards_ = cards_;
         result.millis_ = millis_;
@@ -4426,13 +4532,16 @@ public final class Protobufs {
         if (other.getPlacementSeatID() != 0) {
           setPlacementSeatID(other.getPlacementSeatID());
         }
+        if (other.getWinnerSeatID() != 0) {
+          setWinnerSeatID(other.getWinnerSeatID());
+        }
         if (other.getCoin() != 0) {
           setCoin(other.getCoin());
         }
         if (!other.cards_.isEmpty()) {
           if (cards_.isEmpty()) {
             cards_ = other.cards_;
-            bitField0_ = (bitField0_ & ~0x00000010);
+            bitField0_ = (bitField0_ & ~0x00000020);
           } else {
             ensureCardsIsMutable();
             cards_.addAll(other.cards_);
@@ -4577,15 +4686,53 @@ public final class Protobufs {
         return this;
       }
 
+      private int winnerSeatID_ ;
+      /**
+       * <pre>
+       * 用户比较的第二个玩家ID/
+       * </pre>
+       *
+       * <code>int32 winnerSeatID = 4;</code>
+       */
+      public int getWinnerSeatID() {
+        return winnerSeatID_;
+      }
+      /**
+       * <pre>
+       * 用户比较的第二个玩家ID/
+       * </pre>
+       *
+       * <code>int32 winnerSeatID = 4;</code>
+       */
+      public Builder setWinnerSeatID(int value) {
+        
+        winnerSeatID_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 用户比较的第二个玩家ID/
+       * </pre>
+       *
+       * <code>int32 winnerSeatID = 4;</code>
+       */
+      public Builder clearWinnerSeatID() {
+        
+        winnerSeatID_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int coin_ ;
       /**
-       * <code>int32 coin = 4;</code>
+       * <code>int32 coin = 5;</code>
        */
       public int getCoin() {
         return coin_;
       }
       /**
-       * <code>int32 coin = 4;</code>
+       * <code>int32 coin = 5;</code>
        */
       public Builder setCoin(int value) {
         
@@ -4594,7 +4741,7 @@ public final class Protobufs {
         return this;
       }
       /**
-       * <code>int32 coin = 4;</code>
+       * <code>int32 coin = 5;</code>
        */
       public Builder clearCoin() {
         
@@ -4605,9 +4752,9 @@ public final class Protobufs {
 
       private java.util.List<com.google.protobuf.ByteString> cards_ = java.util.Collections.emptyList();
       private void ensureCardsIsMutable() {
-        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
           cards_ = new java.util.ArrayList<com.google.protobuf.ByteString>(cards_);
-          bitField0_ |= 0x00000010;
+          bitField0_ |= 0x00000020;
          }
       }
       /**
@@ -4615,7 +4762,7 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public java.util.List<com.google.protobuf.ByteString>
           getCardsList() {
@@ -4626,7 +4773,7 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public int getCardsCount() {
         return cards_.size();
@@ -4636,7 +4783,7 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public com.google.protobuf.ByteString getCards(int index) {
         return cards_.get(index);
@@ -4646,7 +4793,7 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public Builder setCards(
           int index, com.google.protobuf.ByteString value) {
@@ -4663,7 +4810,7 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public Builder addCards(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -4679,7 +4826,7 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public Builder addAllCards(
           java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
@@ -4694,11 +4841,11 @@ public final class Protobufs {
        * 牌
        * </pre>
        *
-       * <code>repeated bytes cards = 5;</code>
+       * <code>repeated bytes cards = 6;</code>
        */
       public Builder clearCards() {
         cards_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         onChanged();
         return this;
       }
@@ -4709,7 +4856,7 @@ public final class Protobufs {
        * 时间
        * </pre>
        *
-       * <code>uint64 millis = 6;</code>
+       * <code>uint64 millis = 7;</code>
        */
       public long getMillis() {
         return millis_;
@@ -4719,7 +4866,7 @@ public final class Protobufs {
        * 时间
        * </pre>
        *
-       * <code>uint64 millis = 6;</code>
+       * <code>uint64 millis = 7;</code>
        */
       public Builder setMillis(long value) {
         
@@ -4732,7 +4879,7 @@ public final class Protobufs {
        * 时间
        * </pre>
        *
-       * <code>uint64 millis = 6;</code>
+       * <code>uint64 millis = 7;</code>
        */
       public Builder clearMillis() {
         
@@ -4826,19 +4973,20 @@ public final class Protobufs {
       "\001(\005\022\020\n\010deviceId\030\t \001(\t\022\n\n\002id\030\n \001(\005\022\020\n\010aut" +
       "hData\030\013 \001(\t\022\021\n\tcreatedAt\030\014 \001(\004\022\021\n\tupdate" +
       "dAt\030\r \001(\004\022\021\n\tplacement\030\016 \001(\010\022\021\n\theaderUr" +
-      "l\030\017 \001(\t\"Q\n\004Seat\022\016\n\006seatID\030\001 \001(\005\022\020\n\010callC" +
+      "l\030\017 \001(\t\"d\n\004Seat\022\016\n\006seatID\030\001 \001(\005\022\020\n\010callC" +
       "oin\030\002 \001(\005\022\023\n\004user\030\003 \001(\0132\005.User\022\022\n\nisPrep",
-      "ared\030\004 \001(\010\"]\n\005Table\022\017\n\007tableID\030\001 \001(\005\022\024\n\005" +
-      "seats\030\002 \003(\0132\005.Seat\022\016\n\006minBet\030\003 \001(\005\022\016\n\006ma" +
-      "xBet\030\004 \001(\005\022\r\n\005round\030\005 \001(\005\"\200\001\n\013GameOperat" +
-      "e\022\033\n\006action\030\001 \001(\0162\013.GameAction\022\016\n\006seatID" +
-      "\030\002 \001(\005\022\027\n\017placementSeatID\030\003 \001(\005\022\014\n\004coin\030" +
-      "\004 \001(\005\022\r\n\005cards\030\005 \003(\014\022\016\n\006millis\030\006 \001(\004*\214\001\n" +
-      "\nGameAction\022\013\n\007PREPARE\020\000\022\n\n\006ADDBET\020\001\022\n\n\006" +
-      "FOLLOW\020\002\022\n\n\006GIVEUP\020\003\022\013\n\007COMPARE\020\004\022\t\n\005WAT" +
-      "CH\020\005\022\023\n\017COUNTDOWN_START\020\006\022\r\n\tSEND_CARD\020\007" +
-      "\022\010\n\004TURN\020\010\022\007\n\003END\020\tB \n\023com.mjoys.zjh.pro",
-      "toB\tProtobufsb\006proto3"
+      "ared\030\004 \001(\010\022\021\n\tisWatched\030\005 \001(\010\"]\n\005Table\022\017" +
+      "\n\007tableID\030\001 \001(\005\022\024\n\005seats\030\002 \003(\0132\005.Seat\022\016\n" +
+      "\006minBet\030\003 \001(\005\022\016\n\006maxBet\030\004 \001(\005\022\r\n\005round\030\005" +
+      " \001(\005\"\226\001\n\013GameOperate\022\033\n\006action\030\001 \001(\0162\013.G" +
+      "ameAction\022\016\n\006seatID\030\002 \001(\005\022\027\n\017placementSe" +
+      "atID\030\003 \001(\005\022\024\n\014winnerSeatID\030\004 \001(\005\022\014\n\004coin" +
+      "\030\005 \001(\005\022\r\n\005cards\030\006 \003(\014\022\016\n\006millis\030\007 \001(\004*\214\001" +
+      "\n\nGameAction\022\013\n\007PREPARE\020\000\022\n\n\006ADDBET\020\001\022\n\n" +
+      "\006FOLLOW\020\002\022\n\n\006GIVEUP\020\003\022\013\n\007COMPARE\020\004\022\t\n\005WA" +
+      "TCH\020\005\022\023\n\017COUNTDOWN_START\020\006\022\r\n\tSEND_CARD\020",
+      "\007\022\010\n\004TURN\020\010\022\007\n\003END\020\tB \n\023com.mjoys.zjh.pr" +
+      "otoB\tProtobufsb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4863,7 +5011,7 @@ public final class Protobufs {
     internal_static_Seat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Seat_descriptor,
-        new java.lang.String[] { "SeatID", "CallCoin", "User", "IsPrepared", });
+        new java.lang.String[] { "SeatID", "CallCoin", "User", "IsPrepared", "IsWatched", });
     internal_static_Table_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_Table_fieldAccessorTable = new
@@ -4875,7 +5023,7 @@ public final class Protobufs {
     internal_static_GameOperate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GameOperate_descriptor,
-        new java.lang.String[] { "Action", "SeatID", "PlacementSeatID", "Coin", "Cards", "Millis", });
+        new java.lang.String[] { "Action", "SeatID", "PlacementSeatID", "WinnerSeatID", "Coin", "Cards", "Millis", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
