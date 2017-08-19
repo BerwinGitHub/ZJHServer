@@ -251,6 +251,7 @@ public class TableController extends IController implements Runnable {
 	public void addBet(int seatID, int addTo) {
 		Seat seat = this.getSeatFromPrepared(seatID);
 		if (seat != null) {
+			this.table.setCurrentBet(addTo);
 			seat.setCallCoin(seat.getCallCoin() + addTo);
 			// 向房间的人广播，有人加注了
 			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.ADDBET, seatID, -1, -1, addTo, null, 0L));
@@ -266,6 +267,7 @@ public class TableController extends IController implements Runnable {
 	public void followBet(int seatID, int bet) {
 		Seat seat = this.getSeatFromPrepared(seatID);
 		if (seat != null) {
+			this.table.setCurrentBet(bet);
 			seat.setCallCoin(seat.getCallCoin() + bet);
 			// 向房间的人广播，有人跟注了
 			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.FOLLOW, seatID, -1, -1, bet, null, 0L));
@@ -315,9 +317,11 @@ public class TableController extends IController implements Runnable {
 		builder.setWinnerSeatID(winnerSeatID);
 		builder.setCoin(coin);
 		builder.setMillis(millis);
+		builder.setCurrentBet(this.table.getCurrentBet());
 		if (cards != null) {
 			for (int i = 0; i < cards.size(); i++) {
 				byte[] bs = { cards.get(i).byteValue() };
+				System.out.println("ByteString:" + ByteString.copyFrom(bs).toString());
 				builder.setCards(i, ByteString.copyFrom(bs));
 			}
 		}

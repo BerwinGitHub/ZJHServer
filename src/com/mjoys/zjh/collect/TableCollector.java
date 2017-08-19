@@ -11,6 +11,9 @@ import com.mjoys.zjh.entity.Table;
 
 public class TableCollector {
 
+	public static final int BET_ITEMS[] = { 1, 3, 5, 8, 10 };
+	public static final int DEFAULT_BET = 10;
+
 	private static TableCollector instance = null;
 
 	private List<TableController> tableCollector;
@@ -31,16 +34,14 @@ public class TableCollector {
 	 * 
 	 * @return
 	 */
-	public synchronized TableController quickStart(SocketIOServer server,
-			User u, SocketIOClient sIoClient) {
+	public synchronized TableController quickStart(SocketIOServer server, User u, SocketIOClient sIoClient) {
 		for (int i = 0; i < tableCollector.size(); i++) {
 			if (this.tableCollector.get(i).addSeat(u, sIoClient)) { // 向位置上添加用户，成功返回true
 				return tableCollector.get(i);
 			}
 		}
 		// 没有找到就创建一个TableController
-		TableController tableController = new TableController(server,
-				this.buildTable());
+		TableController tableController = new TableController(server, this.buildTable());
 		// 向table中添加一个Seat
 		tableController.addSeat(u, sIoClient);
 		// 添加到缓存中
@@ -48,11 +49,10 @@ public class TableCollector {
 		return tableController;
 	}
 
-	public synchronized TableController createTable(SocketIOServer server,
-			User u, Table table, SocketIOClient sIoClient) {
+	public synchronized TableController createTable(SocketIOServer server, User u, Table table,
+			SocketIOClient sIoClient) {
 		// 没有找到就创建一个TableController
-		TableController tableController = new TableController(server,
-				this.buildTable());
+		TableController tableController = new TableController(server, this.buildTable());
 		tableController.getTable().setMinBet(table.getMinBet());
 		tableController.getTable().setMaxBet(table.getMaxBet());
 		// 向table中添加一个Seat
@@ -62,8 +62,8 @@ public class TableCollector {
 		return tableController;
 	}
 
-	public synchronized TableController joinTable(SocketIOServer server,
-			User u, int tableID, SocketIOClient sIoClient) {
+	public synchronized TableController joinTable(SocketIOServer server, User u, int tableID,
+			SocketIOClient sIoClient) {
 		TableController tc = this.getTableControllerByID(tableID);
 		if (tc != null) {
 			tc.addSeat(u, sIoClient);
@@ -85,7 +85,7 @@ public class TableCollector {
 	 * @return
 	 */
 	private Table buildTable() {
-		Table table = new Table(this.tableCollector.size() + 1);
+		Table table = new Table(this.tableCollector.size() + 1, DEFAULT_BET);
 		return table;
 	}
 

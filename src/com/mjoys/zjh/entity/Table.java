@@ -3,7 +3,6 @@ package com.mjoys.zjh.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mjoys.zjh.confgs.Configs;
 import com.mjoys.zjh.domain.IBPEntity;
 import com.mjoys.zjh.domain.User;
 import com.mjoys.zjh.proto.Protobufs;
@@ -37,6 +36,11 @@ public class Table extends IBPEntity<Protobufs.Table> {
 	private int maxBet;
 
 	/**
+	 * 当前倍注
+	 */
+	private int currentBet;
+
+	/**
 	 * 第几轮
 	 */
 	private int round;
@@ -48,8 +52,10 @@ public class Table extends IBPEntity<Protobufs.Table> {
 		this.toEntity(bs);
 	}
 
-	public Table(int tableID) {
+	public Table(int tableID, int currentBet) {
 		this.tableID = tableID;
+		this.currentBet = currentBet;
+		this.minBet = currentBet;
 		this.seats = new ArrayList<>();
 		this.round = 0;
 	}
@@ -92,6 +98,14 @@ public class Table extends IBPEntity<Protobufs.Table> {
 
 	public void setRound(int round) {
 		this.round = round;
+	}
+
+	public int getCurrentBet() {
+		return currentBet;
+	}
+
+	public void setCurrentBet(int currentBet) {
+		this.currentBet = currentBet;
 	}
 
 	public Seat getSeatByUser(User u) {

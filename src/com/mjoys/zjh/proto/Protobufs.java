@@ -360,7 +360,7 @@ public final class Protobufs {
 
     /**
      * <pre>
-     * for test	
+     * for test
      * </pre>
      *
      * <code>bool placement = 14;</code>
@@ -781,7 +781,7 @@ public final class Protobufs {
     private boolean placement_;
     /**
      * <pre>
-     * for test	
+     * for test
      * </pre>
      *
      * <code>bool placement = 14;</code>
@@ -1902,7 +1902,7 @@ public final class Protobufs {
       private boolean placement_ ;
       /**
        * <pre>
-       * for test	
+       * for test
        * </pre>
        *
        * <code>bool placement = 14;</code>
@@ -1912,7 +1912,7 @@ public final class Protobufs {
       }
       /**
        * <pre>
-       * for test	
+       * for test
        * </pre>
        *
        * <code>bool placement = 14;</code>
@@ -1925,7 +1925,7 @@ public final class Protobufs {
       }
       /**
        * <pre>
-       * for test	
+       * for test
        * </pre>
        *
        * <code>bool placement = 14;</code>
@@ -2923,7 +2923,12 @@ public final class Protobufs {
     int getMaxBet();
 
     /**
-     * <code>int32 round = 5;</code>
+     * <code>int32 currentBet = 5;</code>
+     */
+    int getCurrentBet();
+
+    /**
+     * <code>int32 round = 6;</code>
      */
     int getRound();
   }
@@ -2943,6 +2948,7 @@ public final class Protobufs {
       seats_ = java.util.Collections.emptyList();
       minBet_ = 0;
       maxBet_ = 0;
+      currentBet_ = 0;
       round_ = 0;
     }
 
@@ -2996,6 +3002,11 @@ public final class Protobufs {
               break;
             }
             case 40: {
+
+              currentBet_ = input.readInt32();
+              break;
+            }
+            case 48: {
 
               round_ = input.readInt32();
               break;
@@ -3089,10 +3100,19 @@ public final class Protobufs {
       return maxBet_;
     }
 
-    public static final int ROUND_FIELD_NUMBER = 5;
+    public static final int CURRENTBET_FIELD_NUMBER = 5;
+    private int currentBet_;
+    /**
+     * <code>int32 currentBet = 5;</code>
+     */
+    public int getCurrentBet() {
+      return currentBet_;
+    }
+
+    public static final int ROUND_FIELD_NUMBER = 6;
     private int round_;
     /**
-     * <code>int32 round = 5;</code>
+     * <code>int32 round = 6;</code>
      */
     public int getRound() {
       return round_;
@@ -3122,8 +3142,11 @@ public final class Protobufs {
       if (maxBet_ != 0) {
         output.writeInt32(4, maxBet_);
       }
+      if (currentBet_ != 0) {
+        output.writeInt32(5, currentBet_);
+      }
       if (round_ != 0) {
-        output.writeInt32(5, round_);
+        output.writeInt32(6, round_);
       }
     }
 
@@ -3148,9 +3171,13 @@ public final class Protobufs {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, maxBet_);
       }
+      if (currentBet_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, currentBet_);
+      }
       if (round_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, round_);
+          .computeInt32Size(6, round_);
       }
       memoizedSize = size;
       return size;
@@ -3176,6 +3203,8 @@ public final class Protobufs {
           == other.getMinBet());
       result = result && (getMaxBet()
           == other.getMaxBet());
+      result = result && (getCurrentBet()
+          == other.getCurrentBet());
       result = result && (getRound()
           == other.getRound());
       return result;
@@ -3198,6 +3227,8 @@ public final class Protobufs {
       hash = (53 * hash) + getMinBet();
       hash = (37 * hash) + MAXBET_FIELD_NUMBER;
       hash = (53 * hash) + getMaxBet();
+      hash = (37 * hash) + CURRENTBET_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrentBet();
       hash = (37 * hash) + ROUND_FIELD_NUMBER;
       hash = (53 * hash) + getRound();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -3342,6 +3373,8 @@ public final class Protobufs {
 
         maxBet_ = 0;
 
+        currentBet_ = 0;
+
         round_ = 0;
 
         return this;
@@ -3380,6 +3413,7 @@ public final class Protobufs {
         }
         result.minBet_ = minBet_;
         result.maxBet_ = maxBet_;
+        result.currentBet_ = currentBet_;
         result.round_ = round_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -3457,6 +3491,9 @@ public final class Protobufs {
         }
         if (other.getMaxBet() != 0) {
           setMaxBet(other.getMaxBet());
+        }
+        if (other.getCurrentBet() != 0) {
+          setCurrentBet(other.getCurrentBet());
         }
         if (other.getRound() != 0) {
           setRound(other.getRound());
@@ -3806,15 +3843,41 @@ public final class Protobufs {
         return this;
       }
 
+      private int currentBet_ ;
+      /**
+       * <code>int32 currentBet = 5;</code>
+       */
+      public int getCurrentBet() {
+        return currentBet_;
+      }
+      /**
+       * <code>int32 currentBet = 5;</code>
+       */
+      public Builder setCurrentBet(int value) {
+        
+        currentBet_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 currentBet = 5;</code>
+       */
+      public Builder clearCurrentBet() {
+        
+        currentBet_ = 0;
+        onChanged();
+        return this;
+      }
+
       private int round_ ;
       /**
-       * <code>int32 round = 5;</code>
+       * <code>int32 round = 6;</code>
        */
       public int getRound() {
         return round_;
       }
       /**
-       * <code>int32 round = 5;</code>
+       * <code>int32 round = 6;</code>
        */
       public Builder setRound(int value) {
         
@@ -3823,7 +3886,7 @@ public final class Protobufs {
         return this;
       }
       /**
-       * <code>int32 round = 5;</code>
+       * <code>int32 round = 6;</code>
        */
       public Builder clearRound() {
         
@@ -3954,6 +4017,15 @@ public final class Protobufs {
      * <code>uint64 millis = 7;</code>
      */
     long getMillis();
+
+    /**
+     * <pre>
+     * 当前倍率
+     * </pre>
+     *
+     * <code>uint32 currentBet = 8;</code>
+     */
+    int getCurrentBet();
   }
   /**
    * Protobuf type {@code GameOperate}
@@ -3974,6 +4046,7 @@ public final class Protobufs {
       coin_ = 0;
       cards_ = java.util.Collections.emptyList();
       millis_ = 0L;
+      currentBet_ = 0;
     }
 
     @java.lang.Override
@@ -4038,6 +4111,11 @@ public final class Protobufs {
             case 56: {
 
               millis_ = input.readUInt64();
+              break;
+            }
+            case 64: {
+
+              currentBet_ = input.readUInt32();
               break;
             }
           }
@@ -4174,6 +4252,19 @@ public final class Protobufs {
       return millis_;
     }
 
+    public static final int CURRENTBET_FIELD_NUMBER = 8;
+    private int currentBet_;
+    /**
+     * <pre>
+     * 当前倍率
+     * </pre>
+     *
+     * <code>uint32 currentBet = 8;</code>
+     */
+    public int getCurrentBet() {
+      return currentBet_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4206,6 +4297,9 @@ public final class Protobufs {
       }
       if (millis_ != 0L) {
         output.writeUInt64(7, millis_);
+      }
+      if (currentBet_ != 0) {
+        output.writeUInt32(8, currentBet_);
       }
     }
 
@@ -4247,6 +4341,10 @@ public final class Protobufs {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(7, millis_);
       }
+      if (currentBet_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(8, currentBet_);
+      }
       memoizedSize = size;
       return size;
     }
@@ -4276,6 +4374,8 @@ public final class Protobufs {
           .equals(other.getCardsList());
       result = result && (getMillis()
           == other.getMillis());
+      result = result && (getCurrentBet()
+          == other.getCurrentBet());
       return result;
     }
 
@@ -4303,6 +4403,8 @@ public final class Protobufs {
       hash = (37 * hash) + MILLIS_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getMillis());
+      hash = (37 * hash) + CURRENTBET_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrentBet();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4446,6 +4548,8 @@ public final class Protobufs {
         bitField0_ = (bitField0_ & ~0x00000020);
         millis_ = 0L;
 
+        currentBet_ = 0;
+
         return this;
       }
 
@@ -4481,6 +4585,7 @@ public final class Protobufs {
         }
         result.cards_ = cards_;
         result.millis_ = millis_;
+        result.currentBet_ = currentBet_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -4550,6 +4655,9 @@ public final class Protobufs {
         }
         if (other.getMillis() != 0L) {
           setMillis(other.getMillis());
+        }
+        if (other.getCurrentBet() != 0) {
+          setCurrentBet(other.getCurrentBet());
         }
         onChanged();
         return this;
@@ -4887,6 +4995,44 @@ public final class Protobufs {
         onChanged();
         return this;
       }
+
+      private int currentBet_ ;
+      /**
+       * <pre>
+       * 当前倍率
+       * </pre>
+       *
+       * <code>uint32 currentBet = 8;</code>
+       */
+      public int getCurrentBet() {
+        return currentBet_;
+      }
+      /**
+       * <pre>
+       * 当前倍率
+       * </pre>
+       *
+       * <code>uint32 currentBet = 8;</code>
+       */
+      public Builder setCurrentBet(int value) {
+        
+        currentBet_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 当前倍率
+       * </pre>
+       *
+       * <code>uint32 currentBet = 8;</code>
+       */
+      public Builder clearCurrentBet() {
+        
+        currentBet_ = 0;
+        onChanged();
+        return this;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
@@ -4975,16 +5121,17 @@ public final class Protobufs {
       "dAt\030\r \001(\004\022\021\n\tplacement\030\016 \001(\010\022\021\n\theaderUr" +
       "l\030\017 \001(\t\"d\n\004Seat\022\016\n\006seatID\030\001 \001(\005\022\020\n\010callC" +
       "oin\030\002 \001(\005\022\023\n\004user\030\003 \001(\0132\005.User\022\022\n\nisPrep",
-      "ared\030\004 \001(\010\022\021\n\tisWatched\030\005 \001(\010\"]\n\005Table\022\017" +
+      "ared\030\004 \001(\010\022\021\n\tisWatched\030\005 \001(\010\"q\n\005Table\022\017" +
       "\n\007tableID\030\001 \001(\005\022\024\n\005seats\030\002 \003(\0132\005.Seat\022\016\n" +
-      "\006minBet\030\003 \001(\005\022\016\n\006maxBet\030\004 \001(\005\022\r\n\005round\030\005" +
-      " \001(\005\"\226\001\n\013GameOperate\022\033\n\006action\030\001 \001(\0162\013.G" +
-      "ameAction\022\016\n\006seatID\030\002 \001(\005\022\027\n\017placementSe" +
-      "atID\030\003 \001(\005\022\024\n\014winnerSeatID\030\004 \001(\005\022\014\n\004coin" +
-      "\030\005 \001(\005\022\r\n\005cards\030\006 \003(\014\022\016\n\006millis\030\007 \001(\004*\214\001" +
+      "\006minBet\030\003 \001(\005\022\016\n\006maxBet\030\004 \001(\005\022\022\n\ncurrent" +
+      "Bet\030\005 \001(\005\022\r\n\005round\030\006 \001(\005\"\252\001\n\013GameOperate" +
+      "\022\033\n\006action\030\001 \001(\0162\013.GameAction\022\016\n\006seatID\030" +
+      "\002 \001(\005\022\027\n\017placementSeatID\030\003 \001(\005\022\024\n\014winner" +
+      "SeatID\030\004 \001(\005\022\014\n\004coin\030\005 \001(\005\022\r\n\005cards\030\006 \003(" +
+      "\014\022\016\n\006millis\030\007 \001(\004\022\022\n\ncurrentBet\030\010 \001(\r*\214\001" +
       "\n\nGameAction\022\013\n\007PREPARE\020\000\022\n\n\006ADDBET\020\001\022\n\n" +
-      "\006FOLLOW\020\002\022\n\n\006GIVEUP\020\003\022\013\n\007COMPARE\020\004\022\t\n\005WA" +
-      "TCH\020\005\022\023\n\017COUNTDOWN_START\020\006\022\r\n\tSEND_CARD\020",
+      "\006FOLLOW\020\002\022\n\n\006GIVEUP\020\003\022\013\n\007COMPARE\020\004\022\t\n\005WA",
+      "TCH\020\005\022\023\n\017COUNTDOWN_START\020\006\022\r\n\tSEND_CARD\020" +
       "\007\022\010\n\004TURN\020\010\022\007\n\003END\020\tB \n\023com.mjoys.zjh.pr" +
       "otoB\tProtobufsb\006proto3"
     };
@@ -5017,13 +5164,13 @@ public final class Protobufs {
     internal_static_Table_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Table_descriptor,
-        new java.lang.String[] { "TableID", "Seats", "MinBet", "MaxBet", "Round", });
+        new java.lang.String[] { "TableID", "Seats", "MinBet", "MaxBet", "CurrentBet", "Round", });
     internal_static_GameOperate_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_GameOperate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_GameOperate_descriptor,
-        new java.lang.String[] { "Action", "SeatID", "PlacementSeatID", "WinnerSeatID", "Coin", "Cards", "Millis", });
+        new java.lang.String[] { "Action", "SeatID", "PlacementSeatID", "WinnerSeatID", "Coin", "Cards", "Millis", "CurrentBet", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
