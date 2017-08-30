@@ -7,7 +7,6 @@ import java.util.Random;
 
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
-import com.google.protobuf.ByteString;
 import com.mjoys.zjh.collect.TableCollector;
 import com.mjoys.zjh.common.CSMapping;
 import com.mjoys.zjh.confgs.Configs;
@@ -143,7 +142,8 @@ public class TableController extends IController implements Runnable {
 		}
 		// 开始操作流程
 		while (isGameStarted) {
-			for (Seat seat : preparedSeats) {
+			for (int i = 0; i < preparedSeats.size(); i++) {
+				Seat seat = this.preparedSeats.get(i);
 				WaitThread wt = new WaitThread(); // 创建倒计时器
 				seat.getSocketIOClient().set(G.CACHE_WAIT_THREAD, wt); // 放到缓存中
 				System.out.println("轮到" + seat.getSeatID() + "操作");
@@ -152,16 +152,21 @@ public class TableController extends IController implements Runnable {
 				this.broadcast(CSMapping.S2C.GAMEING,
 						buildGameOperate(GameAction.TURN, seat.getSeatID(), -1, -1, -1, null, endMillis));
 				wt.await(endMillis); // 给用户15秒钟的时间操作
-				// 到此用户操作了，或者超时
-				// 1.先删除等待操作线程
-				seat.getSocketIOClient().del(G.CACHE_WAIT_THREAD);
-				// 2 检查是否是超时过来的
-				if (wt.isTimeout()) // 超时就放弃
-					this.giveup(seat);
-				// 3.再看有几个用户，小于2个人就结束游戏
-				if (this.preparedSeats.size() <= 1) { // 小于等于1个人
-					this.isGameStarted = false; // 游戏结束
-					break;
+				Object obj = wt.get("Action");
+				if (obj != null && (int) obj == GameAction.WATCH_VALUE) { // 看牌还是该自己操作
+					i--;
+				} else {
+					// 到此用户操作了，或者超时
+					// 1.先删除等待操作线程
+					seat.getSocketIOClient().del(G.CACHE_WAIT_THREAD);
+					// 2 检查是否是超时过来的
+					if (wt.isTimeout()) // 超时就放弃
+						this.giveup(seat);
+					// 3.再看有几个用户，小于2个人就结束游戏
+					if (this.preparedSeats.size() <= 1) { // 小于等于1个人
+						this.isGameStarted = false; // 游戏结束
+						break;
+					}
 				}
 			}
 		}
@@ -233,11 +238,14 @@ public class TableController extends IController implements Runnable {
 		Seat seat = this.getSeatFromPrepared(seatID);
 		if (seat != null) {
 			seat.setWatched(true);
-			byte[] bs = this.buildGameOperate(GameAction.WATCH, seatID, -1, -1, -1, seat.getCards(), 0L);
+			// byte[] bs = this.buildGameOperate(GameAction.WATCH, seatID, -1,
+			// -1, -1, seat.getCardBytes(), 0L);
 			// 向用户发送看牌的消息
-			seat.getSocketIOClient().sendEvent(CSMapping.S2C.GAMEING, bs);
+			// seat.getSocketIOClient().sendEvent(CSMapping.S2C.GAMEING, bs);
 			// 向房间的人广播，有人看牌了
-			this.broadcast(CSMapping.S2C.GAMEING, buildGameOperate(GameAction.WATCH, seatID, -1, -1, -1, null, 0L));
+			System.out.println(this.zjhPokerService.toCardString(seat.getCardBytes()));
+			this.broadcast(CSMapping.S2C.GAMEING,
+					buildGameOperate(GameAction.WATCH, seatID, -1, -1, -1, seat.getCardBytes(), 0L));
 		}
 
 	}
@@ -308,8 +316,8 @@ public class TableController extends IController implements Runnable {
 		return null;
 	}
 
-	private byte[] buildGameOperate(GameAction ga, int seatID, int plcSeatID, int winnerSeatID, int coin,
-			List<Byte> cards, long millis) {
+	private byte[] buildGameOperate(GameAction ga, int seatID, int plcSeatID, int winnerSeatID, int coin, byte[] cards,
+			long millis) {
 		GameOperate.Builder builder = GameOperate.newBuilder();
 		builder.setAction(ga);
 		builder.setSeatID(seatID);
@@ -319,11 +327,8 @@ public class TableController extends IController implements Runnable {
 		builder.setMillis(millis);
 		builder.setCurrentBet(this.table.getCurrentBet());
 		if (cards != null) {
-			for (int i = 0; i < cards.size(); i++) {
-				byte[] bs = { cards.get(i).byteValue() };
-				System.out.println("ByteString:" + ByteString.copyFrom(bs).toString());
-				builder.setCards(i, ByteString.copyFrom(bs));
-			}
+			// 用#分割，避免本身传递是用逗号分割冲突
+			builder.setCards(ProtobufUtility.stringify(cards, "#"));
 		}
 		return builder.build().toByteArray();
 	}

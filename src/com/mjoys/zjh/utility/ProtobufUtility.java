@@ -32,13 +32,17 @@ public class ProtobufUtility {
 		return bytes;
 	}
 
-	public static String stringify(byte[] bs) {
+	public static String stringify(byte[] bs, String separator) {
 		String result = "";
 		if (bs == null)
 			return result;
 		for (int i = 0; i < bs.length; i++)
-			result += (bs[i] + (i != bs.length - 1 ? "," : ""));
+			result += (bs[i] + (i != bs.length - 1 ? separator : ""));
 		return result;
+	}
+
+	public static String stringify(byte[] bs) {
+		return ProtobufUtility.stringify(bs, ",");
 	}
 
 	@SuppressWarnings("unchecked")

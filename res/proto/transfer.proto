@@ -68,7 +68,7 @@ message GameOperate {
 	int32 placementSeatID			=	3; // 用户比较的第二个玩家ID/
 	int32 winnerSeatID				=	4; // 用户比较的第二个玩家ID/
 	int32 coin						=	5;
-	repeated bytes cards			=	6; // 牌
+	string cards					=	6; // 牌
 	uint64 millis					=	7; // 时间
 	uint32 currentBet				=	8; // 当前倍率
 }

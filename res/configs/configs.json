@@ -11,6 +11,6 @@
 	db_master_key:"064bf73ed9f00b0c9274572fee71981f",
 	table_max_players:7,
 	min_player_start:2,
-	game_opt_second:15,
-	prepared_wait_second:15,
+	game_opt_second:120,
+	prepared_wait_second:5,
 }

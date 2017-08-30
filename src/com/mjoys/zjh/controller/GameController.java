@@ -23,6 +23,7 @@ public class GameController extends IController implements DataListener<String> 
 		User user = arg0.get(G.CACHE_USER); // 用户
 		TableController tc = arg0.get(G.CACHE_TABLE_CONTROLLER);
 		WaitThread wt = arg0.get(G.CACHE_WAIT_THREAD);
+		wt.set("Action", go.getActionValue());
 		int action = go.getActionValue();
 		if (action == GameAction.PREPARE_VALUE) { // 准备
 			if (tc != null) // 从前面一个房间中移除
